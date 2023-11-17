@@ -1,0 +1,8 @@
+prefix=/home/trashbot/trashbot/husky_melodic_ws/devel
+
+Name: husky_msgs
+Description: Description of husky_msgs
+Version: 0.4.13
+Cflags: -I/home/trashbot/trashbot/husky_melodic_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: std_msgs message_runtime
