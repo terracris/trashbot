@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/trashbot/trashbot/husky_melodic_ws/devel/setup.sh

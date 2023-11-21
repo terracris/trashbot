@@ -1,0 +1,8 @@
+prefix=/home/trashbot/trashbot/husky_melodic_ws/install
+
+Name: husky_navigation
+Description: Description of husky_navigation
+Version: 0.4.13
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

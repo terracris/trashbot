@@ -1,0 +1,8 @@
+prefix=/home/trashbot/trashbot/husky_melodic_ws/devel
+
+Name: husky_bringup
+Description: Description of husky_bringup
+Version: 0.4.13
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
