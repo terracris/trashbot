@@ -1,8 +1,8 @@
-# Install script for directory: /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_viz
+# Install script for directory: /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_viz
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/trashbot/trashbot/husky_melodic_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/cristobal/trashbot/husky_melodic_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,25 +38,25 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_viz/catkin_generated/installspace/husky_viz.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_viz/catkin_generated/installspace/husky_viz.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_viz/cmake" TYPE FILE FILES
-    "/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_viz/catkin_generated/installspace/husky_vizConfig.cmake"
-    "/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_viz/catkin_generated/installspace/husky_vizConfig-version.cmake"
+    "/home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_viz/catkin_generated/installspace/husky_vizConfig.cmake"
+    "/home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_viz/catkin_generated/installspace/husky_vizConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_viz" TYPE FILE FILES "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_viz/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_viz" TYPE FILE FILES "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_viz/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_viz" TYPE DIRECTORY FILES
-    "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_viz/launch"
-    "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_viz/rviz"
-    "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_viz/rqt"
+    "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_viz/launch"
+    "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_viz/rviz"
+    "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_viz/rqt"
     )
 endif()
 

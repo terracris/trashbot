@@ -1,4 +1,4 @@
-prefix=/home/trashbot/trashbot/husky_melodic_ws/devel
+prefix=/home/cristobal/trashbot/husky_melodic_ws/devel
 
 Name: husky_description
 Description: Description of husky_description

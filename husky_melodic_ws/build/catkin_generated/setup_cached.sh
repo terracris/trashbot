@@ -7,4 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export PWD='/home/trashbot/trashbot/husky_melodic_ws/build'
+export CMAKE_PREFIX_PATH="/home/cristobal/trashbot/husky_melodic_ws/devel:$CMAKE_PREFIX_PATH"
+export PWD='/home/cristobal/trashbot/husky_melodic_ws/build'
+export ROSLISP_PACKAGE_DIRECTORIES='/home/cristobal/trashbot/husky_melodic_ws/devel/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/cristobal/trashbot/husky_melodic_ws/src:$ROS_PACKAGE_PATH"

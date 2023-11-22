@@ -1,8 +1,8 @@
-# Install script for directory: /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_simulator
+# Install script for directory: /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_simulator
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/trashbot/trashbot/husky_melodic_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/cristobal/trashbot/husky_melodic_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,6 +38,6 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_simulator" TYPE FILE FILES "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_simulator/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_simulator" TYPE FILE FILES "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_simulator/package.xml")
 endif()
 

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/trashbot/trashbot/husky_melodic_ws/src
+CMAKE_SOURCE_DIR = /home/cristobal/trashbot/husky_melodic_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/trashbot/trashbot/husky_melodic_ws/build
+CMAKE_BINARY_DIR = /home/cristobal/trashbot/husky_melodic_ws/build
 
 # Include any dependencies generated for this target.
 include husky/husky_base/CMakeFiles/husky_node.dir/depend.make
@@ -58,17 +58,17 @@ include husky/husky_base/CMakeFiles/husky_node.dir/progress.make
 include husky/husky_base/CMakeFiles/husky_node.dir/flags.make
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/husky_base.cpp.o: husky/husky_base/CMakeFiles/husky_node.dir/flags.make
-husky/husky_base/CMakeFiles/husky_node.dir/src/husky_base.cpp.o: /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_base.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object husky/husky_base/CMakeFiles/husky_node.dir/src/husky_base.cpp.o"
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/husky_node.dir/src/husky_base.cpp.o -c /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_base.cpp
+husky/husky_base/CMakeFiles/husky_node.dir/src/husky_base.cpp.o: /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_base.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cristobal/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object husky/husky_base/CMakeFiles/husky_node.dir/src/husky_base.cpp.o"
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/husky_node.dir/src/husky_base.cpp.o -c /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_base.cpp
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/husky_base.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/husky_node.dir/src/husky_base.cpp.i"
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_base.cpp > CMakeFiles/husky_node.dir/src/husky_base.cpp.i
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_base.cpp > CMakeFiles/husky_node.dir/src/husky_base.cpp.i
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/husky_base.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/husky_node.dir/src/husky_base.cpp.s"
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_base.cpp -o CMakeFiles/husky_node.dir/src/husky_base.cpp.s
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_base.cpp -o CMakeFiles/husky_node.dir/src/husky_base.cpp.s
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/husky_base.cpp.o.requires:
 
@@ -82,17 +82,17 @@ husky/husky_base/CMakeFiles/husky_node.dir/src/husky_base.cpp.o.provides.build: 
 
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/husky_hardware.cpp.o: husky/husky_base/CMakeFiles/husky_node.dir/flags.make
-husky/husky_base/CMakeFiles/husky_node.dir/src/husky_hardware.cpp.o: /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_hardware.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object husky/husky_base/CMakeFiles/husky_node.dir/src/husky_hardware.cpp.o"
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/husky_node.dir/src/husky_hardware.cpp.o -c /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_hardware.cpp
+husky/husky_base/CMakeFiles/husky_node.dir/src/husky_hardware.cpp.o: /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_hardware.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cristobal/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object husky/husky_base/CMakeFiles/husky_node.dir/src/husky_hardware.cpp.o"
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/husky_node.dir/src/husky_hardware.cpp.o -c /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_hardware.cpp
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/husky_hardware.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/husky_node.dir/src/husky_hardware.cpp.i"
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_hardware.cpp > CMakeFiles/husky_node.dir/src/husky_hardware.cpp.i
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_hardware.cpp > CMakeFiles/husky_node.dir/src/husky_hardware.cpp.i
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/husky_hardware.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/husky_node.dir/src/husky_hardware.cpp.s"
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_hardware.cpp -o CMakeFiles/husky_node.dir/src/husky_hardware.cpp.s
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_hardware.cpp -o CMakeFiles/husky_node.dir/src/husky_hardware.cpp.s
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/husky_hardware.cpp.o.requires:
 
@@ -106,17 +106,17 @@ husky/husky_base/CMakeFiles/husky_node.dir/src/husky_hardware.cpp.o.provides.bui
 
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.o: husky/husky_base/CMakeFiles/husky_node.dir/flags.make
-husky/husky_base/CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.o: /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_diagnostics.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object husky/husky_base/CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.o"
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.o -c /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_diagnostics.cpp
+husky/husky_base/CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.o: /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_diagnostics.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cristobal/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object husky/husky_base/CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.o"
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.o -c /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_diagnostics.cpp
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.i"
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_diagnostics.cpp > CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.i
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_diagnostics.cpp > CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.i
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.s"
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_diagnostics.cpp -o CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.s
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/husky_diagnostics.cpp -o CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.s
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.o.requires:
 
@@ -130,17 +130,17 @@ husky/husky_base/CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.o.provides.
 
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.o: husky/husky_base/CMakeFiles/husky_node.dir/flags.make
-husky/husky_base/CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.o: /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/horizon_legacy_wrapper.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object husky/husky_base/CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.o"
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.o -c /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/horizon_legacy_wrapper.cpp
+husky/husky_base/CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.o: /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/horizon_legacy_wrapper.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cristobal/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object husky/husky_base/CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.o"
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.o -c /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/horizon_legacy_wrapper.cpp
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.i"
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/horizon_legacy_wrapper.cpp > CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.i
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/horizon_legacy_wrapper.cpp > CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.i
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.s"
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/src/horizon_legacy_wrapper.cpp -o CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.s
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/src/horizon_legacy_wrapper.cpp -o CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.s
 
 husky/husky_base/CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.o.requires:
 
@@ -163,53 +163,53 @@ husky_node_OBJECTS = \
 # External object files for target husky_node
 husky_node_EXTERNAL_OBJECTS =
 
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: husky/husky_base/CMakeFiles/husky_node.dir/src/husky_base.cpp.o
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: husky/husky_base/CMakeFiles/husky_node.dir/src/husky_hardware.cpp.o
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: husky/husky_base/CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.o
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: husky/husky_base/CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.o
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: husky/husky_base/CMakeFiles/husky_node.dir/build.make
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /home/trashbot/trashbot/husky_melodic_ws/devel/lib/libhorizon_legacy.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libcontroller_manager.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libclass_loader.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/libPocoFoundation.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libdl.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libroslib.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/librospack.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libpython2.7.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libboost_program_options.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libtinyxml2.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libdiagnostic_updater.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libroscpp.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libboost_filesystem.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/librosconsole.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/librosconsole_log4cxx.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/librosconsole_backend_interface.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/liblog4cxx.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libboost_regex.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libxmlrpcpp.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libroscpp_serialization.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/librostime.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libcpp_common.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libboost_system.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libboost_thread.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libboost_chrono.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libboost_date_time.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libboost_atomic.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libpthread.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libconsole_bridge.so.0.4
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libboost_chrono.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libboost_system.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libboost_thread.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libboost_date_time.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libboost_atomic.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libpthread.so
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/aarch64-linux-gnu/libconsole_bridge.so.0.4
-/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: husky/husky_base/CMakeFiles/husky_node.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable /home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node"
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/husky_node.dir/link.txt --verbose=$(VERBOSE)
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: husky/husky_base/CMakeFiles/husky_node.dir/src/husky_base.cpp.o
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: husky/husky_base/CMakeFiles/husky_node.dir/src/husky_hardware.cpp.o
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: husky/husky_base/CMakeFiles/husky_node.dir/src/husky_diagnostics.cpp.o
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: husky/husky_base/CMakeFiles/husky_node.dir/src/horizon_legacy_wrapper.cpp.o
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: husky/husky_base/CMakeFiles/husky_node.dir/build.make
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /home/cristobal/trashbot/husky_melodic_ws/devel/lib/libhorizon_legacy.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libcontroller_manager.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libclass_loader.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/libPocoFoundation.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libdl.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libroslib.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/librospack.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libpython2.7.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libdiagnostic_updater.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libroscpp.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/librosconsole.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/librosconsole_log4cxx.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/librosconsole_backend_interface.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libxmlrpcpp.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libroscpp_serialization.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/librostime.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /opt/ros/melodic/lib/libcpp_common.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
+/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node: husky/husky_base/CMakeFiles/husky_node.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cristobal/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable /home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node"
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/husky_node.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-husky/husky_base/CMakeFiles/husky_node.dir/build: /home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node
+husky/husky_base/CMakeFiles/husky_node.dir/build: /home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node
 
 .PHONY : husky/husky_base/CMakeFiles/husky_node.dir/build
 
@@ -221,10 +221,10 @@ husky/husky_base/CMakeFiles/husky_node.dir/requires: husky/husky_base/CMakeFiles
 .PHONY : husky/husky_base/CMakeFiles/husky_node.dir/requires
 
 husky/husky_base/CMakeFiles/husky_node.dir/clean:
-	cd /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base && $(CMAKE_COMMAND) -P CMakeFiles/husky_node.dir/cmake_clean.cmake
+	cd /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base && $(CMAKE_COMMAND) -P CMakeFiles/husky_node.dir/cmake_clean.cmake
 .PHONY : husky/husky_base/CMakeFiles/husky_node.dir/clean
 
 husky/husky_base/CMakeFiles/husky_node.dir/depend:
-	cd /home/trashbot/trashbot/husky_melodic_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/trashbot/trashbot/husky_melodic_ws/src /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base /home/trashbot/trashbot/husky_melodic_ws/build /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base /home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base/CMakeFiles/husky_node.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/cristobal/trashbot/husky_melodic_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cristobal/trashbot/husky_melodic_ws/src /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base /home/cristobal/trashbot/husky_melodic_ws/build /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base /home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base/CMakeFiles/husky_node.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : husky/husky_base/CMakeFiles/husky_node.dir/depend
 

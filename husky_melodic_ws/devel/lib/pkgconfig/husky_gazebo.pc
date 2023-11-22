@@ -1,4 +1,4 @@
-prefix=/home/trashbot/trashbot/husky_melodic_ws/devel
+prefix=/home/cristobal/trashbot/husky_melodic_ws/devel
 
 Name: husky_gazebo
 Description: Description of husky_gazebo

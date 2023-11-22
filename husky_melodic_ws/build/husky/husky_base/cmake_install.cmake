@@ -1,8 +1,8 @@
-# Install script for directory: /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base
+# Install script for directory: /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/trashbot/trashbot/husky_melodic_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/cristobal/trashbot/husky_melodic_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,18 +38,18 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base/catkin_generated/installspace/husky_base.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base/catkin_generated/installspace/husky_base.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_base/cmake" TYPE FILE FILES
-    "/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base/catkin_generated/installspace/husky_baseConfig.cmake"
-    "/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base/catkin_generated/installspace/husky_baseConfig-version.cmake"
+    "/home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base/catkin_generated/installspace/husky_baseConfig.cmake"
+    "/home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_base/catkin_generated/installspace/husky_baseConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_base" TYPE FILE FILES "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_base" TYPE FILE FILES "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -59,7 +59,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libhorizon_legacy.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/trashbot/trashbot/husky_melodic_ws/devel/lib/libhorizon_legacy.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/cristobal/trashbot/husky_melodic_ws/devel/lib/libhorizon_legacy.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libhorizon_legacy.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libhorizon_legacy.so")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -75,12 +75,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/husky_base/husky_node"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/husky_base" TYPE EXECUTABLE FILES "/home/trashbot/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/husky_base" TYPE EXECUTABLE FILES "/home/cristobal/trashbot/husky_melodic_ws/devel/lib/husky_base/husky_node")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/husky_base/husky_node" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/husky_base/husky_node")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/husky_base/husky_node"
-         OLD_RPATH "/home/trashbot/trashbot/husky_melodic_ws/devel/lib:/opt/ros/melodic/lib:"
+         OLD_RPATH "/home/cristobal/trashbot/husky_melodic_ws/devel/lib:/opt/ros/melodic/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/husky_base/husky_node")
@@ -89,13 +89,13 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/husky_base" TYPE DIRECTORY FILES "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/include/husky_base/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/husky_base" TYPE DIRECTORY FILES "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/include/husky_base/")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_base" TYPE DIRECTORY FILES
-    "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/launch"
-    "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/config"
+    "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/launch"
+    "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/config"
     )
 endif()
 

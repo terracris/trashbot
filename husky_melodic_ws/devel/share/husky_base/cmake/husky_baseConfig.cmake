@@ -67,14 +67,14 @@ set(husky_base_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(husky_base_SOURCE_PREFIX /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base)
-  set(husky_base_DEVEL_PREFIX /home/trashbot/trashbot/husky_melodic_ws/devel)
+  set(husky_base_SOURCE_PREFIX /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base)
+  set(husky_base_DEVEL_PREFIX /home/cristobal/trashbot/husky_melodic_ws/devel)
   set(husky_base_INSTALL_PREFIX "")
   set(husky_base_PREFIX ${husky_base_DEVEL_PREFIX})
 else()
   set(husky_base_SOURCE_PREFIX "")
   set(husky_base_DEVEL_PREFIX "")
-  set(husky_base_INSTALL_PREFIX /home/trashbot/trashbot/husky_melodic_ws/install)
+  set(husky_base_INSTALL_PREFIX /home/cristobal/trashbot/husky_melodic_ws/install)
   set(husky_base_PREFIX ${husky_base_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(husky_base_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/include;/usr/include " STREQUAL " ")
+if(NOT "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/include;/usr/include " STREQUAL " ")
   set(husky_base_INCLUDE_DIRS "")
-  set(_include_dirs "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/include;/usr/include")
+  set(_include_dirs "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/include;/usr/include")
   if(NOT "https://github.com/husky/husky_robot/issues " STREQUAL " ")
     set(_report "Check the issue tracker 'https://github.com/husky/husky_robot/issues' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT "http://ros.org/wiki/husky_base " STREQUAL " ")
@@ -110,13 +110,13 @@ if(NOT "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/include;/u
         message(FATAL_ERROR "Project 'husky_base' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'husky_base' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'husky_base' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base/${idir}'.  ${_report}")
     endif()
     _list_append_unique(husky_base_INCLUDE_DIRS ${include})
   endforeach()
 endif()
 
-set(libraries "horizon_legacy;/usr/lib/aarch64-linux-gnu/libboost_chrono.so;/usr/lib/aarch64-linux-gnu/libboost_system.so")
+set(libraries "horizon_legacy;/usr/lib/x86_64-linux-gnu/libboost_chrono.so;/usr/lib/x86_64-linux-gnu/libboost_system.so")
 foreach(library ${libraries})
   # keep build configuration keywords, target names and absolute libraries as-is
   if("${library}" MATCHES "^(debug|optimized|general)$")
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/trashbot/trashbot/husky_melodic_ws/devel/lib;/home/trashbot/trashbot/husky_melodic_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/cristobal/trashbot/husky_melodic_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

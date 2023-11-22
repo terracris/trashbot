@@ -67,14 +67,14 @@ set(husky_navigation_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(husky_navigation_SOURCE_PREFIX /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_navigation)
-  set(husky_navigation_DEVEL_PREFIX /home/trashbot/trashbot/husky_melodic_ws/devel)
+  set(husky_navigation_SOURCE_PREFIX /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_navigation)
+  set(husky_navigation_DEVEL_PREFIX /home/cristobal/trashbot/husky_melodic_ws/devel)
   set(husky_navigation_INSTALL_PREFIX "")
   set(husky_navigation_PREFIX ${husky_navigation_DEVEL_PREFIX})
 else()
   set(husky_navigation_SOURCE_PREFIX "")
   set(husky_navigation_DEVEL_PREFIX "")
-  set(husky_navigation_INSTALL_PREFIX /home/trashbot/trashbot/husky_melodic_ws/install)
+  set(husky_navigation_INSTALL_PREFIX /home/cristobal/trashbot/husky_melodic_ws/install)
   set(husky_navigation_PREFIX ${husky_navigation_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/trashbot/trashbot/husky_melodic_ws/install/lib;/home/trashbot/trashbot/husky_melodic_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/cristobal/trashbot/husky_melodic_ws/install/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

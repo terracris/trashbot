@@ -67,14 +67,14 @@ set(husky_base_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(husky_base_SOURCE_PREFIX /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_base)
-  set(husky_base_DEVEL_PREFIX /home/trashbot/trashbot/husky_melodic_ws/devel)
+  set(husky_base_SOURCE_PREFIX /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_base)
+  set(husky_base_DEVEL_PREFIX /home/cristobal/trashbot/husky_melodic_ws/devel)
   set(husky_base_INSTALL_PREFIX "")
   set(husky_base_PREFIX ${husky_base_DEVEL_PREFIX})
 else()
   set(husky_base_SOURCE_PREFIX "")
   set(husky_base_DEVEL_PREFIX "")
-  set(husky_base_INSTALL_PREFIX /home/trashbot/trashbot/husky_melodic_ws/install)
+  set(husky_base_INSTALL_PREFIX /home/cristobal/trashbot/husky_melodic_ws/install)
   set(husky_base_PREFIX ${husky_base_INSTALL_PREFIX})
 endif()
 
@@ -116,7 +116,7 @@ if(NOT "include;/usr/include " STREQUAL " ")
   endforeach()
 endif()
 
-set(libraries "horizon_legacy;/usr/lib/aarch64-linux-gnu/libboost_chrono.so;/usr/lib/aarch64-linux-gnu/libboost_system.so")
+set(libraries "horizon_legacy;/usr/lib/x86_64-linux-gnu/libboost_chrono.so;/usr/lib/x86_64-linux-gnu/libboost_system.so")
 foreach(library ${libraries})
   # keep build configuration keywords, target names and absolute libraries as-is
   if("${library}" MATCHES "^(debug|optimized|general)$")
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/trashbot/trashbot/husky_melodic_ws/install/lib;/home/trashbot/trashbot/husky_melodic_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/cristobal/trashbot/husky_melodic_ws/install/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

@@ -1,8 +1,8 @@
-# Install script for directory: /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_description
+# Install script for directory: /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/trashbot/trashbot/husky_melodic_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/cristobal/trashbot/husky_melodic_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,25 +38,25 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_description/catkin_generated/installspace/husky_description.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_description/catkin_generated/installspace/husky_description.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_description/cmake" TYPE FILE FILES
-    "/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_description/catkin_generated/installspace/husky_descriptionConfig.cmake"
-    "/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_description/catkin_generated/installspace/husky_descriptionConfig-version.cmake"
+    "/home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_description/catkin_generated/installspace/husky_descriptionConfig.cmake"
+    "/home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_description/catkin_generated/installspace/husky_descriptionConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_description" TYPE FILE FILES "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_description" TYPE FILE FILES "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_description/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_description" TYPE DIRECTORY FILES
-    "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_description/launch"
-    "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_description/meshes"
-    "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_description/urdf"
+    "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_description/launch"
+    "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_description/meshes"
+    "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_description/urdf"
     )
 endif()
 

@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "${prefix}/include".split(';') if "${prefix}/i
 PROJECT_CATKIN_DEPENDS = "std_msgs;message_runtime".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "husky_msgs"
-PROJECT_SPACE_DIR = "/home/trashbot/trashbot/husky_melodic_ws/install"
+PROJECT_SPACE_DIR = "/home/cristobal/trashbot/husky_melodic_ws/install"
 PROJECT_VERSION = "0.4.13"

@@ -1,8 +1,8 @@
-# Install script for directory: /home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_gazebo
+# Install script for directory: /home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_gazebo
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/trashbot/trashbot/husky_melodic_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/cristobal/trashbot/husky_melodic_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,24 +38,24 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_gazebo/catkin_generated/installspace/husky_gazebo.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_gazebo/catkin_generated/installspace/husky_gazebo.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_gazebo/cmake" TYPE FILE FILES
-    "/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_gazebo/catkin_generated/installspace/husky_gazeboConfig.cmake"
-    "/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_gazebo/catkin_generated/installspace/husky_gazeboConfig-version.cmake"
+    "/home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_gazebo/catkin_generated/installspace/husky_gazeboConfig.cmake"
+    "/home/cristobal/trashbot/husky_melodic_ws/build/husky/husky_gazebo/catkin_generated/installspace/husky_gazeboConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_gazebo" TYPE FILE FILES "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_gazebo/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_gazebo" TYPE FILE FILES "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_gazebo/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/husky_gazebo" TYPE DIRECTORY FILES
-    "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_gazebo/launch"
-    "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_gazebo/worlds"
+    "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_gazebo/launch"
+    "/home/cristobal/trashbot/husky_melodic_ws/src/husky/husky_gazebo/worlds"
     )
 endif()
 
