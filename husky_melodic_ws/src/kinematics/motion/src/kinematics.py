@@ -211,10 +211,11 @@ class Kinematics:
             self.drive(1, 0.25)
             rospy.loginfo("completed driving")
             rospy.sleep(1)
-            rospy.spin()
+        
+        rospy.spin()
 
 
-if __name__ == 'main':
+if __name__ == '__main__':
     rospy.loginfo("helllllloooo")
     motion = Kinematics()
     motion.run()
