@@ -528,7 +528,7 @@ roscpp_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_nodejs/fast:
-	$(MAKE) -f motion/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make motion/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+	$(MAKE) -f kinematics/motion/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make kinematics/motion/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
 .PHONY : roscpp_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -541,7 +541,7 @@ roscpp_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_eus/fast:
-	$(MAKE) -f motion/CMakeFiles/roscpp_generate_messages_eus.dir/build.make motion/CMakeFiles/roscpp_generate_messages_eus.dir/build
+	$(MAKE) -f kinematics/motion/CMakeFiles/roscpp_generate_messages_eus.dir/build.make kinematics/motion/CMakeFiles/roscpp_generate_messages_eus.dir/build
 .PHONY : roscpp_generate_messages_eus/fast
 
 #=============================================================================
@@ -554,7 +554,7 @@ rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f motion/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make motion/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f kinematics/motion/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make kinematics/motion/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -567,7 +567,7 @@ roscpp_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_cpp/fast:
-	$(MAKE) -f motion/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make motion/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	$(MAKE) -f kinematics/motion/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make kinematics/motion/CMakeFiles/roscpp_generate_messages_cpp.dir/build
 .PHONY : roscpp_generate_messages_cpp/fast
 
 #=============================================================================
@@ -580,7 +580,7 @@ rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f motion/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make motion/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f kinematics/motion/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make kinematics/motion/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -593,7 +593,7 @@ roscpp_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_py/fast:
-	$(MAKE) -f motion/CMakeFiles/roscpp_generate_messages_py.dir/build.make motion/CMakeFiles/roscpp_generate_messages_py.dir/build
+	$(MAKE) -f kinematics/motion/CMakeFiles/roscpp_generate_messages_py.dir/build.make kinematics/motion/CMakeFiles/roscpp_generate_messages_py.dir/build
 .PHONY : roscpp_generate_messages_py/fast
 
 #=============================================================================
@@ -606,7 +606,7 @@ rosgraph_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f motion/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make motion/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f kinematics/motion/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make kinematics/motion/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -619,7 +619,7 @@ rosgraph_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_py/fast:
-	$(MAKE) -f motion/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make motion/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	$(MAKE) -f kinematics/motion/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make kinematics/motion/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -632,7 +632,7 @@ roscpp_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_lisp/fast:
-	$(MAKE) -f motion/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make motion/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	$(MAKE) -f kinematics/motion/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make kinematics/motion/CMakeFiles/roscpp_generate_messages_lisp.dir/build
 .PHONY : roscpp_generate_messages_lisp/fast
 
 #=============================================================================
@@ -645,7 +645,7 @@ rosgraph_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_eus/fast:
-	$(MAKE) -f motion/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make motion/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f kinematics/motion/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make kinematics/motion/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 .PHONY : rosgraph_msgs_generate_messages_eus/fast
 
 #=============================================================================

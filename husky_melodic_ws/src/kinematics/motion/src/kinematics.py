@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import rospy
 from nav_msgs.msg import Odometry
@@ -7,7 +7,7 @@ from geometry_msgs.msg import Twist
 from tf.transformations import euler_from_quaternion 
 
 from math import sqrt, atan2, pi
-
+print("helloooooooooooo")
 class Kinematics:
 
     def __init__(self):
@@ -21,7 +21,7 @@ class Kinematics:
         self.pth = 0
 
         # Initialize node --> Name is "kinematics"
-        rospy.init_node("kinematics")
+        rospy.init_node("kinematics", anonymous=True)
 
         # This node publishes Twist messages on the '/husky_velocity_controller/cmd_vel'
         self.cmd_vel = rospy.Publisher('/husky_velocity_controller/cmd_vel',Twist, queue_size=10)
@@ -34,7 +34,7 @@ class Kinematics:
         # when message is received, call self.go_to
         rospy.Subscriber('/move_base_simple/goal', PoseStamped, self.go_to)
 
-    def send_speed(self, linear_speed: float, angular_speed: float):
+    def send_speed(self, linear_speed, angular_speed):
         """
         Sends the speeds to the motors.
         :param linear_speed [float] [m/s]    The forward linear speed
@@ -57,7 +57,7 @@ class Kinematics:
         # publish the message
         self.cmd_vel.publish(msg_cmd_vel)
 
-    def drive(self, distance:float, linear_speed:float):
+    def drive(self, distance, linear_speed):
         """
         Drives the robot in a straight line by changing the actual speed smoothly.
         Utilizes a trapezoidal acceleration; Accelerates --> Holds a constant speed --> Decelerates
@@ -110,7 +110,7 @@ class Kinematics:
 
             rospy.sleep(SLEEP_DURATION)
 
-    def rotate(self, angle:float, aspeed:float):
+    def rotate(self, angle, aspeed):
         """
         Rotates the robot around the body center by the given angle.
         :param angle  [float] [rad]   The angle to cover.
@@ -146,9 +146,9 @@ class Kinematics:
                 self.send_speed(0, 0) # Stops
                 break
 
-        rospy.sleep(SLEEP_DURATION)
+            rospy.sleep(SLEEP_DURATION)
 
-    def go_to(self, msg: PoseStamped):
+    def go_to(self, msg):
         """
         Calls rotate(), drive(), and rotate() to attain a given pose.
         This method is a callback bound to a subscriber.
@@ -170,7 +170,7 @@ class Kinematics:
         self.rotate(yaw, ROTATE_SPEED)
 
 
-    def update_odometry(self, msg:Odometry):
+    def update_odometry(self, msg):
         """
         Updates the current pose of the robot.
         This method is a callback bound to a Subscriber.
@@ -188,7 +188,7 @@ class Kinematics:
 
         self.pth = yaw
 
-    def angle_dist_to_point(self, x:float, y:float):
+    def angle_dist_to_point(self, x, y):
         """
         Calculates the angle the robot has to face (heading) as well as distance to that point
         """
@@ -205,8 +205,16 @@ class Kinematics:
 
 
     def run(self):
-        rospy.spin()
+        # testing
+
+        while True:
+            self.drive(1, 0.25)
+            rospy.loginfo("completed driving")
+            rospy.sleep(1)
+            rospy.spin()
+
 
 if __name__ == 'main':
+    rospy.loginfo("helllllloooo")
     motion = Kinematics()
     motion.run()

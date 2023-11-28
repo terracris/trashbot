@@ -487,10 +487,10 @@ message_generation_DIR:PATH=/opt/ros/melodic/share/message_generation/cmake
 message_runtime_DIR:PATH=/opt/ros/melodic/share/message_runtime/cmake
 
 //Value Computed by CMake
-motion_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/motion
+motion_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/kinematics/motion
 
 //Value Computed by CMake
-motion_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/motion
+motion_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/kinematics/motion
 
 //The directory containing a CMake configuration file for pluginlib.
 pluginlib_DIR:PATH=/opt/ros/melodic/share/pluginlib/cmake
