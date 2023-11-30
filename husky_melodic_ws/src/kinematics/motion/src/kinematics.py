@@ -69,7 +69,7 @@ class Kinematics:
         TOLERANCE = 0.05 # 5cm tolerance
 
         SLEEP_DURATION = 0.01
-        ACCELERATION = 0.02
+        ACCELERATION = 0.08
 
         # calculate the stopping distance
         stopping_distance = (linear_speed/2.0) * (linear_speed/ACCELERATION) + TOLERANCE
@@ -95,13 +95,13 @@ class Kinematics:
 
             # Decelerate
             if dist_traveled > (distance - stopping_distance):
-                decelerating = True
-                current_speed -= ACCELERATION * SLEEP_DURATION
-                if current_speed < 0:
+                 decelerating = True
+                 current_speed -= ACCELERATION * SLEEP_DURATION
+                 if current_speed < 0:
                     current_speed = 0
 
             # set speeds
-            self.send_speed(current_speed, 0)
+            self.send_speed(linear_speed, 0)
 
             # check if complete
             if abs(dist_traveled - distance) < TOLERANCE:
@@ -139,12 +139,14 @@ class Kinematics:
 
         # Rotates
         while True:
-            self.send_speed(0, aspeed)
+            rospy.loginfo(self.pth)
 
             # Checks if done
             if(self.pth > angle - TOLERANCE and self.pth < angle + TOLERANCE):
                 self.send_speed(0, 0) # Stops
                 break
+
+            self.send_speed(0, aspeed)
 
             rospy.sleep(SLEEP_DURATION)
 
@@ -207,12 +209,12 @@ class Kinematics:
     def run(self):
         # testing
 
-        while True:
-            self.drive(1, 0.25)
-            rospy.loginfo("completed driving")
-            rospy.sleep(1)
+         self.drive(1, 0.35)
+       # self.rotate(-pi/2, 0.8)
+         rospy.loginfo("completed driving")
+         rospy.sleep(1)
         
-        rospy.spin()
+         rospy.spin()
 
 
 if __name__ == '__main__':
