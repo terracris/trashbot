@@ -26,9 +26,9 @@ class Kinematics:
         # This node publishes Twist messages on the '/husky_velocity_controller/cmd_vel'
         self.cmd_vel = rospy.Publisher('/husky_velocity_controller/cmd_vel',Twist, queue_size=10)
 
-        # this node subscribes to Odometry messages on '/husky_velocity_controller/odom'
+        # this node subscribes to Odometry messages on 'a100/odometry'
         # when a message is received, call self.update_odometry
-        rospy.Subscriber('/husky_velocity_controller/odom', Odometry, self.update_odometry)
+        rospy.Subscriber('/a100/odometry', Odometry, self.update_odometry)
 
         # this method subscribes to PoseStamped messages on the '/move_base_simple/goal'
         # when message is received, call self.go_to
@@ -66,10 +66,14 @@ class Kinematics:
         """
 
         # distance tolerable from goal [m]
-        TOLERANCE = 0.05 # 5cm tolerance
+        TOLERANCE = 0.01 # 1cm tolerance
+        
+        PUBLISH_RATE = 50 # Husky velocity controller expects 50Hz update rate
+        SLEEP_DURATION = 1/PUBLISH_RATE
+        ACCELERATION = 0.50 # testing values for acceleration
 
-        SLEEP_DURATION = 0.01
-        ACCELERATION = 0.08
+
+        #TODO test min velocity husky can have to start the current velocity there
 
         # calculate the stopping distance
         stopping_distance = (linear_speed/2.0) * (linear_speed/ACCELERATION) + TOLERANCE
