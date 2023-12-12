@@ -80,6 +80,8 @@ class HuskyOdometry:
         updated_y = self.py + delta_y
         updated_theta = self.pth + delta_theta
 
+        print(updated_theta)
+
         new_pose_orientation = self.calculate_orientation(updated_theta) # quaternion
 
         odometry_msg.pose.pose.position = Point(updated_x, updated_y, 0)
@@ -116,10 +118,11 @@ class HuskyOdometry:
     	    delta_x = husky_linear_velocity * (cos(self.pth) * delta_t)
     	    delta_y = husky_linear_velocity * (sin(self.pth) * delta_t)
 
-	elif not self.have_same_sign(left_wheel_velocity, right_wheel_velocity) and self.in_tolerance(left_wheel_velocity, right_wheel_velocity):
+	elif (not self.have_same_sign(left_wheel_velocity, right_wheel_velocity)) and self.in_tolerance(left_wheel_velocity, right_wheel_velocity):
 	    
         # check if velocities are the opposite of each other (within some tolerance)
-            delta_theta = (2 * husky_linear_velocity * delta_t) / self.wheel_seperation
+            delta_theta = (2 * husky_angular_velocity * delta_t) / self.wheel_seperation
+            print("delta_theta: " + str(delta_theta))
 	else:
 	    R = husky_linear_velocity / husky_angular_velocity
 	    current_theta = self.pth
@@ -138,8 +141,8 @@ class HuskyOdometry:
 
     def in_tolerance(self, left_wheel, right_wheel):
 	    # determines if two wheels are within a given tolerance of each other
-            print("in tolerance?: " + str(abs(left_wheel - right_wheel) <= HuskyOdometry.VELOCITY_THRESHOLD))
-	    return abs(left_wheel - right_wheel) <= HuskyOdometry.VELOCITY_THRESHOLD
+            print("in tolerance?: " + str(abs(abs(left_wheel) - abs(right_wheel)) <= HuskyOdometry.VELOCITY_THRESHOLD))
+	    return abs(abs(left_wheel) - abs(right_wheel)) <= HuskyOdometry.VELOCITY_THRESHOLD
 
     def run(self):
 	print("running")    
