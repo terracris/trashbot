@@ -5,18 +5,14 @@ from sensor_msgs.msg import JointState
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Quaternion, Twist, Pose, Point
 from math import sin, cos, atan2
-from decimal import Decimal, getcontext
 
 # We need to increase the accuracy of my values to improve the accuracy of my tolerances and odometry
 
-getcontext().prec = 10  # 10 decimal place precision
-
 class HuskyOdometry:
     # velocity threshold for determining equivalence. 
-    #TODO find appropriate tolerance for wheel velocity to see difference --> considering wheels come with 16 decimal precision this could be good.
     # currently set to 1 mm per second
     VELOCITY_THRESHOLD = 0.001
-
+    
     def __init__(self):
         rospy.init_node('a100_odometry', anonymous=True)
 
@@ -25,12 +21,15 @@ class HuskyOdometry:
         self.px = 0
         self.py = 0
         self.pth = 0
-        self.last_timestamp = Decimal(rospy.Time.now())
+        self.last_timestamp = rospy.Time.now()
         self.odom_message_count = 0
-        
+        HUSKY_A100_WHEEL_RADIUS = 0.1143
+        HUSKY_A200_WHEEL_RADIUS = 0.1651
+        SIM = True
+
         # Husky A100 parameters [m]
-        self.wheel_seperation = Decimal(0.50) # number retrieved from manual on the A100
-        self.wheel_radius = Decimal(0.1143)  # wheels are 9 inches in Diameter
+        self.wheel_seperation = 0.50 # number retrieved from manual on the A100
+        self.wheel_radius = HUSKY_A200_WHEEL_RADIUS if SIM else HUSKY_A100_WHEEL_RADIUS  # wheels are 9 inches in Diameter for our husky
 
         # subscribers
         rospy.Subscriber('/joint_states', JointState, self.joint_states_callback)

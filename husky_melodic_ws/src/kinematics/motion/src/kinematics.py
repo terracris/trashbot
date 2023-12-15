@@ -66,7 +66,7 @@ class Kinematics:
         """
 
         # distance tolerable from goal [m]
-        TOLERANCE = 0.01 # 1cm tolerance
+        TOLERANCE = 0.005 # 0.5 cm tolerance
         
         PUBLISH_RATE = 50 # Husky velocity controller expects 50Hz update rate
         SLEEP_DURATION = 1/PUBLISH_RATE
@@ -213,8 +213,8 @@ class Kinematics:
     def run(self):
         # testing
 
-         # self.drive(1, 0.35)
-         self.rotate(-pi/2, 0.4)
+         self.drive(1, 0.35)
+         # self.rotate(-pi/2, 0.4)
          rospy.loginfo("completed driving")
          rospy.sleep(1)
         
