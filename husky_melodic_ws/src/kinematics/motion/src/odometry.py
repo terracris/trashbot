@@ -15,7 +15,7 @@ class HuskyOdometry:
     # velocity threshold for determining equivalence. 
     # currently set to 0.5 cm per second
     VELOCITY_THRESHOLD = 0.005
-
+    
     def __init__(self):
         rospy.init_node('a100_odometry', anonymous=True)
 
@@ -26,10 +26,13 @@ class HuskyOdometry:
         self.pth = 0
         self.last_timestamp = rospy.Time.now()
         self.odom_message_count = 0
-        
+        HUSKY_A100_WHEEL_RADIUS = 0.1143
+        HUSKY_A200_WHEEL_RADIUS = 0.1651
+        SIM = True
+
         # Husky A100 parameters [m]
         self.wheel_seperation = 0.50 # number retrieved from manual on the A100
-        self.wheel_radius = 0.1143  # wheels are 9 inches in Diameter
+        self.wheel_radius = HUSKY_A200_WHEEL_RADIUS if SIM else HUSKY_A100_WHEEL_RADIUS  # wheels are 9 inches in Diameter for our husky
 
         # subscribers
         rospy.Subscriber('/joint_states', JointState, self.joint_states_callback)
