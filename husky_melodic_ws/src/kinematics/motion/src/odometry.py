@@ -41,11 +41,11 @@ class HuskyOdometry:
         current_timestamp = joint_states.header.stamp
 
         # Calculate time interval
-        delta_t = Decimal((current_timestamp - self.last_timestamp).to_sec())
+        delta_t = (current_timestamp - self.last_timestamp).to_sec()
 
         # Extract angular positions and velocities
-        left_motor_angular_velocity = Decimal(joint_states.velocity[0])
-        right_motor_angular_velocity = Decimal(joint_states.velocity[1])
+        left_motor_angular_velocity = joint_states.velocity[0]
+        right_motor_angular_velocity = joint_states.velocity[1]
 
         # Convert motor angular velocity to linear velocity for each wheel
         left_wheel_linear_velocity = left_motor_angular_velocity * self.wheel_radius # resulting calculation should be of decimal object
