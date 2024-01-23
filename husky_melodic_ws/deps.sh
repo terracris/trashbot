@@ -7,10 +7,10 @@ sudo apt-get install ros-melodic-twist-mux -y
 sudo apt-get install ros-melodic-velodyne-pointcloud -y
 sudo apt-get install ros-melodic-dwa-local-planner -y
 
-sudo apt-get install ros-melodic-pointcloud-to-laserscan
-sudo apt-get install ros-melodic-teleop-twist-joy
-sudo apt-get install ros-melodic-urg-node
-sudo apt-get install ros-melodic-navfn
+sudo apt-get install ros-melodic-pointcloud-to-laserscan -y
+sudo apt-get install ros-melodic-teleop-twist-joy -y
+sudo apt-get install ros-melodic-urg-node -y
+sudo apt-get install ros-melodic-navfn -y
 
 sudo apt-get install ros-melodic-robot-localization ros-melodic-navigation ros-melodic-velodyne-description -y
 
