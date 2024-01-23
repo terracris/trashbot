@@ -25,10 +25,12 @@ class HuskyOdometry:
         self.odom_message_count = 0
         HUSKY_A100_WHEEL_RADIUS = 0.1143
         HUSKY_A200_WHEEL_RADIUS = 0.1651
+        HUSKY_A100_WHEEL_TRACK = 0.500 # 50 cm wheel track
+        HUSKY_A200_WHEEL_TRACK = 0.555 # 55.5 cm wheel track
         SIM = True
 
         # Husky A100 parameters [m]
-        self.wheel_seperation = 0.50 # number retrieved from manual on the A100
+        self.wheel_seperation = HUSKY_A200_WHEEL_TRACK if SIM else HUSKY_A100_WHEEL_TRACK # number retrieved from manual on the A100
         self.wheel_radius = HUSKY_A200_WHEEL_RADIUS if SIM else HUSKY_A100_WHEEL_RADIUS  # wheels are 9 inches in Diameter for our husky
 
         # subscribers

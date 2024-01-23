@@ -213,8 +213,8 @@ class Kinematics:
     def run(self):
         # testing
 
-         self.drive(1, 0.35)
-         # self.rotate(-pi/2, 0.4)
+         # self.drive(1, 0.35)
+         self.rotate(pi/2, 0.4)
          rospy.loginfo("completed driving")
          rospy.sleep(1)
         
