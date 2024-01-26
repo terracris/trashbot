@@ -125,7 +125,7 @@ class Kinematics:
         SLEEP_DURATION = 0.005
 
         # Half a degree tolerance.
-        TOLERANCE = 0.01 
+        TOLERANCE = 0.02 
 
         # keeps angle in range [-180, 180)
         angle = ((angle + pi) % (2*pi)) - pi
@@ -217,6 +217,7 @@ class Kinematics:
          self.rotate(pi/2, 0.4)
          rospy.loginfo("completed driving")
          rospy.sleep(1)
+         self.rotate(-pi/2, 0.4)
         
          rospy.spin()
 
