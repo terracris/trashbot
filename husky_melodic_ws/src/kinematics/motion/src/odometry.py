@@ -4,7 +4,8 @@ import rospy
 from sensor_msgs.msg import JointState
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Quaternion, Twist, Pose, Point
-from math import sin, cos, atan2
+from math import sin, cos, atan2, radians
+from std_msgs.msg import Float64
 import tf
 
 # We need to increase the accuracy of my values to improve the accuracy of my tolerances and odometry
@@ -28,7 +29,7 @@ class HuskyOdometry:
         HUSKY_A200_WHEEL_RADIUS = 0.1651
         HUSKY_A100_WHEEL_TRACK = 0.505 # 50 cm wheel track
         HUSKY_A200_WHEEL_TRACK = 0.555 # 55.5 cm wheel track
-        SIM = False
+        SIM = True
 
         # Husky A100 parameters [m]
         self.wheel_seperation = HUSKY_A200_WHEEL_TRACK if SIM else HUSKY_A100_WHEEL_TRACK # number retrieved from manual on the A100
@@ -36,12 +37,24 @@ class HuskyOdometry:
 
         # subscribers
         rospy.Subscriber('/joint_states', JointState, self.joint_states_callback)
+        rospy.Subscriber('/imu/heading', Float64, self.update_heading)
 
         # publishers
         self.odometry_pub = rospy.Publisher('a100/odometry', Odometry, queue_size=10)
 
 
-
+    def update_heading(self, heading):
+        # Ensure angle is in the range [0, 360)
+        angle = heading.data % 360
+        # Map angles from 0 to 180 to the range from 0 to -pi
+        if angle == 0:
+            self.pth = 0
+        elif angle <= 180:
+            self.pth = -radians(angle)
+        # Map angles from 180 to 360 to the range from 0 to pi
+        else:
+            self.pth = radians(360 - angle)
+   
     def joint_states_callback(self, joint_states):
         current_timestamp = joint_states.header.stamp
 
@@ -80,7 +93,7 @@ class HuskyOdometry:
         odometry_msg.header.frame_id = 'odom'
         odometry_msg.child_frame_id = 'base_link'
 
-        (delta_x, delta_y, delta_theta, husky_linear_velocity, angular_velocity) = self.calculate_kinematics(left_wheel_velocity, right_wheel_velocity, delta_t)
+        (delta_x, delta_y, husky_linear_velocity, angular_velocity) = self.calculate_kinematics(left_wheel_velocity, right_wheel_velocity, delta_t)
         
         # Populate odometry message fields
         odometry_msg.twist.twist.linear.x = husky_linear_velocity
@@ -88,12 +101,10 @@ class HuskyOdometry:
 
         updated_x = self.px + delta_x
         updated_y = self.py + delta_y
-        updated_theta = self.pth + delta_theta
 
-        print("Delta Theta: ", delta_theta)
         print("Self.pth: ", self.pth)
 
-        new_pose_orientation = self.calculate_orientation(updated_theta) # quaternion
+        new_pose_orientation = self.calculate_orientation(self.pth) # quaternion
 
         odometry_msg.pose.pose.position = Point(updated_x, updated_y, 0)
         odometry_msg.pose.pose.orientation = new_pose_orientation
@@ -101,7 +112,6 @@ class HuskyOdometry:
         # update fields
         self.px = updated_x
         self.py = updated_y
-        self.pth = updated_theta
 
         # Publish odometry message
         self.odometry_pub.publish(odometry_msg)
@@ -132,28 +142,16 @@ class HuskyOdometry:
         # define return variables
         delta_x = 0
         delta_y = 0
-        delta_theta = 0
 
         # check if velocities are equal (within some tolerance)
         if self.have_same_sign(left_wheel_velocity, right_wheel_velocity) and self.in_tolerance(left_wheel_velocity, right_wheel_velocity):
-            # TODO verify that these are also the decimal places we want
             delta_x = husky_linear_velocity * (cos(self.pth) * delta_t)
             delta_y = husky_linear_velocity * (sin(self.pth) * delta_t)
 
-	elif (not self.have_same_sign(left_wheel_velocity, right_wheel_velocity)) and self.in_tolerance(left_wheel_velocity, right_wheel_velocity):
-	    
-        # check if velocities are the opposite of each other (within some tolerance)
-            delta_theta = (husky_angular_velocity * delta_t) * 0.75
-            print("delta_theta: " + str(delta_theta))
-	else:
-	    R = husky_linear_velocity / husky_angular_velocity
-	    current_theta = self.pth
 
-            print("delta_x: " + str(delta_x))
-            print("delta_y: " + str(delta_y))
-            print("delta_theta is: " + str(delta_theta))
+        # TODO implement curved motion where wheels are not going at the same speed
 
-        return delta_x, delta_y, delta_theta, husky_linear_velocity, husky_angular_velocity
+        return delta_x, delta_y, husky_linear_velocity, husky_angular_velocity
 
     def have_same_sign(self, left_wheel, right_wheel):
         # if two numbers have the same sign, their multiplication will result in a positive number
