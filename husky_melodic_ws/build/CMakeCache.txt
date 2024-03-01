@@ -308,6 +308,12 @@ _gtest_INCLUDES:FILEPATH=/usr/include/gtest/gtest.h
 //Path to a file.
 _gtest_SOURCES:FILEPATH=/usr/src/gtest/src/gtest.cc
 
+//Value Computed by CMake
+bno055_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/bno055
+
+//Value Computed by CMake
+bno055_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/bno055
+
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/melodic/share/catkin/cmake
 
@@ -476,6 +482,12 @@ husky_viz_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/husky
 
 //Value Computed by CMake
 husky_viz_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_viz
+
+//Value Computed by CMake
+imu_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/imu
+
+//Value Computed by CMake
+imu_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/imu
 
 //Path to a library.
 lib:FILEPATH=/opt/ros/melodic/lib/libdiagnostic_updater.so
@@ -663,7 +675,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=16
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=17
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
