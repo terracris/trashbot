@@ -42,6 +42,7 @@ class ArmCamProxy:
         request.goal = self.end_goal # poseStamped object
 
         path = self.arm_service(request)
+        print(path)
 
         rospy.loginfo("Path successfully requested")
         

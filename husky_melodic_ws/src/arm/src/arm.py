@@ -9,6 +9,8 @@ from time import sleep
 import rospy
 from nav_msgs.srv import GetPlan
 from nav_msgs.msg import Path
+from geometry_msgs.msg import PoseStamped
+
 class Arm:
     # I am going to make the arm take in 4 different motors on startup
     def __init__(self, j1, j2, j3, j4):
@@ -144,20 +146,33 @@ class Arm:
     def pickup(self, msg):
         
         print("yoooooo, we got a request")
-        # goal = msg.goal.pose.position
-        # x, y, z = goal.x, goal.y, goal.z
+        goal = msg.goal.pose.position
+        x, y, z = goal.x, goal.y, goal.z
 
-        #desired_ee = np.array([[ 0,  0, 0,  x],
-        #                       [ 0,  0, 0,  y],
-        #                       [ 0,  0,  0, z],
-        #                       [ 0,  0,  0, 1]])
+        desired_ee = np.array([[ 0,  0, 0,  x],
+                               [ 0,  0, 0,  y],
+                               [ 0,  0,  0, z],
+                               [ 0,  0,  0, 1]])
 
-        #joint_angles = arm.ik(desired_ee)
-        #traj = arm.trajectory_planning(joint_angles)
+        joint_angles = arm.ik(desired_ee)
+        traj = arm.trajectory_planning(joint_angles)
+        
         #arm.follow_trajectory(traj)
 
+        poses = []
+
+        for joint_angles in traj:
+            ps = PoseStamped()
+            ps.pose.orientation.x, ps.pose.orientation.y, ps.pose.orientation.z, ps.pose.orientation.w = joint_angles
+
+            poses.append(ps)
+
+
         # this should return something? None on failure?
-        return Path()
+        path = Path()
+        path.poses = poses
+
+        return path
     
     def run(self):
         rospy.spin()
