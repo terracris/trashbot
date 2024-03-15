@@ -1,0 +1,73 @@
+#!/usr/bin/env python
+import rospy
+from cv_bridge import CvBridge 
+from sensor_msgs.msg import Image
+from geometry_msgs.msg import Point, PointStamped, PoseStamped, Pose, Quaternion
+from std_msgs.msg import Header
+import numpy as np
+
+
+
+class pixel2depth():
+    def __init__(self):
+        rospy.Subscriber("/camera/aligned_depth_to_color/image_raw", Image, self.convert_depth_image, queue_size=1)
+        xy_pixel_sub = rospy.Subscriber('/pixel_xy_coordinate', Point, self.update_xy_pixel)
+
+        self.final_coordinate_pub = rospy.Publisher('/3d_coordinate',PoseStamped, queue_size=1)
+
+        self.depth_array = []
+        self.bridge = CvBridge()
+        self.x_center = 0
+        self.y_center = 0
+        self.ppx = 322.2703857
+        self.ppy = 250.9405212
+        self.fx = 607.4005127
+        self.fy = 607.2220459
+
+    def update_xy_pixel(self, point):
+        self.x_center = round(point.x)
+        self.y_center = round(point.y)
+        # use the xy pixel point to get the depth info from the depth_array with corresponding xy
+        depth_value = self.depth_array[self.y_center, self.x_center]
+        x_coord = depth_value*(self.x_center+4 - self.ppx)/self.fx
+        y_coord = depth_value*(self.y_center+8 - self.ppy)/self.fy
+        z_coord = depth_value
+        object_coord = PoseStamped()
+
+        object_coord.header = Header()
+        object_coord.header.stamp = rospy.Time.now()
+        object_coord.header.frame_id = "3d_coordinate"
+
+        object_coord.pose = Pose()
+        object_coord.pose.position = Point()
+        object_coord.pose.orientation = Quaternion()
+
+        object_coord.pose.position.x = x_coord/10 # unit: cm
+        object_coord.pose.position.y = y_coord/10 # unit: cm
+        object_coord.pose.position.z = z_coord/10 # unit: cm
+
+        object_coord.pose.orientation.x = 0.0
+        object_coord.pose.orientation.y = 0.0
+        object_coord.pose.orientation.z = 0.0
+        object_coord.pose.orientation.w = 0.0
+
+        print("x coord:", x_coord/10, "cm")
+        print("y coord:", y_coord/10, "cm")
+        print("z coord:", z_coord/10, "cm")
+        print("===============")
+        self.final_coordinate_pub.publish(object_coord)
+
+
+    def convert_depth_image(self, ros_image):
+         # Use cv_bridge() to convert the ROS image to OpenCV format
+         #Convert the depth image using the default passthrough encoding
+        depth_image = self.bridge.imgmsg_to_cv2(ros_image, desired_encoding='passthrough')
+
+         #Convert the depth image to a Numpy array
+        self.depth_array = np.array(depth_image, dtype=np.float32)
+
+
+if __name__ == '__main__':
+    rospy.init_node('pixel2depth',anonymous=True)
+    pixel2depth()
+    rospy.spin()
