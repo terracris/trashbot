@@ -4,11 +4,19 @@ from math import radians, degrees
 import modern_robotics as mr
 from stepper import Stepper
 from time import sleep
+import rospy
+from nav_msgs.srv import GetPlan
 
 class Arm:
     # I am going to make the arm take in 4 different motors on startup
     def __init__(self, j1, j2, j3, j4):
-                
+        
+        rospy.init_node('arm', anonymous=True)
+        
+        # A service that accepts messages of type GetPlan and
+        # calls 'pickup' method when a message is received
+        self.collection_service = rospy.Service('manipulate', GetPlan, self.pickup)
+
         self.joints = [j1, j2, j3, j4]
         self.joint_angles = [0, 0, 0, 0]
 
@@ -130,6 +138,26 @@ class Arm:
         
         return theta_list
     
+    # receives GetPlan message
+    def pickup(self, msg):
+        
+        goal = msg.goal.pose.position
+        x, y, z = goal.x, goal.y, goal.z
+
+        desired_ee = np.array([[ 0,  0, 0,  x],
+                               [ 0,  0, 0,  y],
+                               [ 0,  0,  0, z],
+                               [ 0,  0,  0, 1]])
+
+        joint_angles = arm.ik(desired_ee)
+        traj = arm.trajectory_planning(joint_angles)
+        arm.follow_trajectory(traj)
+
+        # this should return something? None on failure?
+    
+    def run(self):
+        rospy.spin()
+    
     def cleanup(self):
         for joint in self.joints:
             joint.cleanup()
@@ -197,22 +225,7 @@ if __name__ == '__main__':
         j4 = Stepper(pulse_pin_j4, dir_pin_j4, 12, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4, max_ccw_j4, max_cw_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)
        
         arm = Arm(j1, j2, j3, j4)
-        x = 0.4
-        y = 0.0
-        z = 0.45
-
-        desired_ee = np.array([[ 7.07106781e-01,  7.13299383e-17, -7.07106781e-01,  2.22839249e-01],
-                               [-7.07106781e-01,  8.56793076e-17, -7.07106781e-01, -1.97241984e-01],
-                               [-1.01465364e-17,  1.00000000e+00,  1.11022302e-16,  7.07300528e-01],
-                               [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
-
-        joint_angles = arm.ik(desired_ee)
-        traj = arm.trajectory_planning(joint_angles)
-        arm.follow_trajectory(traj)
-        
-        print("I am there!")
-        
-        while True:
-            pass
+        arm.run()
+    
     except KeyboardInterrupt:
         j1.cleanup()
