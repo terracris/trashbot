@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import threading
 import numpy as np
 from math import radians, degrees
@@ -6,12 +8,12 @@ from stepper import Stepper
 from time import sleep
 import rospy
 from nav_msgs.srv import GetPlan
-
+from nav_msgs.msg import Path
 class Arm:
     # I am going to make the arm take in 4 different motors on startup
     def __init__(self, j1, j2, j3, j4):
         
-        rospy.init_node('arm', anonymous=True)
+        rospy.init_node("arm", anonymous=True)
         
         # A service that accepts messages of type GetPlan and
         # calls 'pickup' method when a message is received
@@ -42,7 +44,7 @@ class Arm:
         # EE position error tol --> Tolerance is 1mm
         self.ev = 0.001
 
-        self.home()
+        # self.home()
 
 
     def home(self):
@@ -141,19 +143,21 @@ class Arm:
     # receives GetPlan message
     def pickup(self, msg):
         
-        goal = msg.goal.pose.position
-        x, y, z = goal.x, goal.y, goal.z
+        print("yoooooo, we got a request")
+        # goal = msg.goal.pose.position
+        # x, y, z = goal.x, goal.y, goal.z
 
-        desired_ee = np.array([[ 0,  0, 0,  x],
-                               [ 0,  0, 0,  y],
-                               [ 0,  0,  0, z],
-                               [ 0,  0,  0, 1]])
+        #desired_ee = np.array([[ 0,  0, 0,  x],
+        #                       [ 0,  0, 0,  y],
+        #                       [ 0,  0,  0, z],
+        #                       [ 0,  0,  0, 1]])
 
-        joint_angles = arm.ik(desired_ee)
-        traj = arm.trajectory_planning(joint_angles)
-        arm.follow_trajectory(traj)
+        #joint_angles = arm.ik(desired_ee)
+        #traj = arm.trajectory_planning(joint_angles)
+        #arm.follow_trajectory(traj)
 
         # this should return something? None on failure?
+        return Path()
     
     def run(self):
         rospy.spin()
