@@ -32,6 +32,11 @@ class Arm:
                            [ 0, 0, 1, 0.598742],
                            [ 0, 0, 0, 1]])
         
+        self.camera_transformation = np.array([[ 0,-0.4067, 0.9135, 0.122497],
+                                               [-1, 0,      0,      0.032445],
+                                               [ 0,-0.9135,-0.4067, 0.079696],
+                                               [ 0, 0,      0,      1]])
+        
         # screw axis (twist list)
         self.twist_list = np.array([[0, 0, 1,     0,        0,       0],
                                     [0, 1, 0,   0.198,      0,     -0.07],
@@ -149,12 +154,14 @@ class Arm:
         goal = msg.goal.pose.position
         x, y, z = goal.x, goal.y, goal.z
 
-        desired_ee = np.array([[ 0,  0, 0,  x],
-                               [ 0,  0, 0,  y],
-                               [ 0,  0,  0, z],
-                               [ 0,  0,  0, 1]])
+        camera_point = np.array([[ 1,  0, 0, x],
+                                 [ 0,  1, 0, y],
+                                 [ 0,  0, 1, z],
+                                 [ 0,  0, 0, 1]])
 
-        joint_angles = arm.ik(desired_ee)
+        desired_ee_from_arm = np.dot(self.camera_transformation, camera_point) 
+        
+        joint_angles = arm.ik(desired_ee_from_arm)
         traj = arm.trajectory_planning(joint_angles)
         
         #arm.follow_trajectory(traj)
