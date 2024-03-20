@@ -185,11 +185,12 @@ class Arm:
 if __name__ == '__main__':
     
     pulses_per_rev = 200
+    enable_pin = 22
     
     # joint 1
     pulse_pin_j1 = 11
     dir_pin_j1 = 13
-    homing_pin_j1 = 15
+    homing_pin_j1 = 7
     gear_ratio_j1 = 4
     home_count_j1 = -140
     max_speed_j1 = 75
@@ -238,10 +239,10 @@ if __name__ == '__main__':
  
     try:
         print("setting up the arm")
-        j1 = Stepper(pulse_pin_j1, dir_pin_j1, 12, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1, max_ccw_j1, max_cw_j1, home_count_j1,homing_direction_j1, debug=True) 
-        j2 = Stepper(pulse_pin_j2, dir_pin_j2, 12, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2, max_ccw_j2, max_cw_j2, home_count_j2,homing_direction_j2 ,inverted=True, debug=False)
-        j3 = Stepper(pulse_pin_j3, dir_pin_j3, 12, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3, max_ccw_j3, max_cw_j3, home_count_j3,homing_direction_j3,kp=0.10,kd=0.003)
-        j4 = Stepper(pulse_pin_j4, dir_pin_j4, 12, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4, max_ccw_j4, max_cw_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)
+        j1 = Stepper(pulse_pin_j1, dir_pin_j1, enable_pin, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1, max_ccw_j1, max_cw_j1, home_count_j1,homing_direction_j1, debug=True) 
+        j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2, max_ccw_j2, max_cw_j2, home_count_j2,homing_direction_j2 ,inverted=True, debug=False)
+        j3 = Stepper(pulse_pin_j3, dir_pin_j3, enable_pin, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3, max_ccw_j3, max_cw_j3, home_count_j3,homing_direction_j3,kp=0.10,kd=0.003)
+        j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4, max_ccw_j4, max_cw_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)
        
         arm = Arm(j1, j2, j3, j4)
         arm.run()
