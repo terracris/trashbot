@@ -219,7 +219,9 @@ class Stepper:
             # until the limit switch has been hit
             
             is_home = GPIO.input(self.homing_pin)
-            
+            if is_home:
+                break
+
             # print("homing direction is: ", self.direction)
             self.step()
             time.sleep(0.01) # sleep 10 ms between pulses --> gives pretty good speed

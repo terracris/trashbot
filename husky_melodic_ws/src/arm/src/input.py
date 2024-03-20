@@ -4,15 +4,14 @@ import time
 # Set the GPIO mode to BCM numbering
 GPIO.setmode(GPIO.BOARD)
 
-input_1 = 15
+input_1 = 7
 input_2 = 23
 input_3 = 33
 input_4 = 40
 
-test_pin = input_4
+test_pin = input_1
 # Set up GPIO pin 18 as an input
-GPIO.setup(test_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-
+GPIO.setup(test_pin, GPIO.IN)
 try:
     while True:
         # Read the state of the GPIO pin
