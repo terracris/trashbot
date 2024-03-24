@@ -122,5 +122,5 @@ class detectapi:
                     plot_one_box(xyxy, im0, label=label, color=self.colors[int(cls)], line_thickness=3)
                     xy_coords.append([self.x_center,self.y_center])
             result.append((im0, result_txt)) 
-        return result, self.names, self.x_center, self.y_center
+        return result, self.names, xy_coords
 
