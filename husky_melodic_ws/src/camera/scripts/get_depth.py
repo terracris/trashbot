@@ -2,7 +2,7 @@
 import rospy
 from cv_bridge import CvBridge 
 from sensor_msgs.msg import Image
-from geometry_msgs.msg import Point, PointStamped, PoseStamped, Pose, Quaternion
+from geometry_msgs.msg import Point, PointStamped, PoseStamped, Pose, Quaternion, PoseArray
 from std_msgs.msg import Header
 import numpy as np
 
@@ -11,7 +11,7 @@ import numpy as np
 class pixel2depth():
     def __init__(self):
         rospy.Subscriber("/camera/aligned_depth_to_color/image_raw", Image, self.convert_depth_image, queue_size=1)
-        xy_pixel_sub = rospy.Subscriber('/pixel_xy_coordinate', Point, self.update_xy_pixel)
+        ospy.Subscriber('/pixel_xy_coordinate', PoseArray, self.find_the_closest_xy)
 
         self.final_coordinate_pub = rospy.Publisher('/3d_coordinate',PoseStamped, queue_size=1)
 
@@ -24,14 +24,26 @@ class pixel2depth():
         self.fx = 607.4005127
         self.fy = 607.2220459
 
-    def update_xy_pixel(self, point):
-        self.x_center = round(point.x)
-        self.y_center = round(point.y)
-        # use the xy pixel point to get the depth info from the depth_array with corresponding xy
-        depth_value = self.depth_array[self.y_center, self.x_center]
-        x_coord = depth_value*(self.x_center+4 - self.ppx)/self.fx
-        y_coord = depth_value*(self.y_center+8 - self.ppy)/self.fy
-        z_coord = depth_value
+    def find_the_closest_xy(self, xy_PoseArray):
+        smallest_depth = 10000000
+        xy_list = []
+        for pose in xy_PoseArray:
+            xy_list.append([pose.position.x, pose.position.y])
+        
+        if xy_list != []:
+            for x_center, y_center in xy_list:
+                depth_value = self.depth_array[y_center, x_center]
+                if depth_value < smallest_depth:
+                    best_depth_value = depth_value
+                    best_x_center = x_center
+                    best_y_center = y_center
+        else:
+            print("nothing in xy_list!!!!!!")
+
+
+        x_coord = best_depth_value*(best_x_center+4 - self.ppx)/self.fx
+        y_coord = best_depth_value*(best_y_center+8 - self.ppy)/self.fy
+        z_coord = best_depth_value
         object_coord = PoseStamped()
 
         object_coord.header = Header()

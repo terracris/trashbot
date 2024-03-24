@@ -64,6 +64,7 @@ class detectapi:
         self.y_center = 0.0
 
     def detect(self, source):
+        xy_coords = []
         if type(source) != list:
             raise TypeError('source must be a list which contain  pictures read by cv2')
 
@@ -119,6 +120,7 @@ class detectapi:
 
                     label = f'{self.names[int(cls)]} {conf:.2f}'
                     plot_one_box(xyxy, im0, label=label, color=self.colors[int(cls)], line_thickness=3)
+                    xy_coords.append([self.x_center,self.y_center])
             result.append((im0, result_txt)) 
         return result, self.names, self.x_center, self.y_center
 

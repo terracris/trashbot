@@ -7,7 +7,7 @@ import rospy
 import numpy as np
 ##from beginner_tutorials.msg import Num
 from sensor_msgs.msg import Image
-from geometry_msgs.msg import Point
+from geometry_msgs.msg import Point, PoseArray, Pose
 import ctypes
 libgcc_s = ctypes.CDLL('libgcc_s.so.1')
 from cv_bridge import CvBridge 
@@ -18,23 +18,31 @@ class yolo_detect():
         self.a = detectros.detectapi(weights='/home/trashbot/ros_cv_bridge/src/beginner_tutorials/scripts/weights/best.pt')
         im_sub = rospy.Subscriber('/camera/color/image_raw',Image, self.detectimg, queue_size = 1, buff_size=2**24)
         self.img_pub = rospy.Publisher('/cv/image_raw', Image, queue_size=1) 
-        self.coordinate_pub = rospy.Publisher('/pixel_xy_coordinate',Point, queue_size=1)
+        self.coordinate_pub = rospy.Publisher('/pixel_xy_coordinate',PoseArray, queue_size=1)
         self.bridge = CvBridge()
     def detectimg(self, img):
         frame = self.bridge.imgmsg_to_cv2(img, desired_encoding='bgr8')
-        result, names, x_center1, y_center1 = self.a.detect([frame])
+        result, names, xy_coords = self.a.detect([frame])
+        xy_coords_array = PoseArray()
         image_detect = result[0][0]
         names_detect = result[0][1]
         #print(names_detect)
         if names_detect:
             print(names[(names_detect[0][0])])
-            xy_pixel = Point()
-            xy_pixel.x = x_center1
-            xy_pixel.y = y_center1
-            xy_pixel.z = 0.0
-            self.coordinate_pub.publish(xy_pixel)
+            # publish the poseArray
+
+            for x_center, y_center in xy_coords:
+                pose = Pose()
+                pose.position.x = x_center  # Set x-coordinate
+                pose.position.y = y_center  # Set y-coordinate
+                xy_coords_array.poses.append(pose)
+            
+            self.coordinate_pub.publish(xy_coords_array)
+
+
         else:
             print("No object detected")
+
         self.img_pub.publish(self.bridge.cv2_to_imgmsg(image_detect, "bgr8"))
 
 
