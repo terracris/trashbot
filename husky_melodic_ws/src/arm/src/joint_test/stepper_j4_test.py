@@ -296,20 +296,21 @@ class Stepper:
 if __name__ == '__main__':
     pulses_per_rev = 200
     enable_pin = 37
-    # joint 2
-    pulse_pin_j2 = 19
-    dir_pin_j2 = 13
-    homing_pin_j2 = 23
-    gear_ratio_j2 = 5 * 5.18
-    home_count_j2 = -145
-    max_speed_j2 = 75
+
+    # joint 4
+    pulse_pin_j4 = 32
+    dir_pin_j4 = 38
+    homing_pin_j4 = 40
+    gear_ratio_j4 = 1 # TODO calculate gear ratio
+    home_count_j4 = -30 # TODO calculate home count
+    max_speed_j4 = 50
     # gonna need to update kinematics to account for the joint limits:
     # like if it says j2 goes to 30 degrees, need to find clockwise alternative for all joints
-    max_ccw_j2 = 135
-    max_cw_j2 = -10
-    homing_direction_j2 = Stepper.CCW
+    max_ccw_j4 = 90 # TODO calculate joint limits
+    max_cw_j4 = -40 # TODO calcylate joint limit
+    homing_direction_j4 = Stepper.CW
     try:
-        j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2, max_ccw_j2, max_cw_j2, home_count_j2,homing_direction_j2 ,inverted=True, debug=False)
-        j2.move_clockwise_simple()
+        j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4, max_ccw_j4, max_cw_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)        
+        j4.move_clockwise_simple()
     except KeyboardInterrupt:
         GPIO.cleanup()
