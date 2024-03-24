@@ -270,7 +270,7 @@ class Stepper:
         self.move_absolute_pid(steps)
     
     def move_clockwise_simple(self):
-        self.direction = Stepper.CCW
+        self.direction = Stepper.CW
         while True:
             self.step()
             time.sleep(0.05)
@@ -311,6 +311,13 @@ if __name__ == '__main__':
     homing_direction_j3 = Stepper.CW
     try:
         j3 = Stepper(pulse_pin_j3, dir_pin_j3, enable_pin, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3, max_ccw_j3, max_cw_j3, home_count_j3,homing_direction_j3,kp=0.10,kd=0.003)        
-        j3.move_clockwise_simple()
+    
+        count = 0
+
+        while count < 3:
+            j3.home()
+            count += 1
+
+        GPIO.cleanup()
     except KeyboardInterrupt:
         GPIO.cleanup()

@@ -253,7 +253,8 @@ if __name__ == '__main__':
        
         arm = Arm(j1, j2, j3, j4)
         arm.home()
-        arm.run()
+        
+        # arm.run()
     
     except KeyboardInterrupt:
         j1.cleanup()

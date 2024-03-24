@@ -311,6 +311,14 @@ if __name__ == '__main__':
     homing_direction_j4 = Stepper.CW
     try:
         j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4, max_ccw_j4, max_cw_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)        
-        j4.move_clockwise_simple()
+    
+        count = 0
+
+        while count < 3:
+            j4.home()
+            count += 1
+
+        GPIO.cleanup()
+
     except KeyboardInterrupt:
         GPIO.cleanup()
