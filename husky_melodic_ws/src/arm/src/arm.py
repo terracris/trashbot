@@ -253,6 +253,22 @@ if __name__ == '__main__':
        
         arm = Arm(j1, j2, j3, j4)
         arm.home()
+
+        #desired EE configuration
+        desired_ee = np.array([[ 2.21682075e-32,  0.00000000e+00, 1.00000000e+00, -1.81000000e-02],
+                    [ 1.99673462e-16,  1.00000000e+00,  0.00000000e+00,  8.35300528e-01],
+                    [-1.00000000e+00,  1.79380389e-16,  1.99152238e-32, -1.08920923e+00],
+                    [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
+        
+        # get joint angles
+        joint_angles = arm.ik(desired_ee)
+
+        # get trajectory to follow
+        traj = arm.trajectory_planning(joint_angles)
+
+        # follow the trajectory
+        arm.follow_trajectory(traj)
+
         
         # arm.run()
     
