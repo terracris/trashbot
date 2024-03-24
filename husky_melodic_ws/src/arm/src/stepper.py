@@ -178,10 +178,12 @@ class Stepper:
     
     def set_direction_pins(self):
         if self.direction == Stepper.CCW:
-            print("ccw")
+            if self.debug:
+                print("ccw")
             GPIO.output(self.dir_pin, GPIO.HIGH) # When direction pin is HIGH, the motor will spin CCW
         else:
-            print("cw")
+            if self.debug:
+                print("cw")
             GPIO.output(self.dir_pin, GPIO.LOW) # when direction pin is LOW, the motor will spin CW
 
         Stepper.usleep(2*self.min_dir_width)
