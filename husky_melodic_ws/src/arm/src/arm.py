@@ -32,6 +32,11 @@ class Arm:
                            [ 0, 0, 1, 0.598742],
                            [ 0, 0, 0, 1]])
         
+        self.camera_transformation = np.array([[ 0,-0.4067, 0.9135, 0.122497],
+                                               [-1, 0,      0,      0.032445],
+                                               [ 0,-0.9135,-0.4067, 0.079696],
+                                               [ 0, 0,      0,      1]])
+        
         # screw axis (twist list)
         self.twist_list = np.array([[0, 0, 1,     0,        0,       0],
                                     [0, 1, 0,   0.198,      0,     -0.07],
@@ -149,12 +154,14 @@ class Arm:
         goal = msg.goal.pose.position
         x, y, z = goal.x, goal.y, goal.z
 
-        desired_ee = np.array([[ 0,  0, 0,  x],
-                               [ 0,  0, 0,  y],
-                               [ 0,  0,  0, z],
-                               [ 0,  0,  0, 1]])
+        camera_point = np.array([[ 1,  0, 0, x],
+                                 [ 0,  1, 0, y],
+                                 [ 0,  0, 1, z],
+                                 [ 0,  0, 0, 1]])
 
-        joint_angles = arm.ik(desired_ee)
+        desired_ee_from_arm = np.dot(self.camera_transformation, camera_point) 
+        
+        joint_angles = arm.ik(desired_ee_from_arm)
         traj = arm.trajectory_planning(joint_angles)
         
         #arm.follow_trajectory(traj)
@@ -185,7 +192,7 @@ class Arm:
 if __name__ == '__main__':
     
     pulses_per_rev = 200
-    enable_pin = 22
+    enable_pin = 37
     
     # joint 1
     pulse_pin_j1 = 11
@@ -245,6 +252,7 @@ if __name__ == '__main__':
         j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4, max_ccw_j4, max_cw_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)
        
         arm = Arm(j1, j2, j3, j4)
+        arm.home()
         arm.run()
     
     except KeyboardInterrupt:

@@ -178,12 +178,10 @@ class Stepper:
     
     def set_direction_pins(self):
         if self.direction == Stepper.CCW:
-            if self.debug:
-                print("ccw")
+            print("ccw")
             GPIO.output(self.dir_pin, GPIO.HIGH) # When direction pin is HIGH, the motor will spin CCW
         else:
-            if self.debug:
-                print("cw")
+            print("cw")
             GPIO.output(self.dir_pin, GPIO.LOW) # when direction pin is LOW, the motor will spin CW
 
         Stepper.usleep(2*self.min_dir_width)
@@ -298,20 +296,20 @@ class Stepper:
 if __name__ == '__main__':
     pulses_per_rev = 200
     enable_pin = 37
-
-    # joint 1
-    pulse_pin_j1 = 11
-    dir_pin_j1 = 21
-    homing_pin_j1 = 7
-    gear_ratio_j1 = 4
-    home_count_j1 = -140
-    max_speed_j1 = 75
-    max_ccw_j1 = 90
-    max_cw_j1 = -90
-    homing_direction_j1 = Stepper.CCW
+    # joint 2
+    pulse_pin_j2 = 19
+    dir_pin_j2 = 13
+    homing_pin_j2 = 23
+    gear_ratio_j2 = 5 * 5.18
+    home_count_j2 = -145
+    max_speed_j2 = 75
+    # gonna need to update kinematics to account for the joint limits:
+    # like if it says j2 goes to 30 degrees, need to find clockwise alternative for all joints
+    max_ccw_j2 = 135
+    max_cw_j2 = -10
+    homing_direction_j2 = Stepper.CCW
     try:
-        j1 = Stepper(pulse_pin_j1, dir_pin_j1, enable_pin, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1, max_ccw_j1, max_cw_j1, home_count_j1,homing_direction_j1, debug=True)
-        
-        j1.move_clockwise_simple()
+        j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2, max_ccw_j2, max_cw_j2, home_count_j2,homing_direction_j2 ,inverted=True, debug=False)
+        j2.move_clockwise_simple()
     except KeyboardInterrupt:
         GPIO.cleanup()
