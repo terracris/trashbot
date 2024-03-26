@@ -311,7 +311,7 @@ if __name__ == '__main__':
         j1 = Stepper(pulse_pin_j1, dir_pin_j1, enable_pin, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1, max_ccw_j1, max_cw_j1, home_count_j1,homing_direction_j1, debug=True)
         count = 0
 
-        while count < 10:
+        while count < 3:
             j1.home()
             count += 1
 

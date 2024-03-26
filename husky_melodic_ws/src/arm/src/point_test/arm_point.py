@@ -49,10 +49,9 @@ class Arm:
         # EE orientation error tol
         self.eomg = 0.01 
         # EE position error tol --> Tolerance is 1mm
-        self.ev = 0.01
+        self.ev = 0.001
 
         # self.home()
-        self.is_active = False
 
 
     def home(self):
@@ -151,18 +150,9 @@ class Arm:
     # receives GetPlan message
     def pickup(self, msg):
         
-        if self.is_active:
-            empty_path = Path()
-            empty_path.poses = []
-            return empty_path
-
-        self.is_active = True
         print("yoooooo, we got a request")
         goal = msg.goal.pose.position
-        # x, y, z = goal.x, goal.y, goal.z
-        x, y, z = 0.2 , 0.2, 1.0
-
-        print("x: ", x, "y: ", y, "z: ", z)
+        x, y, z = goal.x, goal.y, goal.z
 
         camera_point = np.array([[ 1,  0, 0, x],
                                  [ 0,  1, 0, y],
@@ -170,15 +160,11 @@ class Arm:
                                  [ 0,  0, 0, 1]])
 
         desired_ee_from_arm = np.dot(self.camera_transformation, camera_point) 
-        print("desired ee from arm: ", desired_ee_from_arm)
-
-        joint_angles = self.ik(desired_ee_from_arm)
-        traj = self.trajectory_planning(joint_angles)
-
-        print("trajectory angles: ", traj)
         
-        self.home()
-        self.follow_trajectory(traj)
+        joint_angles = arm.ik(desired_ee_from_arm)
+        traj = arm.trajectory_planning(joint_angles)
+        
+        #arm.follow_trajectory(traj)
 
         poses = []
 
@@ -193,7 +179,6 @@ class Arm:
         path = Path()
         path.poses = poses
 
-        self.is_active = False
         return path
     
     def run(self):
@@ -261,26 +246,31 @@ if __name__ == '__main__':
  
     try:
         print("setting up the arm")
-        j1 = Stepper(pulse_pin_j1, dir_pin_j1, enable_pin, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1, max_ccw_j1, max_cw_j1, home_count_j1,homing_direction_j1, debug=False) 
+        j1 = Stepper(pulse_pin_j1, dir_pin_j1, enable_pin, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1, max_ccw_j1, max_cw_j1, home_count_j1,homing_direction_j1, debug=True) 
         j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2, max_ccw_j2, max_cw_j2, home_count_j2,homing_direction_j2 ,inverted=True, debug=False)
         j3 = Stepper(pulse_pin_j3, dir_pin_j3, enable_pin, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3, max_ccw_j3, max_cw_j3, home_count_j3,homing_direction_j3,kp=0.10,kd=0.003)
         j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4, max_ccw_j4, max_cw_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)
        
         arm = Arm(j1, j2, j3, j4)
-       #  arm.home()
+        arm.home()
 
+        #desired EE configuration
+        desired_ee = np.array([[ 2.21682075e-32,  0.00000000e+00, 1.00000000e+00, -1.81000000e-02],
+                    [ 1.99673462e-16,  1.00000000e+00,  0.00000000e+00,  8.35300528e-01],
+                    [-1.00000000e+00,  1.79380389e-16,  1.99152238e-32, -1.08920923e+00],
+                    [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
         
         # get joint angles
-        # joint_angles = arm.ik(desired_ee)
+        joint_angles = arm.ik(desired_ee)
 
         # get trajectory to follow
-        # traj = arm.trajectory_planning(joint_angles)
+        traj = arm.trajectory_planning(joint_angles)
 
         # follow the trajectory
-        # arm.follow_trajectory(traj)
+        arm.follow_trajectory(traj)
 
         
-        arm.run()
+        # arm.run()
     
     except KeyboardInterrupt:
         j1.cleanup()

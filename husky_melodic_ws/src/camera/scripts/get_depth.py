@@ -11,7 +11,7 @@ import numpy as np
 class pixel2depth():
     def __init__(self):
         rospy.Subscriber("/camera/aligned_depth_to_color/image_raw", Image, self.convert_depth_image, queue_size=1)
-        ospy.Subscriber('/pixel_xy_coordinate', PoseArray, self.find_the_closest_xy)
+        rospy.Subscriber('/pixel_xy_coordinate', PoseArray, self.find_the_closest_xy)
 
         self.final_coordinate_pub = rospy.Publisher('/3d_coordinate',PoseStamped, queue_size=1)
 
@@ -25,49 +25,51 @@ class pixel2depth():
         self.fy = 607.2220459
 
     def find_the_closest_xy(self, xy_PoseArray):
-        smallest_depth = 10000000
+        smallest_depth_value = 10000000
         xy_list = []
-        for pose in xy_PoseArray:
-            xy_list.append([pose.position.x, pose.position.y])
+        for pose in xy_PoseArray.poses:
+            xy_list.append([int(pose.position.x), int(pose.position.y)])
         
         if xy_list != []:
             for x_center, y_center in xy_list:
+                print(y_center, x_center)
                 depth_value = self.depth_array[y_center, x_center]
-                if depth_value < smallest_depth:
-                    best_depth_value = depth_value
+                print(depth_value)
+                if depth_value < smallest_depth_value:
+                    smallest_depth_value = depth_value
                     best_x_center = x_center
                     best_y_center = y_center
         else:
             print("nothing in xy_list!!!!!!")
 
+        if smallest_depth_value != 0:
+            x_coord = smallest_depth_value*(best_x_center+4 - self.ppx)/self.fx
+            y_coord = smallest_depth_value*(best_y_center+8 - self.ppy)/self.fy
+            z_coord = smallest_depth_value
+            object_coord = PoseStamped()
 
-        x_coord = best_depth_value*(best_x_center+4 - self.ppx)/self.fx
-        y_coord = best_depth_value*(best_y_center+8 - self.ppy)/self.fy
-        z_coord = best_depth_value
-        object_coord = PoseStamped()
+            object_coord.header = Header()
+            object_coord.header.stamp = rospy.Time.now()
+            object_coord.header.frame_id = "3d_coordinate"
 
-        object_coord.header = Header()
-        object_coord.header.stamp = rospy.Time.now()
-        object_coord.header.frame_id = "3d_coordinate"
+            object_coord.pose = Pose()
+            object_coord.pose.position = Point()
+            object_coord.pose.orientation = Quaternion()
 
-        object_coord.pose = Pose()
-        object_coord.pose.position = Point()
-        object_coord.pose.orientation = Quaternion()
+            object_coord.pose.position.x = x_coord/1000 # unit: m
+            object_coord.pose.position.y = y_coord/1000 # unit: m
+            object_coord.pose.position.z = z_coord/1000 # unit: m
 
-        object_coord.pose.position.x = x_coord/10 # unit: cm
-        object_coord.pose.position.y = y_coord/10 # unit: cm
-        object_coord.pose.position.z = z_coord/10 # unit: cm
+            object_coord.pose.orientation.x = 0.0
+            object_coord.pose.orientation.y = 0.0
+            object_coord.pose.orientation.z = 0.0
+            object_coord.pose.orientation.w = 0.0
 
-        object_coord.pose.orientation.x = 0.0
-        object_coord.pose.orientation.y = 0.0
-        object_coord.pose.orientation.z = 0.0
-        object_coord.pose.orientation.w = 0.0
-
-        print("x coord:", x_coord/10, "cm")
-        print("y coord:", y_coord/10, "cm")
-        print("z coord:", z_coord/10, "cm")
-        print("===============")
-        self.final_coordinate_pub.publish(object_coord)
+            print("x coord:", x_coord/1000, "m")
+            print("y coord:", y_coord/1000, "m")
+            print("z coord:", z_coord/1000, "m")
+            print("===============")
+            self.final_coordinate_pub.publish(object_coord)
 
 
     def convert_depth_image(self, ros_image):

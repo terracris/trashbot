@@ -295,23 +295,3 @@ class Stepper:
         """ 
         Stepper.libc.usleep(int(microseconds))
 
-if __name__ == '__main__':
-    pulses_per_rev = 200
-    enable_pin = 37
-
-    # joint 1
-    pulse_pin_j1 = 11
-    dir_pin_j1 = 21
-    homing_pin_j1 = 7
-    gear_ratio_j1 = 4
-    home_count_j1 = -140
-    max_speed_j1 = 75
-    max_ccw_j1 = 90
-    max_cw_j1 = -90
-    homing_direction_j1 = Stepper.CCW
-    try:
-        j1 = Stepper(pulse_pin_j1, dir_pin_j1, enable_pin, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1, max_ccw_j1, max_cw_j1, home_count_j1,homing_direction_j1, debug=True)
-        
-        j1.move_clockwise_simple()
-    except KeyboardInterrupt:
-        GPIO.cleanup()

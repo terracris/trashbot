@@ -312,7 +312,7 @@ if __name__ == '__main__':
         j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2, max_ccw_j2, max_cw_j2, home_count_j2,homing_direction_j2 ,inverted=True, debug=False)
         count = 0
 
-        while count < 10:
+        while count < 3:
             j2.home()
             count += 1
 

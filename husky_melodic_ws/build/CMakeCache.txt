@@ -315,10 +315,10 @@ arm_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/arm
 arm_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/arm
 
 //Value Computed by CMake
-bno055_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/bno055
+camera_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/camera
 
 //Value Computed by CMake
-bno055_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/bno055
+camera_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/camera
 
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/melodic/share/catkin/cmake
@@ -385,6 +385,12 @@ googletest-distribution_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_
 
 //Value Computed by CMake
 googletest-distribution_SOURCE_DIR:STATIC=/usr/src/googletest
+
+//Value Computed by CMake
+gps_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/gps
+
+//Value Computed by CMake
+gps_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/gps
 
 //Value Computed by CMake
 gtest_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/gtest/googlemock/gtest
@@ -488,12 +494,6 @@ husky_viz_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/husky
 
 //Value Computed by CMake
 husky_viz_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_viz
-
-//Value Computed by CMake
-imu_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/imu
-
-//Value Computed by CMake
-imu_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/imu
 
 //Path to a library.
 lib:FILEPATH=/opt/ros/melodic/lib/libdiagnostic_updater.so
@@ -635,8 +635,6 @@ CMAKE_C_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_C_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS_RELWITHDEBINFO
 CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
-//Path to cache edit program executable.
-CMAKE_EDIT_COMMAND:INTERNAL=/usr/bin/ccmake
 //Executable file format
 CMAKE_EXECUTABLE_FORMAT:INTERNAL=ELF
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS
@@ -689,7 +687,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=18
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=20
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
