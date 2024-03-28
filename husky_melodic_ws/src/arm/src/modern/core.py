@@ -796,7 +796,7 @@ def IKinSpace(Slist, M, T, thetalist0, eomg, ev):
     err = np.linalg.norm([Vs[0], Vs[1], Vs[2]]) > eomg or np.linalg.norm([Vs[3], Vs[4], Vs[5]]) > ev
     while err and i < maxiterations:
         thetalist = thetalist + np.dot(np.linalg.pinv(JacobianSpace(Slist, thetalist)), Vs)
-        thetalist[1] = -thetalist[1]  # Adjust for elbow up configuration
+        thetalist[2] = -thetalist[2]  # Adjust for elbow up configuration
         i = i + 1
         Tsb = FKinSpace(M, Slist, thetalist)
         Vs = np.dot(Adjoint(Tsb), se3ToVec(MatrixLog6(np.dot(TransInv(Tsb), T))))
