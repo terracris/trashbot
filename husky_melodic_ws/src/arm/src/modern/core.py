@@ -762,6 +762,7 @@ def IKinBody(Blist, M, T, thetalist0, eomg, ev):
 
 def IKinSpace(Slist, M, T, thetalist0, eomg, ev):
     """Computes inverse kinematics in the space frame for an open chain robot
+    with the elbow up configuration
 
     :param Slist: The joint screw axes in the space frame when the
                   manipulator is at the home position, in the format of a
@@ -786,43 +787,20 @@ def IKinSpace(Slist, M, T, thetalist0, eomg, ev):
     The maximum number of iterations before the algorithm is terminated has
     been hardcoded in as a variable called maxiterations. It is set to 20 at
     the start of the function, but can be changed if needed.
-
-    Example Input:
-        Slist = np.array([[0, 0,  1,  4, 0,    0],
-                          [0, 0,  0,  0, 1,    0],
-                          [0, 0, -1, -6, 0, -0.1]]).T
-        M = np.array([[-1, 0,  0, 0],
-                      [ 0, 1,  0, 6],
-                      [ 0, 0, -1, 2],
-                      [ 0, 0,  0, 1]])
-        T = np.array([[0, 1,  0,     -5],
-                      [1, 0,  0,      4],
-                      [0, 0, -1, 1.6858],
-                      [0, 0,  0,      1]])
-        thetalist0 = np.array([1.5, 2.5, 3])
-        eomg = 0.01
-        ev = 0.001
-    Output:
-        (np.array([ 1.57073783,  2.99966384,  3.1415342 ]), True)
     """
     thetalist = np.array(thetalist0).copy()
     i = 0
     maxiterations = 100
-    Tsb = FKinSpace(M,Slist, thetalist)
-    Vs = np.dot(Adjoint(Tsb), \
-                se3ToVec(MatrixLog6(np.dot(TransInv(Tsb), T))))
-    err = np.linalg.norm([Vs[0], Vs[1], Vs[2]]) > eomg \
-          or np.linalg.norm([Vs[3], Vs[4], Vs[5]]) > ev
+    Tsb = FKinSpace(M, Slist, thetalist)
+    Vs = np.dot(Adjoint(Tsb), se3ToVec(MatrixLog6(np.dot(TransInv(Tsb), T))))
+    err = np.linalg.norm([Vs[0], Vs[1], Vs[2]]) > eomg or np.linalg.norm([Vs[3], Vs[4], Vs[5]]) > ev
     while err and i < maxiterations:
-        thetalist = thetalist \
-                    + np.dot(np.linalg.pinv(JacobianSpace(Slist, \
-                                                          thetalist)), Vs)
+        thetalist = thetalist + np.dot(np.linalg.pinv(JacobianSpace(Slist, thetalist)), Vs)
+        thetalist[1] = -thetalist[1]  # Adjust for elbow up configuration
         i = i + 1
         Tsb = FKinSpace(M, Slist, thetalist)
-        Vs = np.dot(Adjoint(Tsb), \
-                    se3ToVec(MatrixLog6(np.dot(TransInv(Tsb), T))))
-        err = np.linalg.norm([Vs[0], Vs[1], Vs[2]]) > eomg \
-              or np.linalg.norm([Vs[3], Vs[4], Vs[5]]) > ev
+        Vs = np.dot(Adjoint(Tsb), se3ToVec(MatrixLog6(np.dot(TransInv(Tsb), T))))
+        err = np.linalg.norm([Vs[0], Vs[1], Vs[2]]) > eomg or np.linalg.norm([Vs[3], Vs[4], Vs[5]]) > ev
     return (thetalist, not err)
 
 '''
