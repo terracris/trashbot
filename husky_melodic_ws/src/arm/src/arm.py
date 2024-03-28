@@ -22,34 +22,35 @@ class Arm:
         # calls 'pickup' method when a message is received
         self.collection_service = rospy.Service('manipulate', GetPlan, self.pickup)
 
-        self.joints = [j1, j2, j3]
-        self.joint_angles = [0, 0, 0]
+        self.joints = [j1, j2, j3, j4]
+        self.joint_angles = [0, 0, 0, 0]
 
         # all lengths are [ m ]
         # all angles are [ rad ] 
         # home configuration of robot end effector (concepts covered in RBE 501)
         self.M = np.array([[ 1, 0, 0, 0.55912576],
                            [ 0, 1, 0, 0.0196],
-                           [ 0, 0, 1, 0.598742],
+                           [ 0, 0, 1, 0.935512],
                            [ 0, 0, 0, 1]])
         
         self.camera_transformation = np.array([[ 0,-0.4067, 0.9135, 0.122497],
                                                [-1, 0,      0,      0.032445],
-                                               [ 0,-0.9135,-0.4067, 0.079696],
+                                               [ 0,-0.9135,-0.4067, 0.416466],
                                                [ 0, 0,      0,      1]])
 
         # screw axis (twist list)
         self.twist_list = np.array([[0, 0, 1,     0,        0,       0],
-                                    [0, 1, 0,   -0.198,      0,     0.07],
-                                    [0, 1, 0, -0.568642,     0,     0.07]]).T
+                                    [0, 1, 0,   -0.53477,      0,     0.07],
+                                    [0, 1, 0, -0.9054,     0,     0.07],
+				    [1, 0, 0, 0,     0.935512,    -0.0196]]).T
 
         
-        self.theta_list_guess = np.array([0, 1.57, 0])
+        self.theta_list_guess = np.array([0, 1.57, 0, 0])
         
         # EE orientation error tol
-        self.eomg = 0.1 
+        self.eomg = 0.01 
         # EE position error tol --> Tolerance is 1mm
-        self.ev = 0.1
+        self.ev = 0.01
 
         # self.home()
         self.is_active = False
@@ -85,7 +86,57 @@ class Arm:
     def ik(self, desired_ee):
         ik, success = mr.IKinSpace(self.twist_list, self.M, desired_ee, self.theta_list_guess, self.eomg, self.ev)
         return ik, success
-    
+
+    # target_xyz has shape (3x1)
+    def ik_ana(self, target_xyz):
+        # use mr.fkinSpace to find the current xyz and q for home configuration of ee
+        theta_list = [0, 0, 0, 0] # hard coded TODO 
+        fk = mr.FKinSpace(self.M, self.twist_list,theta_list)
+	# transpose the matrix, so has shape 3x1
+        current_xyz = np.array([fk[0][3],fk[1][3],fk[2][3]]).T
+        current_q = np.array([0, 0, 0, 0]) # hard coded TODO
+        max_iterations = 50
+        i = 0
+	
+        while (np.linalg.norm(target_xyz - current_xyz) > 0.001) and (i < max_iterations):
+            Ja = self.J_a(current_q)
+            # need seudo inverse here TODO
+            delta_q = np.linalg.pinv(Ja)*(target_xyz - current_xyz)
+            current_q = current_q + delta_q
+            T = mr.FKinSpace(self.M, self.twist_list,current_q)
+            current_xyz = np.array(T[0:3,3])  # [first:last+1, element number
+            i += 1 # increase iteration pass
+            print(i)
+
+        success = True
+        
+        if i == max_iterations:
+            success = False
+
+        return current_q, success
+	
+
+    def J_a(self, thetalist):
+        Slist = self.twist_list
+        M = self.M
+        Js = np.array(Slist).copy().astype(float)
+        T = np.eye(4)
+        for i in range(1, len(thetalist)):
+            T = np.dot(T, mr.MatrixExp6(mr.VecTose3(np.array(Slist)[:, i - 1]*thetalist[i - 1])))
+            Js[:, i] = np.dot(Adjoint(T), np.array(Slist)[:, i])
+
+        T = mr.FKinSpace(self.M, self.twist_list,thetalist)
+        J_w = Js[0:2, :]
+        J_v = Js[3:5, :]
+        w = T[0:2,3]
+        p = np.array([[ 0,-w[3], w[2]],
+                      [w[3], 0, -w[1]],
+                      [-w[2],w[1],0]])
+
+        J_a = J_v - p*J_w
+	
+        return J_a
+   
     def trajectory_planning(self, ik):
         
         tf = 5     # time of motion [ s ]
@@ -164,26 +215,22 @@ class Arm:
 
         print("x: ", x, "y: ", y, "z: ", z)
 
-        camera_point = np.array([[ 1,  0, 0, x],
-                                 [ 0,  1, 0, y],
-                                 [ 0,  0, 1, z],
-                                 [ 0,  0, 0, 1]])
-
+        camera_point = np.array([x, y, z, 1]).T
         desired_ee_from_arm = np.dot(self.camera_transformation, camera_point) 
+        desired_x, desired_y, desired_z = desired_ee_from_arm[0], desired_ee_from_arm[1], desired_ee_from_arm[2]
 
-        #desired_ee_from_arm = np.array([[ 7.07106781e-01,  7.13299383e-17, -7.07106781e-01,  2.22839249e-01],
-        #                      [-7.07106781e-01,  8.56793076e-17, -7.07106781e-01, -1.97241984e-01],
-         #                     [-1.01465364e-17,  1.00000000e+00,  1.11022302e-16,  7.07300528e-01],
-          #                    [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
 
         print("desired ee from arm: ", desired_ee_from_arm)
 
-        joint_angles, succ = self.ik(desired_ee_from_arm)
+        target_xyz = np.array([desired_x, desired_y, desired_z]).T
+        print("target x, y, z", target_xyz)
+
+        joint_angles, succ = self.ik_ana(target_xyz)
         
         print("successful? ", succ)
         print("here are the angles from ik", joint_angles)
         
-        traj = self.trajectory_planning(joint_angles)
+        # traj = self.trajectory_planning(joint_angles)
 
         # print("trajectory angles: ", traj)
         

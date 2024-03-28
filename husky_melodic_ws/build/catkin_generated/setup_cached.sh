@@ -7,7 +7,6 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/trashbot/trashbot/husky_melodic_ws/devel:$CMAKE_PREFIX_PATH"
+export PATH='/opt/ros/melodic/bin:/home/trashbot/archiconda3/bin:/home/trashbot/Downloads/ENTER/bin:/usr/local/cuda-10.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'
 export PWD='/home/trashbot/trashbot/husky_melodic_ws/build'
-export ROSLISP_PACKAGE_DIRECTORIES='/home/trashbot/trashbot/husky_melodic_ws/devel/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/trashbot/trashbot/husky_melodic_ws/src:$ROS_PACKAGE_PATH"
+export PYTHONPATH='/home/trashbot/trashbot/husky_melodic_ws/devel/lib/python2.7/dist-packages:/opt/ros/melodic/lib/python2.7/dist-packages:/home/trashbot/ros_cv_bridge/install/lib/python3.6/site-packages'
