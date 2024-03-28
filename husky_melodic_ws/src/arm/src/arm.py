@@ -14,7 +14,7 @@ from geometry_msgs.msg import PoseStamped
 
 class Arm:
     # I am going to make the arm take in 4 different motors on startup
-    def __init__(self, j1, j2, j3, j4):
+    def __init__(self, j1, j2, j3):
         
         rospy.init_node("arm", anonymous=True)
         
@@ -22,8 +22,8 @@ class Arm:
         # calls 'pickup' method when a message is received
         self.collection_service = rospy.Service('manipulate', GetPlan, self.pickup)
 
-        self.joints = [j1, j2, j3, j4]
-        self.joint_angles = [0, 0, 0, 0]
+        self.joints = [j1, j2, j3]
+        self.joint_angles = [0, 0, 0]
 
         # all lengths are [ m ]
         # all angles are [ rad ] 
@@ -41,11 +41,10 @@ class Arm:
         # screw axis (twist list)
         self.twist_list = np.array([[0, 0, 1,     0,        0,       0],
                                     [0, 1, 0,   -0.198,      0,     0.07],
-                                    [0, 1, 0, -0.568642,     0,     0.07],
-                                    [1, 0, 0,     0,    0.598742, -0.0196]]).T
+                                    [0, 1, 0, -0.568642,     0,     0.07]]).T
 
         
-        self.theta_list_guess = np.array([0, 0, 0, 0])
+        self.theta_list_guess = np.array([0, 1.57, 0])
         
         # EE orientation error tol
         self.eomg = 0.1 
@@ -195,7 +194,7 @@ class Arm:
 
         for joint_angles in traj:
             ps = PoseStamped()
-            ps.pose.orientation.x, ps.pose.orientation.y, ps.pose.orientation.z, ps.pose.orientation.w = joint_angles
+            ps.pose.orientation.x, ps.pose.orientation.y, ps.pose.orientation.z = joint_angles
 
             poses.append(ps)
 
@@ -277,7 +276,7 @@ if __name__ == '__main__':
         j3 = Stepper(pulse_pin_j3, dir_pin_j3, enable_pin, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3,max_positive_angle_j3, max_negative_angle_j3,home_count_j3,homing_direction_j3,kp=0.10,kd=0.003)
         j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4,max_positive_angle_j4, max_negative_angle_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)
        
-        arm = Arm(j1, j2, j3, j4)
+        arm = Arm(j1, j2, j3)
        #  arm.home()
 
         
