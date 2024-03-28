@@ -3,7 +3,8 @@
 import threading
 import numpy as np
 from math import radians, degrees
-import modern_robotics as mr
+# import modern_robotics as mr
+import modern.core as mr
 from stepper import Stepper
 from time import sleep
 import rospy
@@ -28,7 +29,7 @@ class Arm:
         # all angles are [ rad ] 
         # home configuration of robot end effector (concepts covered in RBE 501)
         self.M = np.array([[ 1, 0, 0, 0.55912576],
-                           [ 0, 1, 0, 0.0181],
+                           [ 0, 1, 0, 0.0196],
                            [ 0, 0, 1, 0.598742],
                            [ 0, 0, 0, 1]])
         
@@ -41,7 +42,7 @@ class Arm:
         self.twist_list = np.array([[0, 0, 1,     0,        0,       0],
                                     [0, 1, 0,   -0.198,      0,     0.07],
                                     [0, 1, 0, -0.568642,     0,     0.07],
-                                    [1, 0, 0,     0,    0.598742, -0.0181]]).T
+                                    [1, 0, 0,     0,    0.598742, -0.0196]]).T
 
         
         self.theta_list_guess = np.array([0, 0, 0, 0])
@@ -160,8 +161,7 @@ class Arm:
         print("yoooooo, we got a request")
         goal = msg.goal.pose.position
      
-       # x, y, z = goal.x, goal.y, goal.z
-        x, y, z = 0.55, 0.0, 0.59
+        x, y, z = goal.x, goal.y, goal.z
 
         print("x: ", x, "y: ", y, "z: ", z)
 
@@ -188,8 +188,8 @@ class Arm:
 
         # print("trajectory angles: ", traj)
         
-        self.home()
-        self.follow_trajectory(traj)
+        # self.home()
+        # self.follow_trajectory(traj)
 
         poses = []
 
