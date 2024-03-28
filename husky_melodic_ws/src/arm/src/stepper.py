@@ -17,10 +17,10 @@ class Stepper:
     MILLISECONDS_IN_SECOND = 1000    # number of milliseconds in one second
 
     """
-    All motors use CCW as positive direction for rotation.
+    All motors use CCW as positive direction for rotationi as default but you can change it.
     max_speed comes in as pulses per second.
     """
-    def __init__(self, pulse_pin, dir_pin, enable_pin, homing_pin, steps_per_rev, gear_ratio, max_speed, max_joint_ccw, max_joint_cw, home_count, homing_direction ,inverted=False, kp=0.005, kd=0.003, has_homed = False, debug=False):
+    def __init__(self, pulse_pin, dir_pin, enable_pin, homing_pin, steps_per_rev, gear_ratio, max_speed, max_joint_positive_angle, max_joint_negative_angle, home_count, homing_direction ,inverted=False, kp=0.005, kd=0.003, has_homed = False, debug=False):
         self.pulse_pin = pulse_pin
         self.dir_pin = dir_pin
         self.enable_pin = enable_pin
@@ -49,8 +49,8 @@ class Stepper:
         self.gear_ratio = gear_ratio
         self.steps_per_rev = steps_per_rev
         self.step_angle = 360 / steps_per_rev
-        self.max_joint_limit_ccw = max_joint_ccw
-        self.max_joint_limit_cw = max_joint_cw
+        self.max_joint_limit_positive = max_joint_positive_angle
+        self.max_joint_limit_negative = max_joint_negative_angle
         self.set_output_pins() # set up pins --> direction, pulse, enable
         self.has_homed = has_homed
         self.home_count = home_count
@@ -91,7 +91,8 @@ class Stepper:
 
     
     def in_limits(self, angle):
-        return angle >= self.max_joint_limit_cw and angle <= self.max_joint_limit_ccw
+        # returns True if angle is in limit.
+        return angle >= self.max_joint_limit_negative_angle and angle <= self.max_joint_limit_positive_angle
     
     """
     converts pulse position to angle in degrees.

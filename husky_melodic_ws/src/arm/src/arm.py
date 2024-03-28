@@ -36,20 +36,20 @@ class Arm:
                                                [-1, 0,      0,      0.032445],
                                                [ 0,-0.9135,-0.4067, 0.079696],
                                                [ 0, 0,      0,      1]])
-        
+
         # screw axis (twist list)
         self.twist_list = np.array([[0, 0, 1,     0,        0,       0],
-                                    [0, 1, 0,   0.198,      0,     -0.07],
-                                    [0, 1, 0, 0.568642,     0,     -0.07],
+                                    [0, 1, 0,   -0.198,      0,     0.07],
+                                    [0, 1, 0, -0.568642,     0,     0.07],
                                     [1, 0, 0,     0,    0.598742, -0.0181]]).T
 
         
-        self.theta_list_guess = np.array([np.pi / 2.0, np.pi / 4.0, np.pi / 4.0, np.pi / 2.0])
+        self.theta_list_guess = np.array([0, 0, 0, 0])
         
         # EE orientation error tol
-        self.eomg = 0.01 
+        self.eomg = 0.1 
         # EE position error tol --> Tolerance is 1mm
-        self.ev = 0.01
+        self.ev = 0.1
 
         # self.home()
         self.is_active = False
@@ -83,8 +83,8 @@ class Arm:
         return fk
     
     def ik(self, desired_ee):
-        ik, _ = mr.IKinSpace(self.twist_list, self.M, desired_ee, self.theta_list_guess, self.eomg, self.ev)
-        return ik
+        ik, success = mr.IKinSpace(self.twist_list, self.M, desired_ee, self.theta_list_guess, self.eomg, self.ev)
+        return ik, success
     
     def trajectory_planning(self, ik):
         
@@ -159,8 +159,9 @@ class Arm:
         self.is_active = True
         print("yoooooo, we got a request")
         goal = msg.goal.pose.position
-        # x, y, z = goal.x, goal.y, goal.z
-        x, y, z = 0.2 , 0.2, 1.0
+     
+       # x, y, z = goal.x, goal.y, goal.z
+        x, y, z = 0.55, 0.0, 0.59
 
         print("x: ", x, "y: ", y, "z: ", z)
 
@@ -170,12 +171,22 @@ class Arm:
                                  [ 0,  0, 0, 1]])
 
         desired_ee_from_arm = np.dot(self.camera_transformation, camera_point) 
+
+        #desired_ee_from_arm = np.array([[ 7.07106781e-01,  7.13299383e-17, -7.07106781e-01,  2.22839249e-01],
+        #                      [-7.07106781e-01,  8.56793076e-17, -7.07106781e-01, -1.97241984e-01],
+         #                     [-1.01465364e-17,  1.00000000e+00,  1.11022302e-16,  7.07300528e-01],
+          #                    [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
+
         print("desired ee from arm: ", desired_ee_from_arm)
 
-        joint_angles = self.ik(desired_ee_from_arm)
+        joint_angles, succ = self.ik(desired_ee_from_arm)
+        
+        print("successful? ", succ)
+        print("here are the angles from ik", joint_angles)
+        
         traj = self.trajectory_planning(joint_angles)
 
-        print("trajectory angles: ", traj)
+        # print("trajectory angles: ", traj)
         
         self.home()
         self.follow_trajectory(traj)
@@ -216,8 +227,8 @@ if __name__ == '__main__':
     gear_ratio_j1 = 4
     home_count_j1 = -140
     max_speed_j1 = 75
-    max_ccw_j1 = 90
-    max_cw_j1 = -90
+    max_positive_angle_j1 = 60
+    max_negative_angle_j1 = -90
     homing_direction_j1 = Stepper.CCW
 
     # joint 2
@@ -229,8 +240,8 @@ if __name__ == '__main__':
     max_speed_j2 = 75
     # gonna need to update kinematics to account for the joint limits:
     # like if it says j2 goes to 30 degrees, need to find clockwise alternative for all joints
-    max_ccw_j2 = 135
-    max_cw_j2 = -10
+    max_positive_angle_j2 = 115
+    max_negative_angle_j2 = -10
     homing_direction_j2 = Stepper.CCW
 
     # joint 3
@@ -242,8 +253,8 @@ if __name__ == '__main__':
     max_speed_j3 = 75
     # gonna need to update kinematics to account for the joint limits:
     # like if it says j2 goes to 30 degrees, need to find clockwise alternative for all joints
-    max_ccw_j3 = 90  # TODO calculate joint limit
-    max_cw_j3 = -90  # TODO calculate joint limit
+    max_positive_angle_j3 = 75  # TODO calculate joint limit
+    max_negative_angle_j3 = -75  # TODO calculate joint limit
     homing_direction_j3 = Stepper.CW
  
     # joint 4
@@ -255,16 +266,16 @@ if __name__ == '__main__':
     max_speed_j4 = 50
     # gonna need to update kinematics to account for the joint limits:
     # like if it says j2 goes to 30 degrees, need to find clockwise alternative for all joints
-    max_ccw_j4 = 90 # TODO calculate joint limits
-    max_cw_j4 = -40 # TODO calcylate joint limit
+    max_positive_angle_j4 = 90 # TODO calculate joint limits
+    max_negative_angle_j4 = -40 # TODO calcylate joint limit
     homing_direction_j4 = Stepper.CW
  
     try:
         print("setting up the arm")
-        j1 = Stepper(pulse_pin_j1, dir_pin_j1, enable_pin, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1, max_ccw_j1, max_cw_j1, home_count_j1,homing_direction_j1, debug=False) 
-        j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2, max_ccw_j2, max_cw_j2, home_count_j2,homing_direction_j2 ,inverted=True, debug=False)
-        j3 = Stepper(pulse_pin_j3, dir_pin_j3, enable_pin, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3, max_ccw_j3, max_cw_j3, home_count_j3,homing_direction_j3,kp=0.10,kd=0.003)
-        j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4, max_ccw_j4, max_cw_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)
+        j1 = Stepper(pulse_pin_j1, dir_pin_j1, enable_pin, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1,max_positive_angle_j1,max_negative_angle_j1, home_count_j1,homing_direction_j1, debug=False) 
+        j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2,max_positive_angle_j2, max_negative_angle_j2,home_count_j2,homing_direction_j2 ,inverted=True, debug=False)
+        j3 = Stepper(pulse_pin_j3, dir_pin_j3, enable_pin, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3,max_positive_angle_j3, max_negative_angle_j3,home_count_j3,homing_direction_j3,kp=0.10,kd=0.003)
+        j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4,max_positive_angle_j4, max_negative_angle_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)
        
         arm = Arm(j1, j2, j3, j4)
        #  arm.home()
