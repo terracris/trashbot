@@ -90,7 +90,7 @@ class Arm:
     # target_xyz has shape (3x1)
     def ik_ana(self, target_xyz):
         # use mr.fkinSpace to find the current xyz and q for home configuration of ee
-        theta_list = [0, 0, 0, 0] # hard coded TODO 
+        theta_list = np.array([0, 0, 0, 0]) # hard coded TODO 
         fk = mr.FKinSpace(self.M, self.twist_list,theta_list)
         curr_x, curr_y, curr_z = fk[0:3, 3] 
 
@@ -100,14 +100,18 @@ class Arm:
         current_q = np.array([0, 0, 0, 0]) # hard coded TODO
         max_iterations = 50
         i = 0
+
+        identity_4 = np.eye(4)
 	
         while (np.linalg.norm(target_xyz - current_xyz) > 0.001) and (i < max_iterations):
             Ja = self.J_a(current_q)
             # need seudo inverse here TODO
             print(Ja)
             delta_xyz = target_xyz - current_xyz # (3,1)
-            pseudo_inv = np.linalg.pinv(Ja) 
-            delta_q = np.dot(pseudo_inv, delta_xyz) # (3x1)
+            pseudo_inv = np.linalg.pinv(Ja)
+            matrix_1 = identity_4 - np.dot(pseudo_inv, Ja)
+            theta_change = theta_list - current_q
+            delta_q = np.dot(pseudo_inv, delta_xyz) + np.dot(matrix_1, theta_change)  # (3x1)
             current_q = current_q + delta_q.T
             T = mr.FKinSpace(self.M, self.twist_list,current_q)
             current_xyz = np.array(T[0:3,3])  # [first:last+1, element number
