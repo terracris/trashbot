@@ -92,16 +92,22 @@ class Arm:
         # use mr.fkinSpace to find the current xyz and q for home configuration of ee
         theta_list = [0, 0, 0, 0] # hard coded TODO 
         fk = mr.FKinSpace(self.M, self.twist_list,theta_list)
-	# transpose the matrix, so has shape 3x1
-        current_xyz = np.array([fk[0][3],fk[1][3],fk[2][3]]).T
-        current_q = np.array([0, 0, 0, 0]) # hard coded TODO
+        curr_x, curr_y, curr_z = fk[0:3, 3] 
+
+	    # transpose the matrix, so has shape (3x1)
+        current_xyz = np.array([curr_x], [curr_y], [curr_z]).T
+        # 4x1 matrix
+        current_q = np.array([[0], [0], [0], [0]]).T # hard coded TODO
         max_iterations = 50
         i = 0
+        homogenous_num = np.array([[1]])
 	
         while (np.linalg.norm(target_xyz - current_xyz) > 0.001) and (i < max_iterations):
             Ja = self.J_a(current_q)
             # need seudo inverse here TODO
-            delta_q = np.linalg.pinv(Ja)*(target_xyz - current_xyz)
+            delta_xyz = target_xyz - current_xyz
+            augmented_xyz = np.concat((delta_xyz, homogenous_num), axis=0) # (4x1)
+            delta_q = np.linalg.pinv(Ja) * augmented_xyz # (4x1)
             current_q = current_q + delta_q
             T = mr.FKinSpace(self.M, self.twist_list,current_q)
             current_xyz = np.array(T[0:3,3])  # [first:last+1, element number
@@ -213,17 +219,19 @@ class Arm:
 
         print("x: ", x, "y: ", y, "z: ", z)
 
-        camera_point = np.array([x, y, z, 1]).T
+        # create (4x1) numpy array
+        camera_point = np.array([[x], [y], [z], [1]]).T
         desired_ee_from_arm = np.dot(self.camera_transformation, camera_point) 
-        desired_x, desired_y, desired_z = desired_ee_from_arm[0], desired_ee_from_arm[1], desired_ee_from_arm[2]
+        trans_x, trans_y, trans_z = desired_ee_from_arm[0], desired_ee_from_arm[1], desired_ee_from_arm[2]
 
 
         print("desired ee from arm: ", desired_ee_from_arm)
 
-        target_xyz = np.array([desired_x, desired_y, desired_z]).T
-        print("target x, y, z", target_xyz)
+        # create a (3x1) numpy array
+        target_xyz = np.array([[trans_x], [trans_y], [trans_z]]).T
+        print("target x, y, z", target_xyz) 
 
-        joint_angles, succ = self.ik_ana(target_xyz)
+        joint_angles, succ = self.ik_ana(target_xyz) # passing in (3x1) array
         
         print("successful? ", succ)
         print("here are the angles from ik", joint_angles)
