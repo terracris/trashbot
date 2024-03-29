@@ -263,6 +263,29 @@ class Arm:
         self.is_active = False
         return path
     
+    def matt_ik(self):
+        x = 0.043860271447709605 
+        y = 0.1374466426993737 
+        z = 0.515
+        
+        # create (4x1) numpy array
+        camera_point = np.array([x, y, z, 1]).T
+        desired_ee_from_arm = np.dot(self.camera_transformation, camera_point) 
+        trans_x, trans_y, trans_z = desired_ee_from_arm[0], desired_ee_from_arm[1], desired_ee_from_arm[2]
+
+
+        print("desired ee from arm: ", desired_ee_from_arm)
+
+        # create a (3x1) numpy array
+        target_xyz = np.array([trans_x, trans_y, trans_z]).T
+        print("target x, y, z", target_xyz) 
+
+        joint_angles, succ = self.ik_ana(target_xyz) # passing in (3x1) array
+        
+        print("successful? ", succ)
+        print("here are the angles from ik", joint_angles)
+
+
     def run(self):
         rospy.spin()
     
@@ -328,12 +351,13 @@ if __name__ == '__main__':
  
     try:
         print("setting up the arm")
-        j1 = Stepper(pulse_pin_j1, dir_pin_j1, enable_pin, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1,max_positive_angle_j1,max_negative_angle_j1, home_count_j1,homing_direction_j1, debug=False) 
-        j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2,max_positive_angle_j2, max_negative_angle_j2,home_count_j2,homing_direction_j2 ,inverted=True, debug=False)
-        j3 = Stepper(pulse_pin_j3, dir_pin_j3, enable_pin, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3,max_positive_angle_j3, max_negative_angle_j3,home_count_j3,homing_direction_j3,kp=0.10,kd=0.003)
-        j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4,max_positive_angle_j4, max_negative_angle_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)
+        # j1 = Stepper(pulse_pin_j1, dir_pin_j1, enable_pin, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1,max_positive_angle_j1,max_negative_angle_j1, home_count_j1,homing_direction_j1, debug=False) 
+        # j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2,max_positive_angle_j2, max_negative_angle_j2,home_count_j2,homing_direction_j2 ,inverted=True, debug=False)
+        # j3 = Stepper(pulse_pin_j3, dir_pin_j3, enable_pin, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3,max_positive_angle_j3, max_negative_angle_j3,home_count_j3,homing_direction_j3,kp=0.10,kd=0.003)
+        # j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4,max_positive_angle_j4, max_negative_angle_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)
        
-        arm = Arm(j1, j2, j3)
+        arm = Arm(None, None, None)
+        arm.matt_ik()
        #  arm.home()
 
         
@@ -350,4 +374,5 @@ if __name__ == '__main__':
         arm.run()
     
     except KeyboardInterrupt:
-        j1.cleanup()
+        print("terminated")
+        #j1.cleanup()
