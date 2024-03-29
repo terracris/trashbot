@@ -125,10 +125,10 @@ class Arm:
     def J_a(self, thetalist):
         Slist = self.twist_list
         M = self.M
-        Js = np.zeros((6, len(thetalist)))
+        Js = np.array(Slist).copy().astype(float)     
         T = np.eye(4)
-        for i in range(len(thetalist)):
-            T = np.dot(T, mr.MatrixExp6(mr.VecTose3(np.array(Slist)[:, i]*thetalist[i])))
+        for i in range(1, len(thetalist)):
+            T = np.dot(T, mr.MatrixExp6(mr.VecTose3(np.array(Slist)[:, i - 1]*thetalist[i - 1])))
             Js[:, i] = np.dot(mr.Adjoint(T), np.array(Slist)[:, i])
 
         T = mr.FKinSpace(M, Slist, thetalist)
