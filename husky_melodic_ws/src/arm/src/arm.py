@@ -2,7 +2,7 @@
 
 import threading
 import numpy as np
-from math import radians, degrees
+from math import radians, degrees, sqrt, atan2, pi
 # import modern_robotics as mr
 import modern.core as mr
 from stepper import Stepper
@@ -229,18 +229,22 @@ class Arm:
         trans_x, trans_y, trans_z = desired_ee_from_arm[0], desired_ee_from_arm[1], desired_ee_from_arm[2]
 
 
-        print("desired ee from arm: ", desired_ee_from_arm)
-
-        # create a (3x1) numpy array
-        target_xyz = np.array([trans_x, trans_y, trans_z]).T
-        print("target x, y, z", target_xyz) 
-
-        joint_angles, succ = self.ik_ana(target_xyz) # passing in (3x1) array
+        l1, l2, l3 = 0.53477, 0.37063, 0.324
+        s = trans_z - l1
+        r = sqrt((trans_x**2) + (trans_y**2))
+        c3 = (r**2 + s**2 - l2**2 - l3**2) / (2*l1*l2)
+        s3 = -sqrt(1-(c3**2))
+        gamma = atan2(s, r)
+        phi = atan2((l3*s3), (l2+ (l3*c3)))
         
-        print("successful? ", succ)
-        print("here are the angles from ik", joint_angles)
-        
-        traj = self.trajectory_planning(joint_angles)
+        j1 = atan2(trans_y, trans_x)
+        j2 = (gamma - phi) + (pi/2)
+        j3 = atan2(s3, c3) + (pi/2)
+
+        joint_angles = [j1, j2, j3]
+        print("here are our joint_angles", joint_angles)
+
+        # traj = self.trajectory_planning(joint_angles)
 
         # print("trajectory angles: ", traj)
         
@@ -249,11 +253,11 @@ class Arm:
 
         poses = []
 
-        for joint_angles in traj:
-            ps = PoseStamped()
-            ps.pose.orientation.x, ps.pose.orientation.y, ps.pose.orientation.z,ps.pose.orientation.w = joint_angles
+        #for joint_angles in traj:
+        ps = PoseStamped()
+        ps.pose.orientation.x, ps.pose.orientation.y, ps.pose.orientation.z = joint_angles
 
-            poses.append(ps)
+        poses.append(ps)
 
 
         # this should return something? None on failure?
