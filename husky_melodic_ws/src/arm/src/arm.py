@@ -123,7 +123,7 @@ class Arm:
         T = np.eye(4)
         for i in range(1, len(thetalist)):
             T = np.dot(T, mr.MatrixExp6(mr.VecTose3(np.array(Slist)[:, i - 1]*thetalist[i - 1])))
-            Js[:, i] = np.dot(Adjoint(T), np.array(Slist)[:, i])
+            Js[:, i] = np.dot(mr.Adjoint(T), np.array(Slist)[:, i])
 
         T = mr.FKinSpace(self.M, self.twist_list,thetalist)
         J_w = Js[0:2, :]
@@ -230,7 +230,7 @@ class Arm:
         print("successful? ", succ)
         print("here are the angles from ik", joint_angles)
         
-        # traj = self.trajectory_planning(joint_angles)
+        traj = self.trajectory_planning(joint_angles)
 
         # print("trajectory angles: ", traj)
         
