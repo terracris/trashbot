@@ -119,20 +119,21 @@ class Arm:
     def J_a(self, thetalist):
         Slist = self.twist_list
         M = self.M
-        Js = np.array(Slist).copy().astype(float)
+        Js = np.zeros((6, len(thetalist)))
         T = np.eye(4)
-        for i in range(1, len(thetalist)):
-            T = np.dot(T, mr.MatrixExp6(mr.VecTose3(np.array(Slist)[:, i - 1]*thetalist[i - 1])))
+        for i in range(len(thetalist)):
+            T = np.dot(T, mr.MatrixExp6(mr.VecTose3(np.array(Slist)[:, i]*thetalist[i])))
             Js[:, i] = np.dot(mr.Adjoint(T), np.array(Slist)[:, i])
 
-        T = mr.FKinSpace(self.M, self.twist_list,thetalist)
+        T = mr.FKinSpace(M, Slist, thetalist)
         J_w = Js[:3, :]
         J_v = Js[3:, :]
-        w = T[:3,3]
+        w = T[:3, 3]
         p = np.array([[0, -w[2], w[1]], [w[2], 0, -w[0]], [-w[1], w[0], 0]])
         J_a = np.vstack((J_v - np.dot(p, J_w), J_w))
-	
+
         return J_a
+
    
     def trajectory_planning(self, ik):
         
