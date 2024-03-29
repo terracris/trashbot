@@ -126,14 +126,11 @@ class Arm:
             Js[:, i] = np.dot(mr.Adjoint(T), np.array(Slist)[:, i])
 
         T = mr.FKinSpace(self.M, self.twist_list,thetalist)
-        J_w = Js[0:2, :]
-        J_v = Js[3:5, :]
-        w = T[0:2,3]
-        p = np.array([[ 0,-w[3], w[2]],
-                      [w[3], 0, -w[1]],
-                      [-w[2],w[1],0]])
-
-        J_a = J_v - p*J_w
+        J_w = Js[:3, :]
+        J_v = Js[3:, :]
+        w = T[:3,3]
+        p = np.array([[0, -w[2], w[1]], [w[2], 0, -w[0]], [-w[1], w[0], 0]])
+        J_a = np.vstack((J_v - np.dot(p, J_w), J_w))
 	
         return J_a
    
