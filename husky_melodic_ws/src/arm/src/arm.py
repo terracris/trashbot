@@ -95,20 +95,20 @@ class Arm:
         curr_x, curr_y, curr_z = fk[0:3, 3] 
 
 	    # transpose the matrix, so has shape (3x1)
-        current_xyz = np.array([curr_x], [curr_y], [curr_z]).T
+        current_xyz = np.array([curr_x, curr_y, curr_z]).T
         # 4x1 matrix
-        current_q = np.array([[0], [0], [0], [0]]).T # hard coded TODO
+        current_q = np.array([0, 0, 0, 0]) # hard coded TODO
         max_iterations = 50
         i = 0
-        homogenous_num = np.array([[1]])
 	
         while (np.linalg.norm(target_xyz - current_xyz) > 0.001) and (i < max_iterations):
             Ja = self.J_a(current_q)
             # need seudo inverse here TODO
-            delta_xyz = target_xyz - current_xyz
-            augmented_xyz = np.concat((delta_xyz, homogenous_num), axis=0) # (4x1)
-            delta_q = np.linalg.pinv(Ja) * augmented_xyz # (4x1)
-            current_q = current_q + delta_q
+            print(Ja)
+            delta_xyz = target_xyz - current_xyz # (3,1)
+            pseudo_inv = np.linalg.pinv(Ja) 
+            delta_q = np.dot(pseudo_inv, delta_xyz) # (3x1)
+            current_q = current_q + delta_q.T
             T = mr.FKinSpace(self.M, self.twist_list,current_q)
             current_xyz = np.array(T[0:3,3])  # [first:last+1, element number
             i += 1 # increase iteration pass
@@ -136,8 +136,8 @@ class Arm:
         J_v = Js[3:, :]
         w = T[:3, 3]
         p = np.array([[0, -w[2], w[1]], [w[2], 0, -w[0]], [-w[1], w[0], 0]])
-        J_a = np.vstack((J_v - np.dot(p, J_w), J_w))
-
+        resultant = np.dot(p, J_w)
+        J_a = J_v - resultant
         return J_a
 
    
@@ -220,7 +220,7 @@ class Arm:
         print("x: ", x, "y: ", y, "z: ", z)
 
         # create (4x1) numpy array
-        camera_point = np.array([[x], [y], [z], [1]]).T
+        camera_point = np.array([x, y, z, 1]).T
         desired_ee_from_arm = np.dot(self.camera_transformation, camera_point) 
         trans_x, trans_y, trans_z = desired_ee_from_arm[0], desired_ee_from_arm[1], desired_ee_from_arm[2]
 
@@ -228,7 +228,7 @@ class Arm:
         print("desired ee from arm: ", desired_ee_from_arm)
 
         # create a (3x1) numpy array
-        target_xyz = np.array([[trans_x], [trans_y], [trans_z]]).T
+        target_xyz = np.array([trans_x, trans_y, trans_z]).T
         print("target x, y, z", target_xyz) 
 
         joint_angles, succ = self.ik_ana(target_xyz) # passing in (3x1) array
@@ -247,7 +247,7 @@ class Arm:
 
         for joint_angles in traj:
             ps = PoseStamped()
-            ps.pose.orientation.x, ps.pose.orientation.y, ps.pose.orientation.z = joint_angles
+            ps.pose.orientation.x, ps.pose.orientation.y, ps.pose.orientation.z,ps.pose.orientation.w = joint_angles
 
             poses.append(ps)
 
