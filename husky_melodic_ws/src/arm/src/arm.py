@@ -22,8 +22,8 @@ class Arm:
         # calls 'pickup' method when a message is received
         self.collection_service = rospy.Service('manipulate', GetPlan, self.pickup)
 
-        self.joints = [j1, j2, j3, j4]
-        self.joint_angles = [0, 0, 0, 0]
+        self.joints = [j1, j2, j3]
+        self.joint_angles = [0, 0, 0]
 
         # all lengths are [ m ]
         # all angles are [ rad ] 
@@ -188,7 +188,12 @@ class Arm:
     def write_joint(self, joint, joint_angle):
         # TODO make write in stepper library return the actual angle of the joint
         # because of our step angle resolution there is error --> this will help account for the error in pose
-        return joint.write(degrees(joint_angle)) # writes angle to joint --> needs to be threading though
+        angle_deg = degrees(joint_angle)
+        print("angle for joint: ", joint.id, " ", angle_deg)
+        
+        updated_angle = joint.write(angle_deg)
+        
+        return updated_angle # writes angle to joint --> needs to be threading though
 
     def update_angles(self, joint_angles):
         
@@ -203,6 +208,7 @@ class Arm:
         theta_list = []
 
         for theta in self.joint_angles:
+            print(theta)
             theta_list.append(radians(theta))
         
         return theta_list
@@ -223,13 +229,14 @@ class Arm:
 
         print("x: ", x, "y: ", y, "z: ", z)
 
+        
         # create (4x1) numpy array
         camera_point = np.array([x, y, z, 1]).T
         desired_ee_from_arm = np.dot(self.camera_transformation, camera_point) 
         trans_x, trans_y, trans_z = desired_ee_from_arm[0], desired_ee_from_arm[1], desired_ee_from_arm[2]
 
 
-        l1, l2, l3 = 0.53477, 0.37063, 0.324
+        l1, l2, l3 = 0.53477, 0.37063, 0.559
         s = trans_z - l1
         r = sqrt((trans_x**2) + (trans_y**2))
         c3 = (r**2 + s**2 - l2**2 - l3**2) / (2*l1*l2)
@@ -244,12 +251,12 @@ class Arm:
         joint_angles = [j1, j2, j3]
         print("here are our joint_angles", joint_angles)
 
-        # traj = self.trajectory_planning(joint_angles)
+        traj = self.trajectory_planning(joint_angles)
 
-        # print("trajectory angles: ", traj)
+        print("trajectory angles: ", traj)
         
-        # self.home()
-        # self.follow_trajectory(traj)
+        self.home()
+        self.follow_trajectory(traj)
 
         poses = []
 
@@ -332,10 +339,10 @@ if __name__ == '__main__':
  
     try:
         print("setting up the arm")
-        j1 = Stepper(pulse_pin_j1, dir_pin_j1, enable_pin, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1,max_positive_angle_j1,max_negative_angle_j1, home_count_j1,homing_direction_j1, debug=False) 
-        j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2,max_positive_angle_j2, max_negative_angle_j2,home_count_j2,homing_direction_j2 ,inverted=True, debug=False)
-        j3 = Stepper(pulse_pin_j3, dir_pin_j3, enable_pin, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3,max_positive_angle_j3, max_negative_angle_j3,home_count_j3,homing_direction_j3,kp=0.10,kd=0.003)
-        j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4,max_positive_angle_j4, max_negative_angle_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)
+        j1 = Stepper(pulse_pin_j1, dir_pin_j1, enable_pin, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1,max_positive_angle_j1,max_negative_angle_j1, home_count_j1,homing_direction_j1, stepper_id =1, debug=False) 
+        j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2,max_positive_angle_j2, max_negative_angle_j2,home_count_j2,homing_direction_j2 ,inverted=True, stepper_id=2, debug=False)
+        j3 = Stepper(pulse_pin_j3, dir_pin_j3, enable_pin, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3,max_positive_angle_j3, max_negative_angle_j3,home_count_j3,homing_direction_j3,kp=0.10,kd=0.003, stepper_id = 3)
+        j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4,max_positive_angle_j4, max_negative_angle_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003, stepper_id= 4)
        
         arm = Arm(j1, j2, j3)
        #  arm.home()
