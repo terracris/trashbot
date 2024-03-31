@@ -142,7 +142,7 @@ class Stepper:
 
             v_t = abs(Kp * error + Kd * error_der)  # constrain maximum velocity
             v_t =  min(self.max_speed, v_t)
-            v_t = max(v_t, 0.5) 
+            v_t = max(v_t, 0.1) 
             
             self.step_interval = 1/ v_t  # [ ms period between each pulse ]
 
@@ -202,7 +202,9 @@ class Stepper:
         GPIO.setup(self.pulse_pin, GPIO.OUT)   # output pin 
         GPIO.setup(self.dir_pin, GPIO.OUT)     # output pin
         GPIO.setup(self.enable_pin, GPIO.OUT)  # output pin
-        GPIO.setup(self.homing_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # input pin 
+        
+        if self.homing_pin != None:
+            GPIO.setup(self.homing_pin, GPIO.IN) # input pin 
         
         GPIO.output(self.enable_pin, GPIO.LOW) # turn motors on
         if self.homing_direction == Stepper.CCW:
