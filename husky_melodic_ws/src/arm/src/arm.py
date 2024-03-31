@@ -94,19 +94,19 @@ class Arm:
         fk = mr.FKinSpace(self.M, self.twist_list,theta_list)
         curr_x, curr_y, curr_z = fk[0:3, 3] 
 
-	    # transpose the matrix, so has shape (3x1)
+        # transpose the matrix, so has shape (3x1)
         current_xyz = np.array([curr_x, curr_y, curr_z]).T
         # 4x1 matrix
-        current_q = np.array([0, 0, 0, 0]) # hard coded TODO
+        current_q = np.array([0, 0, 0, 0]).T # hard coded TODO
         max_iterations = 50
         i = 0
 
         identity_4 = np.eye(4)
-
-	jlim = np.array([[-1.5708, 1.0472], 
-			 [-0.174533, 2.00713], 
-			 [-1.309, 1.309], 
-			 [-0.698132, 1.5708]])
+        
+        jlim = np.array([[-1.5708, 1.0472],
+                         [-0.174533, 2.00713],
+                         [-1.309, 1.309],
+                         [-0.698132, 1.5708]])
 	
         while (np.linalg.norm(target_xyz - current_xyz) > 0.001) and (i < max_iterations):
             Ja = self.J_a(current_q)
@@ -115,14 +115,24 @@ class Arm:
             delta_xyz = target_xyz - current_xyz # (3,1)
             pseudo_inv = np.linalg.pinv(Ja)
             projector = identity_4 - np.dot(pseudo_inv, Ja)
-	    grad = np.zeros(4,1)
-	    j = 0
-            while j<=5
-		ql = (jlim[j, 1]+jlim[j, 0])/2
-		grad[j, :] = pow(((current_q[j]-ql)/(jlim[j, 1]-jlim[j, 0])),2)
-		j = j+1
-            delta_q = np.dot(pseudo_inv, delta_xyz) + np.dot(projector, ((-1/8)*grad))  # (3x1)
-            current_q = current_q + delta_q.T
+            grad = np.zeros((4,1))
+            j = 0
+            while j <= 3:
+                ql = (jlim[j, 1]+jlim[j, 0])/2
+                grad[j, :] = pow(((current_q[j]-ql)/(jlim[j, 1]-jlim[j, 0])),2)
+                
+                #print("grad size: ", grad.shape)
+                j = j+1
+            
+            
+            #print("current_q size before addition: ", current_q)
+            aug_gradient = (-1/8)*grad
+
+            # print("aug grad size: ", aug_gradient.shape)
+            delta_q = np.dot(pseudo_inv, delta_xyz) + np.dot(projector, aug_gradient)  # (3x1)
+            print("delta_q size: ", delta_q)
+            current_q = current_q + delta_q
+            print("current_q size after addition: ", current_q)
             T = mr.FKinSpace(self.M, self.twist_list,current_q)
             current_xyz = np.array(T[0:3,3])  # [first:last+1, element number
             i += 1 # increase iteration pass
