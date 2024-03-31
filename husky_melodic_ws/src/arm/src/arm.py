@@ -2,7 +2,7 @@
 
 import threading
 import numpy as np
-from math import radians, degrees, sqrt, atan2, pi
+from math import radians, degrees, sqrt, atan2, pi, asin, cos
 # import modern_robotics as mr
 import modern.core as mr
 from stepper import Stepper
@@ -234,16 +234,19 @@ class Arm:
         camera_point = np.array([x, y, z, 1]).T
         desired_ee_from_arm = np.dot(self.camera_transformation, camera_point) 
         trans_x, trans_y, trans_z = desired_ee_from_arm[0], desired_ee_from_arm[1], desired_ee_from_arm[2]
-
+        
+        x_offset = 0.07 # 7cm
+        offset_x = trans_x - x_offset
 
         l1, l2, l3 = 0.53477, 0.37063, 0.559
-        s = trans_z - l1
-        r = sqrt((trans_x**2) + (trans_y**2))
-        c3 = (r**2 + s**2 - l2**2 - l3**2) / (2*l1*l2)
+        alpha = asin(x_offset/l1)
+        s = trans_z - (l1*cos(alpha))
+        r = sqrt((offset_x**2) + (trans_y**2))
+        c3 = (r**2 + s**2 - l2**2 - l3**2) / (2*(l1*cos(alpha))*l2)
         s3 = -sqrt(1-(c3**2))
         gamma = atan2(s, r)
         phi = atan2((l3*s3), (l2+ (l3*c3)))
-        
+
         j1 = atan2(trans_y, trans_x)
         j2 = (gamma - phi) + (pi/2)
         j3 = atan2(s3, c3) + (pi/2)
