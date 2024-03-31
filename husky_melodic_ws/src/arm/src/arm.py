@@ -14,7 +14,7 @@ from geometry_msgs.msg import PoseStamped
 
 class Arm:
     # I am going to make the arm take in 4 different motors on startup
-    def __init__(self, j1, j2, j3):
+    def __init__(self, j1, j2, j3, j4):
         
         rospy.init_node("arm", anonymous=True)
         
@@ -102,6 +102,11 @@ class Arm:
         i = 0
 
         identity_4 = np.eye(4)
+
+	jlim = np.array([[-1.5708, 1.0472], 
+			 [-0.174533, 2.00713], 
+			 [-1.309, 1.309], 
+			 [-0.698132, 1.5708]])
 	
         while (np.linalg.norm(target_xyz - current_xyz) > 0.001) and (i < max_iterations):
             Ja = self.J_a(current_q)
@@ -109,9 +114,14 @@ class Arm:
             print(Ja)
             delta_xyz = target_xyz - current_xyz # (3,1)
             pseudo_inv = np.linalg.pinv(Ja)
-            matrix_1 = identity_4 - np.dot(pseudo_inv, Ja)
-            theta_change = theta_list - current_q
-            delta_q = np.dot(pseudo_inv, delta_xyz) + np.dot(matrix_1, theta_change)  # (3x1)
+            projector = identity_4 - np.dot(pseudo_inv, Ja)
+	    grad = np.zeros(4,1)
+	    j = 0
+            while j<=5
+		ql = (jlim[j, 1]+jlim[j, 0])/2
+		grad[j, :] = pow(((current_q[j]-ql)/(jlim[j, 1]-jlim[j, 0])),2)
+		j = j+1
+            delta_q = np.dot(pseudo_inv, delta_xyz) + np.dot(projector, ((-1/8)*grad))  # (3x1)
             current_q = current_q + delta_q.T
             T = mr.FKinSpace(self.M, self.twist_list,current_q)
             current_xyz = np.array(T[0:3,3])  # [first:last+1, element number
@@ -298,7 +308,9 @@ if __name__ == '__main__':
     
     pulses_per_rev = 200
     enable_pin = 37
+
     
+   
     # joint 1
     pulse_pin_j1 = 11
     dir_pin_j1 = 13
@@ -356,7 +368,7 @@ if __name__ == '__main__':
         # j3 = Stepper(pulse_pin_j3, dir_pin_j3, enable_pin, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3,max_positive_angle_j3, max_negative_angle_j3,home_count_j3,homing_direction_j3,kp=0.10,kd=0.003)
         # j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4,max_positive_angle_j4, max_negative_angle_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003)
        
-        arm = Arm(None, None, None)
+        arm = Arm(None, None, None, None)
         arm.matt_ik()
        #  arm.home()
 
