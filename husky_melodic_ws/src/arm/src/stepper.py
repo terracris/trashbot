@@ -148,8 +148,7 @@ class Stepper:
 
             if Stepper.get_time() - start_time >= self.step_interval:
                 if self.debug:
-                    pass
-                    # print(self.current_pos, self.direction)
+                    print(self.current_pos, self.direction)
                 
                 self.step()
                 start_time = Stepper.get_time()
@@ -201,12 +200,14 @@ class Stepper:
         
         GPIO.setup(self.pulse_pin, GPIO.OUT)   # output pin 
         GPIO.setup(self.dir_pin, GPIO.OUT)     # output pin
-        GPIO.setup(self.enable_pin, GPIO.OUT)  # output pin
         
         if self.homing_pin != None:
             GPIO.setup(self.homing_pin, GPIO.IN) # input pin 
         
-        GPIO.output(self.enable_pin, GPIO.LOW) # turn motors on
+        if self.enable_pin != None: 
+            GPIO.setup(self.enable_pin, GPIO.OUT)  # output pin
+            GPIO.output(self.enable_pin, GPIO.LOW) # turn motors on
+        
         if self.homing_direction == Stepper.CCW:
             GPIO.output(self.dir_pin, GPIO.HIGH)    # HIGH is ccw --> default direction
         else:

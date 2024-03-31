@@ -11,6 +11,7 @@ import rospy
 from nav_msgs.srv import GetPlan
 from nav_msgs.msg import Path
 from geometry_msgs.msg import PoseStamped
+from ik import ik_geo
 
 class Arm:
     # I am going to make the arm take in 4 different motors on startup
@@ -224,17 +225,17 @@ class Arm:
         self.is_active = True
         print("yoooooo, we got a request")
         goal = msg.goal.pose.position
-     
+        
         x, y, z = goal.x, goal.y, goal.z
 
         print("x: ", x, "y: ", y, "z: ", z)
 
-        
         # create (4x1) numpy array
         camera_point = np.array([x, y, z, 1]).T
         desired_ee_from_arm = np.dot(self.camera_transformation, camera_point) 
         trans_x, trans_y, trans_z = desired_ee_from_arm[0], desired_ee_from_arm[1], desired_ee_from_arm[2]
         
+        print("trans_x: ", trans_x, "trans_y: ", trans_y, "trans_z: ", trans_z)
         x_offset = 0.07 # 7cm
         offset_x = trans_x - x_offset
 
@@ -247,12 +248,15 @@ class Arm:
         gamma = atan2(s, r)
         phi = atan2((l3*s3), (l2+ (l3*c3)))
 
-        j1 = atan2(trans_y, trans_x)
-        j2 = (gamma - phi) + (pi/2)
-        j3 = atan2(s3, c3) + (pi/2)
+        #j1 = atan2(trans_y, trans_x)
+        #j2 = (gamma - phi) + (pi/2)
+        #j3 = atan2(s3, c3) + (pi/2)
 
+        j1, j2, j3 = ik_geo(trans_x, trans_y, trans_z)
         joint_angles = [j1, j2, j3]
-        print("here are our joint_angles", joint_angles)
+        
+        print()
+        [print("joint ", joint,": ", degrees(angle), "degrees") for joint, angle in enumerate(joint_angles) ]
 
         traj = self.trajectory_planning(joint_angles)
 
@@ -274,7 +278,7 @@ class Arm:
         path = Path()
         path.poses = poses
 
-        self.is_active = False
+        #self.is_active = False
         return path
     
     def run(self):
@@ -348,7 +352,7 @@ if __name__ == '__main__':
         j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4,max_positive_angle_j4, max_negative_angle_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003, stepper_id= 4)
        
         arm = Arm(j1, j2, j3)
-       #  arm.home()
+        # arm.home()
 
         
         # get joint angles
@@ -360,7 +364,6 @@ if __name__ == '__main__':
         # follow the trajectory
         # arm.follow_trajectory(traj)
 
-        
         arm.run()
     
     except KeyboardInterrupt:
