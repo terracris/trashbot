@@ -20,7 +20,8 @@ class Stepper:
     All motors use CCW as positive direction for rotationi as default but you can change it.
     max_speed comes in as pulses per second.
     """
-    def __init__(self, pulse_pin, dir_pin, enable_pin, homing_pin, steps_per_rev, gear_ratio, max_speed, max_joint_positive_angle, max_joint_negative_angle, home_count, homing_direction ,inverted=False, kp=0.005, kd=0.003, has_homed = False, debug=False):
+    def __init__(self, pulse_pin, dir_pin, enable_pin, homing_pin, steps_per_rev, gear_ratio, max_speed, max_joint_positive_angle, max_joint_negative_angle, home_count, homing_direction ,inverted=False, kp=0.005, kd=0.003, has_homed = False, debug=False,stepper_id=0):
+        self.id = stepper_id
         self.pulse_pin = pulse_pin
         self.dir_pin = dir_pin
         self.enable_pin = enable_pin
@@ -65,7 +66,7 @@ class Stepper:
         # if it is, calculate the angles number of steps to get there
         
         if not self.in_limits(angle):
-            print("angle out of limit")
+            print(self.id, " angle out of limit: ", angle)
             return
         
         
@@ -92,7 +93,7 @@ class Stepper:
     
     def in_limits(self, angle):
         # returns True if angle is in limit.
-        return angle >= self.max_joint_limit_negative_angle and angle <= self.max_joint_limit_positive_angle
+        return angle >= self.max_joint_limit_negative and angle <= self.max_joint_limit_positive
     
     """
     converts pulse position to angle in degrees.
@@ -141,13 +142,13 @@ class Stepper:
 
             v_t = abs(Kp * error + Kd * error_der)  # constrain maximum velocity
             v_t =  min(self.max_speed, v_t)
+            v_t = max(v_t, 0.1) 
             
             self.step_interval = 1/ v_t  # [ ms period between each pulse ]
 
             if Stepper.get_time() - start_time >= self.step_interval:
                 if self.debug:
-                    pass
-                    # print(self.current_pos, self.direction)
+                    print(self.current_pos, self.direction)
                 
                 self.step()
                 start_time = Stepper.get_time()
@@ -199,10 +200,14 @@ class Stepper:
         
         GPIO.setup(self.pulse_pin, GPIO.OUT)   # output pin 
         GPIO.setup(self.dir_pin, GPIO.OUT)     # output pin
-        GPIO.setup(self.enable_pin, GPIO.OUT)  # output pin
-        GPIO.setup(self.homing_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # input pin 
         
-        GPIO.output(self.enable_pin, GPIO.LOW) # turn motors on
+        if self.homing_pin != None:
+            GPIO.setup(self.homing_pin, GPIO.IN) # input pin 
+        
+        if self.enable_pin != None: 
+            GPIO.setup(self.enable_pin, GPIO.OUT)  # output pin
+            GPIO.output(self.enable_pin, GPIO.LOW) # turn motors on
+        
         if self.homing_direction == Stepper.CCW:
             GPIO.output(self.dir_pin, GPIO.HIGH)    # HIGH is ccw --> default direction
         else:

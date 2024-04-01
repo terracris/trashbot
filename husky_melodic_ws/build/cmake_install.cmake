@@ -147,6 +147,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_viz/cmake_install.cmake")
   include("/home/trashbot/trashbot/husky_melodic_ws/build/service_test/cmake_install.cmake")
   include("/home/trashbot/trashbot/husky_melodic_ws/build/husky/husky_base/cmake_install.cmake")
+  include("/home/trashbot/trashbot/husky_melodic_ws/build/lidar/sick_scan_xd/cmake_install.cmake")
 
 endif()
 

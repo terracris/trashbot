@@ -1,0 +1,10 @@
+<launch>
+    <!-- Launching RealSense camera node -->
+    <include file="$(find realsense2_camera)/launch/rs_rgbd.launch"/>
+
+    <!-- Launching video_detect.py in a new terminal -->
+    <node name="video_detect" pkg="terminator" type="terminator" args="-e bash -c 'conda activate camera; python ~/trashbot/husky_melodic_ws/src/camera/scripts/video_detect.py'" output="screen"/>
+
+    <!-- Launching get_depth.py in a new terminal -->
+    <node name="get_depth" pkg="gnome-terminal" type="gnome-terminal" args="-e bash -c 'conda activate camera; python ~/trashbot/husky_melodic_ws/src/camera/scripts/get_depth.py'" output="screen"/>
+</launch>

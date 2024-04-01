@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import rospy
 import serial
 import time
@@ -10,7 +12,7 @@ def start_gps():
     pub = rospy.Publisher("gps_coordinates", String ,queue_size=10)
     
     # Define the serial port and baud rate
-    serial_port = "/dev/ttyTHS1"  # Use the correct serial port
+    serial_port = "/dev/ttyACM0"  # Use the correct serial port
     baud_rate = 9600
 
     # Open the serial port
@@ -19,19 +21,13 @@ def start_gps():
     try:
         while True:
             # Read a line from the GPS module
-            gps_data = ser.readline().decode('utf-8').strip()
+            gps_data = ser.readline().strip()
             print(gps_data)
             # Check if the line is not empty
             if gps_data:
                 # Process the GPS data as needed
-                print(gps_data)
-                # Parse NMEA data
-                msg = pynmea2.parse(gps_data)
-                if isinstance(msg, pynmea2.types.talker.GNS):
-                    # Process GNS messages
-                    latitude = msg.latitude
-                    longitude = msg.longitude
-                    print("Latitude:", latitude, "Longitude:", longitude)
+                # Example: publish the raw data to a ROS topic
+                pub.publish(str(gps_data))
 
         time.sleep(0.5)  # Adjust the delay based on your requirements
 
@@ -42,3 +38,4 @@ def start_gps():
 
 if __name__ == '__main__':
     start_gps()
+
