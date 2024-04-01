@@ -162,7 +162,7 @@ class HuskyOdometry:
     def in_tolerance(self, left_wheel, right_wheel):
 	    # determines if two wheels are within a given tolerance of each other
             print("in tolerance?: " + str(abs(abs(left_wheel) - abs(right_wheel)) <= HuskyOdometry.VELOCITY_THRESHOLD))
-	    return abs(abs(left_wheel) - abs(right_wheel)) <= HuskyOdometry.VELOCITY_THRESHOLD
+            return abs(abs(left_wheel) - abs(right_wheel)) <= HuskyOdometry.VELOCITY_THRESHOLD
 
     def run(self):
         print("running")
