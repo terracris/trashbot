@@ -13,6 +13,7 @@ from geometry_msgs.msg import Vector3
 from bno055.msg import bno055_info
 from std_srvs.srv import Trigger, TriggerResponse
 import sys, os
+import time
 
 def save_calibration(req):
 	global sensor
@@ -47,7 +48,8 @@ def publisher():
 	sensor = BNO055.BNO055()
 
 	try:
-		sensor.begin()
+            time.sleep(1)
+            sensor.begin()
 	except Exception as e:
 		rospy.logerr('Failed to initialize BNO055! %s', e)
 		sys.exit(1)

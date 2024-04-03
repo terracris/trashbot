@@ -40,7 +40,7 @@ def reverseByteOrder(data):
     raise RuntimeError('reverseByteOrder is deprecated! See: https://github.com/adafruit/Adafruit_Python_GPIO/issues/48')
 
 def get_default_bus(): #Edited for Jetson TX2
-	return 1
+	return 0
 
 def get_i2c_device(address, busnum=None, i2c_interface=None, **kwargs):
     """Return an I2C device for the specified address and on the specified bus.

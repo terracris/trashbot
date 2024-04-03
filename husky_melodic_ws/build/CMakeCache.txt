@@ -347,6 +347,12 @@ arm_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/arm
 arm_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/arm
 
 //Value Computed by CMake
+bno055_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/imu/bno055
+
+//Value Computed by CMake
+bno055_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/imu/bno055
+
+//Value Computed by CMake
 camera_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/camera
 
 //Value Computed by CMake
@@ -531,7 +537,7 @@ husky_viz_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/husky
 husky_viz_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_viz
 
 //Path to a library.
-lib:FILEPATH=/opt/ros/melodic/lib/libtf2.so
+lib:FILEPATH=/opt/ros/melodic/lib/libdiagnostic_updater.so
 
 //The directory containing a CMake configuration file for message_filters.
 message_filters_DIR:PATH=/opt/ros/melodic/share/message_filters/cmake
