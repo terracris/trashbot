@@ -55,7 +55,7 @@ class Arm:
 
         # self.home()
         self.is_active = False
-
+        self.j2_increase = False
 
     def home(self):
         # joint is the actual stepper motor class
@@ -253,6 +253,9 @@ class Arm:
         #j3 = atan2(s3, c3) + (pi/2)
 
         j1, j2, j3 = ik_geo(trans_x, trans_y, trans_z)
+        print("j2 origin:",j2)
+        j2 = j2*1.10
+        print("j2 now:",j2)
         joint_angles = [j1, j2, j3]
         
         print()

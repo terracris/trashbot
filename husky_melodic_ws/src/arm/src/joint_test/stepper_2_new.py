@@ -4,7 +4,7 @@ import numpy as np
 from math import sqrt
 import Jetson.GPIO as GPIO
 from collections import deque
-from math import ceil
+
 """
 Default motor rotation direction is CCW. However, you can set the motor to be inverted
 """
@@ -110,7 +110,7 @@ class Stepper:
     def calculate_steps(self, angle):
         
         # rounds the number of steps required and then turns it into an int (just in case)
-        goal_steps = int(ceil(angle * self.gear_ratio / self.step_angle))
+        goal_steps = int(round(angle * self.gear_ratio / self.step_angle))
 
         return goal_steps
 
@@ -306,3 +306,26 @@ class Stepper:
         """ 
         Stepper.libc.usleep(int(microseconds))
 
+if __name__ == '__main__':
+    pulses_per_rev = 200
+    enable_pin = 37
+    # joint 2
+    pulse_pin_j2 = 19
+    dir_pin_j2 = 21
+    homing_pin_j2 = 23
+    gear_ratio_j2 = 5 * 5.18
+    home_count_j2 = -145
+    max_speed_j2 = 75
+    # gonna need to update kinematics to account for the joint limits:
+    # like if it says j2 goes to 30 degrees, need to find clockwise alternative for all joints
+    max_ccw_j2 = 115
+    max_cw_j2 = -10
+    homing_direction_j2 = Stepper.CCW
+    try:
+        j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2, max_ccw_j2, max_cw_j2, home_count_j2,homing_direction_j2 ,inverted=True, debug=True)
+        print("about to home")
+
+        j2.home()
+        j2.write(90)
+        except KeyboardInterrupt:
+            GPIO.cleanup()
