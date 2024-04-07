@@ -75,7 +75,7 @@ class Stepper:
 
         if self.debug: 
             print("the desired joint angle is ", angle)
-            print("steps to travel to ", absolute_steps)
+            # print("steps to travel to ", absolute_steps)
         
         if absolute_steps > 0:
             self.direction = self.positive_direction # again positive steps are CCW
@@ -148,6 +148,7 @@ class Stepper:
 
             if Stepper.get_time() - start_time >= self.step_interval:
                 if self.debug:
+                    pass
                     print(self.current_pos, self.direction)
                 
                 self.step()
@@ -181,11 +182,13 @@ class Stepper:
     def set_direction_pins(self):
         if self.direction == Stepper.CCW:
             if self.debug:
-                print("ccw")
+                pass
+                #print("ccw")
             GPIO.output(self.dir_pin, GPIO.HIGH) # When direction pin is HIGH, the motor will spin CCW
         else:
             if self.debug:
-                print("cw")
+                pass
+                #print("cw")
             GPIO.output(self.dir_pin, GPIO.LOW) # when direction pin is LOW, the motor will spin CW
 
         Stepper.usleep(2*self.min_dir_width)
@@ -231,7 +234,8 @@ class Stepper:
                 break
 
             if self.debug:
-                print("homing direction is: ", self.direction)
+                pass
+                #print("homing direction is: ", self.direction)
             self.step()
             time.sleep(0.01) # sleep 10 ms between pulses --> gives pretty good speed
 
@@ -253,7 +257,8 @@ class Stepper:
             self.step()
             time.sleep(0.01)
             if self.debug:
-                print("current direction is: ", self.direction)
+                pass
+                #print("current direction is: ", self.direction)
             cur_pos += 1
         
         

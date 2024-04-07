@@ -305,15 +305,21 @@ if __name__ == '__main__':
     max_speed_j2 = 75
     # gonna need to update kinematics to account for the joint limits:
     # like if it says j2 goes to 30 degrees, need to find clockwise alternative for all joints
-    max_ccw_j2 = 135
+    max_ccw_j2 = 115
     max_cw_j2 = -10
     homing_direction_j2 = Stepper.CCW
     try:
-        j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2, max_ccw_j2, max_cw_j2, home_count_j2,homing_direction_j2 ,inverted=True, debug=False)
+        j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2, max_ccw_j2, max_cw_j2, home_count_j2,homing_direction_j2 ,inverted=True, debug=True)
         count = 0
 
-        j2.move_clockwise_simple()
+        print("about to home")
+
+        j2.home()
+        j2.write(90)
         
+        # j2.move_clockwise_simple()
+        while True:
+            pass
         #while count < 3:
             #j2.home()
             #count += 1
