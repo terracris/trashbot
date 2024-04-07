@@ -143,6 +143,10 @@ def publisher():
     			# returned in meters per second squared):
 				linear_accel.x, linear_accel.y, linear_accel.z = sensor.read_linear_acceleration()
 				heading.data = sensor.read_euler()[0]
+				mag_x, mag_y, mag_z = sensor.read_magnetometer()
+				print("mag_x:", mag_x)
+				print("mag_y:", mag_y)
+				print("mag_z:", mag_z)
 				break
 			except Exception as e:
 				rospy.logerr('Failed to read BNO055 data! %s', e)
