@@ -17,7 +17,7 @@ with open(file_path, 'r') as file:
                 if isinstance(msg, pynmea2.types.talker.RMC):                    
                     latitude = msg.latitude
                     longitude = msg.longitude
-                    print(f'Latitude: {latitude}, Longitude: {longitude}')
+                    print(f'{latitude},{longitude}')
             except pynmea2.ParseError as e:
                 pass
                 #print(f'Parse error: {e}')
