@@ -2,12 +2,12 @@
 
 import rospy
 from nav_msgs.msg import Odometry
+from nav_msgs.srv import GetPlan
 from geometry_msgs.msg import PoseStamped
 from geometry_msgs.msg import Twist
 from tf.transformations import euler_from_quaternion 
 
 from math import sqrt, atan2, pi
-print("helloooooooooooo")
 class Kinematics:
 
     def __init__(self):
@@ -33,6 +33,7 @@ class Kinematics:
         # this method subscribes to PoseStamped messages on the '/move_base_simple/goal'
         # when message is received, call self.go_to
         rospy.Subscriber('/move_base_simple/goal', PoseStamped, self.go_to)
+        self.navigation_proxy = rospy.ServiceProxy('navigate', GetPlan)
 
     def send_speed(self, linear_speed, angular_speed):
         """
@@ -208,18 +209,27 @@ class Kinematics:
         distance = sqrt(pow(x_diff, 2) + pow(y_diff, 2))
 
         return angle, distance
+    
+    def navigate(self):
+        # make a call to the navigator. keep driving until the navigator returns an empty pose list
+        rospy.wait_for_service('navigate')
+        try:
+            plan = self.navigation_proxy()
+            poses = plan.poses
+
+            while len(poses) > 0:
+                self.go_to(poses[0])
+                rospy.sleep(1)
+                plan = self.navigation_proxy()
+                poses = plan.poses
+                
+        except:
+            print('could not get path')
 
 
     def run(self):
-        # testing
-
-         self.drive(1, 0.35)
-         #self.rotate(pi/2, 0.4)
-         #rospy.loginfo("completed driving")
-         #rospy.sleep(1)
-         #self.rotate(-pi/2, 0.4)
-        
-         rospy.spin()
+	    self.navigate()
+        rospy.spin()
 
 
 if __name__ == '__main__':
