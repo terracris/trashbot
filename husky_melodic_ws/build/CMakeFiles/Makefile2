@@ -1472,22 +1472,22 @@ gps/preinstall:
 .PHONY : gps/preinstall
 
 #=============================================================================
-# Directory level rules for directory kinematics/motion
+# Directory level rules for directory motion
 
 # Convenience name for "all" pass in the directory.
-kinematics/motion/all:
+motion/all:
 
-.PHONY : kinematics/motion/all
+.PHONY : motion/all
 
 # Convenience name for "clean" pass in the directory.
-kinematics/motion/clean:
+motion/clean:
 
-.PHONY : kinematics/motion/clean
+.PHONY : motion/clean
 
 # Convenience name for "preinstall" pass in the directory.
-kinematics/motion/preinstall:
+motion/preinstall:
 
-.PHONY : kinematics/motion/preinstall
+.PHONY : motion/preinstall
 
 #=============================================================================
 # Directory level rules for directory husky/husky_bringup

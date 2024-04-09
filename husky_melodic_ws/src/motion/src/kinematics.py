@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.7
 
 import rospy
 from nav_msgs.msg import Odometry
@@ -228,7 +228,8 @@ class Kinematics:
 
 
     def run(self):
-	    self.navigate()
+	self.rotate(0, 0.25)
+        #self.navigate()
         rospy.spin()
 
 
