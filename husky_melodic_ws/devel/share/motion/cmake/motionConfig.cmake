@@ -67,7 +67,7 @@ set(motion_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(motion_SOURCE_PREFIX /home/trashbot/trashbot/husky_melodic_ws/src/kinematics/motion)
+  set(motion_SOURCE_PREFIX /home/trashbot/trashbot/husky_melodic_ws/src/motion)
   set(motion_DEVEL_PREFIX /home/trashbot/trashbot/husky_melodic_ws/devel)
   set(motion_INSTALL_PREFIX "")
   set(motion_PREFIX ${motion_DEVEL_PREFIX})
@@ -110,7 +110,7 @@ if(NOT " " STREQUAL " ")
         message(FATAL_ERROR "Project 'motion' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'motion' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/trashbot/trashbot/husky_melodic_ws/src/kinematics/motion/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'motion' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/trashbot/trashbot/husky_melodic_ws/src/motion/${idir}'.  ${_report}")
     endif()
     _list_append_unique(motion_INCLUDE_DIRS ${include})
   endforeach()
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/trashbot/trashbot/husky_melodic_ws/devel/lib;/home/trashbot/ros_cv_bridge/install/lib;/home/trashbot/trashbot/husky_melodic_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/trashbot/trashbot/husky_melodic_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
