@@ -7,5 +7,15 @@
 # new environment variables
 
 # modified environment variables
+<<<<<<< HEAD
 export PWD='/home/trashbot/trashbot/husky_melodic_ws/build'
 export PYTHONPATH='/home/trashbot/trashbot/husky_melodic_ws/devel/lib/python2.7/dist-packages:/opt/ros/melodic/lib/python2.7/dist-packages:/home/trashbot/ros_cv_bridge/install/lib/python3.6/site-packages'
+=======
+export CMAKE_PREFIX_PATH="/home/trashbot/trashbot/husky_melodic_ws/devel:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/trashbot/trashbot/husky_melodic_ws/devel/lib:$LD_LIBRARY_PATH"
+export PKG_CONFIG_PATH="/home/trashbot/trashbot/husky_melodic_ws/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
+export PWD='/home/trashbot/trashbot/husky_melodic_ws/build'
+export PYTHONPATH="/home/trashbot/trashbot/husky_melodic_ws/devel/lib/python2.7/dist-packages:$PYTHONPATH"
+export ROSLISP_PACKAGE_DIRECTORIES='/home/trashbot/trashbot/husky_melodic_ws/devel/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/trashbot/trashbot/husky_melodic_ws/src:$ROS_PACKAGE_PATH"
+>>>>>>> gps

@@ -270,7 +270,11 @@ gtest/googlemock/preinstall: gtest/googlemock/gtest/preinstall
 gtest/googlemock/CMakeFiles/gmock_main.dir/all:
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/build
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=11,12,13,14 "Built target gmock_main"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=4,5,6,7 "Built target gmock_main"
+>>>>>>> gps
 .PHONY : gtest/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -302,7 +306,11 @@ clean: gtest/googlemock/CMakeFiles/gmock_main.dir/clean
 gtest/googlemock/CMakeFiles/gmock.dir/all:
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/build
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=8,9,10 "Built target gmock"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=1,2,3 "Built target gmock"
+>>>>>>> gps
 .PHONY : gtest/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -353,7 +361,11 @@ gtest/googlemock/gtest/preinstall:
 gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/all: gtest/googlemock/gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=17,18 "Built target gtest_main"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=10,11 "Built target gtest_main"
+>>>>>>> gps
 .PHONY : gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -385,7 +397,11 @@ clean: gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/clean
 gtest/googlemock/gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make gtest/googlemock/gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make gtest/googlemock/gtest/CMakeFiles/gtest.dir/build
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=15,16 "Built target gtest"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=8,9 "Built target gtest"
+>>>>>>> gps
 .PHONY : gtest/googlemock/gtest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -771,7 +787,11 @@ husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_cpp.dir/all: husky/husk
 husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_cpp.dir/all: husky/husky_msgs/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
 	$(MAKE) -f husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_cpp.dir/build.make husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_cpp.dir/depend
 	$(MAKE) -f husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_cpp.dir/build.make husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_cpp.dir/build
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=29 "Built target husky_msgs_generate_messages_cpp"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=22 "Built target husky_msgs_generate_messages_cpp"
+>>>>>>> gps
 .PHONY : husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -836,7 +856,11 @@ husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_eus.dir/all: husky/husk
 husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_eus.dir/all: husky/husky_msgs/CMakeFiles/std_msgs_generate_messages_eus.dir/all
 	$(MAKE) -f husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_eus.dir/build.make husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_eus.dir/depend
 	$(MAKE) -f husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_eus.dir/build.make husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_eus.dir/build
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=30,31 "Built target husky_msgs_generate_messages_eus"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=23,24 "Built target husky_msgs_generate_messages_eus"
+>>>>>>> gps
 .PHONY : husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
@@ -901,7 +925,11 @@ husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_lisp.dir/all: husky/hus
 husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_lisp.dir/all: husky/husky_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 	$(MAKE) -f husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_lisp.dir/build.make husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_lisp.dir/depend
 	$(MAKE) -f husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_lisp.dir/build.make husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_lisp.dir/build
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=32 "Built target husky_msgs_generate_messages_lisp"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=25 "Built target husky_msgs_generate_messages_lisp"
+>>>>>>> gps
 .PHONY : husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -934,7 +962,11 @@ husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_py.dir/all: husky/husky
 husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_py.dir/all: husky/husky_msgs/CMakeFiles/std_msgs_generate_messages_py.dir/all
 	$(MAKE) -f husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_py.dir/build.make husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_py.dir/depend
 	$(MAKE) -f husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_py.dir/build.make husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_py.dir/build
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=34,35 "Built target husky_msgs_generate_messages_py"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=27,28 "Built target husky_msgs_generate_messages_py"
+>>>>>>> gps
 .PHONY : husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1063,7 +1095,11 @@ husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_nodejs.dir/all: husky/h
 husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_nodejs.dir/all: husky/husky_msgs/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
 	$(MAKE) -f husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_nodejs.dir/build.make husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_nodejs.dir/depend
 	$(MAKE) -f husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_nodejs.dir/build.make husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_nodejs.dir/build
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=33 "Built target husky_msgs_generate_messages_nodejs"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=26 "Built target husky_msgs_generate_messages_nodejs"
+>>>>>>> gps
 .PHONY : husky/husky_msgs/CMakeFiles/husky_msgs_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
@@ -3637,6 +3673,7 @@ clean: imu/bno055/CMakeFiles/bno055_generate_messages_lisp.dir/clean
 # Target rules for target imu/bno055/CMakeFiles/bno055_gencpp.dir
 
 # All Build rule for target.
+<<<<<<< HEAD
 imu/bno055/CMakeFiles/bno055_gencpp.dir/all: imu/bno055/CMakeFiles/bno055_generate_messages_cpp.dir/all
 	$(MAKE) -f imu/bno055/CMakeFiles/bno055_gencpp.dir/build.make imu/bno055/CMakeFiles/bno055_gencpp.dir/depend
 	$(MAKE) -f imu/bno055/CMakeFiles/bno055_gencpp.dir/build.make imu/bno055/CMakeFiles/bno055_gencpp.dir/build
@@ -3647,6 +3684,23 @@ imu/bno055/CMakeFiles/bno055_gencpp.dir/all: imu/bno055/CMakeFiles/bno055_genera
 imu/bno055/CMakeFiles/bno055_gencpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 imu/bno055/CMakeFiles/bno055_gencpp.dir/all
+=======
+husky/husky_base/CMakeFiles/husky_node.dir/all: husky/husky_base/CMakeFiles/horizon_legacy.dir/all
+	$(MAKE) -f husky/husky_base/CMakeFiles/husky_node.dir/build.make husky/husky_base/CMakeFiles/husky_node.dir/depend
+	$(MAKE) -f husky/husky_base/CMakeFiles/husky_node.dir/build.make husky/husky_base/CMakeFiles/husky_node.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=29,30,31,32,33 "Built target husky_node"
+.PHONY : husky/husky_base/CMakeFiles/husky_node.dir/all
+
+# Include target in all.
+all: husky/husky_base/CMakeFiles/husky_node.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+husky/husky_base/CMakeFiles/husky_node.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 15
+	$(MAKE) -f CMakeFiles/Makefile2 husky/husky_base/CMakeFiles/husky_node.dir/all
+>>>>>>> gps
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
 .PHONY : imu/bno055/CMakeFiles/bno055_gencpp.dir/rule
 
@@ -3661,6 +3715,7 @@ imu/bno055/CMakeFiles/bno055_gencpp.dir/clean:
 .PHONY : imu/bno055/CMakeFiles/bno055_gencpp.dir/clean
 
 # clean rule for target.
+<<<<<<< HEAD
 clean: imu/bno055/CMakeFiles/bno055_gencpp.dir/clean
 
 .PHONY : clean
@@ -3896,10 +3951,14 @@ husky/husky_base/CMakeFiles/clean_test_results_husky_base.dir/clean:
 
 # clean rule for target.
 clean: husky/husky_base/CMakeFiles/clean_test_results_husky_base.dir/clean
+=======
+clean: husky/husky_base/CMakeFiles/husky_node.dir/clean
+>>>>>>> gps
 
 .PHONY : clean
 
 #=============================================================================
+<<<<<<< HEAD
 # Target rules for target husky/husky_base/CMakeFiles/_run_tests_husky_base_roslaunch-check_launch.dir
 
 # All Build rule for target.
@@ -3929,10 +3988,41 @@ husky/husky_base/CMakeFiles/_run_tests_husky_base_roslaunch-check_launch.dir/cle
 
 # clean rule for target.
 clean: husky/husky_base/CMakeFiles/_run_tests_husky_base_roslaunch-check_launch.dir/clean
+=======
+# Target rules for target husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num= "Built target sensor_msgs_generate_messages_lisp"
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_lisp: husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_lisp
+
+# clean rule for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/clean
+>>>>>>> gps
 
 .PHONY : clean
 
 #=============================================================================
+<<<<<<< HEAD
 # Target rules for target husky/husky_base/CMakeFiles/run_tests_husky_base_roslaunch-check_launch.dir
 
 # All Build rule for target.
@@ -3961,10 +4051,41 @@ husky/husky_base/CMakeFiles/run_tests_husky_base_roslaunch-check_launch.dir/clea
 
 # clean rule for target.
 clean: husky/husky_base/CMakeFiles/run_tests_husky_base_roslaunch-check_launch.dir/clean
+=======
+# Target rules for target husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir
+
+# All Build rule for target.
+husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/all:
+	$(MAKE) -f husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/build.make husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/depend
+	$(MAKE) -f husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/build.make husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num= "Built target diagnostic_msgs_generate_messages_lisp"
+.PHONY : husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/all
+
+# Build rule for subdir invocation for target.
+husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+.PHONY : husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_lisp: husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_lisp
+
+# clean rule for target.
+husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/clean:
+	$(MAKE) -f husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/build.make husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/clean
+.PHONY : husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/clean
+
+# clean rule for target.
+clean: husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/clean
+>>>>>>> gps
 
 .PHONY : clean
 
 #=============================================================================
+<<<<<<< HEAD
 # Target rules for target husky/husky_base/CMakeFiles/_run_tests_husky_base_roslaunch-check.dir
 
 # All Build rule for target.
@@ -3993,10 +4114,41 @@ husky/husky_base/CMakeFiles/_run_tests_husky_base_roslaunch-check.dir/clean:
 
 # clean rule for target.
 clean: husky/husky_base/CMakeFiles/_run_tests_husky_base_roslaunch-check.dir/clean
+=======
+# Target rules for target husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir
+
+# All Build rule for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num= "Built target sensor_msgs_generate_messages_nodejs"
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_nodejs: husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_nodejs
+
+# clean rule for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/clean
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/clean
+
+# clean rule for target.
+clean: husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/clean
+>>>>>>> gps
 
 .PHONY : clean
 
 #=============================================================================
+<<<<<<< HEAD
 # Target rules for target husky/husky_base/CMakeFiles/run_tests_husky_base_roslaunch-check.dir
 
 # All Build rule for target.
@@ -4025,10 +4177,41 @@ husky/husky_base/CMakeFiles/run_tests_husky_base_roslaunch-check.dir/clean:
 
 # clean rule for target.
 clean: husky/husky_base/CMakeFiles/run_tests_husky_base_roslaunch-check.dir/clean
+=======
+# Target rules for target husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir
+
+# All Build rule for target.
+husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/build.make husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/build.make husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num= "Built target controller_manager_msgs_generate_messages_nodejs"
+.PHONY : husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+.PHONY : husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+controller_manager_msgs_generate_messages_nodejs: husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : controller_manager_msgs_generate_messages_nodejs
+
+# clean rule for target.
+husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/build.make husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/clean
+.PHONY : husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/clean
+
+# clean rule for target.
+clean: husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir/clean
+>>>>>>> gps
 
 .PHONY : clean
 
 #=============================================================================
+<<<<<<< HEAD
 # Target rules for target husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
@@ -4057,10 +4240,41 @@ husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/c
 
 # clean rule for target.
 clean: husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/clean
+=======
+# Target rules for target husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir
+
+# All Build rule for target.
+husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build.make husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build.make husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num= "Built target diagnostic_msgs_generate_messages_nodejs"
+.PHONY : husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+.PHONY : husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_nodejs: husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_nodejs
+
+# clean rule for target.
+husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build.make husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/clean
+.PHONY : husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/clean
+
+# clean rule for target.
+clean: husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/clean
+>>>>>>> gps
 
 .PHONY : clean
 
 #=============================================================================
+<<<<<<< HEAD
 # Target rules for target husky/husky_base/CMakeFiles/roslint_husky_base.dir
 
 # All Build rule for target.
@@ -4089,10 +4303,41 @@ husky/husky_base/CMakeFiles/roslint_husky_base.dir/clean:
 
 # clean rule for target.
 clean: husky/husky_base/CMakeFiles/roslint_husky_base.dir/clean
+=======
+# Target rules for target husky/husky_base/CMakeFiles/roslint.dir
+
+# All Build rule for target.
+husky/husky_base/CMakeFiles/roslint.dir/all: husky/husky_base/CMakeFiles/roslint_husky_base.dir/all
+	$(MAKE) -f husky/husky_base/CMakeFiles/roslint.dir/build.make husky/husky_base/CMakeFiles/roslint.dir/depend
+	$(MAKE) -f husky/husky_base/CMakeFiles/roslint.dir/build.make husky/husky_base/CMakeFiles/roslint.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num= "Built target roslint"
+.PHONY : husky/husky_base/CMakeFiles/roslint.dir/all
+
+# Build rule for subdir invocation for target.
+husky/husky_base/CMakeFiles/roslint.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 husky/husky_base/CMakeFiles/roslint.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+.PHONY : husky/husky_base/CMakeFiles/roslint.dir/rule
+
+# Convenience name for target.
+roslint: husky/husky_base/CMakeFiles/roslint.dir/rule
+
+.PHONY : roslint
+
+# clean rule for target.
+husky/husky_base/CMakeFiles/roslint.dir/clean:
+	$(MAKE) -f husky/husky_base/CMakeFiles/roslint.dir/build.make husky/husky_base/CMakeFiles/roslint.dir/clean
+.PHONY : husky/husky_base/CMakeFiles/roslint.dir/clean
+
+# clean rule for target.
+clean: husky/husky_base/CMakeFiles/roslint.dir/clean
+>>>>>>> gps
 
 .PHONY : clean
 
 #=============================================================================
+<<<<<<< HEAD
 # Target rules for target husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir
 
 # All Build rule for target.
@@ -4121,6 +4366,36 @@ husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/cl
 
 # clean rule for target.
 clean: husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/clean
+=======
+# Target rules for target husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build.make husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build.make husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num= "Built target diagnostic_msgs_generate_messages_py"
+.PHONY : husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+.PHONY : husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_py: husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_py
+
+# clean rule for target.
+husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build.make husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/clean
+.PHONY : husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/clean
+>>>>>>> gps
 
 .PHONY : clean
 
@@ -4189,6 +4464,7 @@ clean: husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/cle
 .PHONY : clean
 
 #=============================================================================
+<<<<<<< HEAD
 # Target rules for target husky/husky_base/CMakeFiles/husky_node.dir
 
 # All Build rule for target.
@@ -4254,6 +4530,36 @@ husky/husky_base/CMakeFiles/_run_tests_husky_base.dir/clean:
 
 # clean rule for target.
 clean: husky/husky_base/CMakeFiles/_run_tests_husky_base.dir/clean
+=======
+# Target rules for target husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir
+
+# All Build rule for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num= "Built target sensor_msgs_generate_messages_py"
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/all
+
+# Build rule for subdir invocation for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_py: husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_py
+
+# clean rule for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
+
+# clean rule for target.
+clean: husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/clean
+>>>>>>> gps
 
 .PHONY : clean
 
@@ -4290,6 +4596,7 @@ clean: husky/husky_base/CMakeFiles/controller_manager_msgs_generate_messages_eus
 .PHONY : clean
 
 #=============================================================================
+<<<<<<< HEAD
 # Target rules for target husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir
 
 # All Build rule for target.
@@ -4446,10 +4753,41 @@ husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/clean:
 
 # clean rule for target.
 clean: husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/clean
+=======
+# Target rules for target husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir
+
+# All Build rule for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all:
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/depend
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num= "Built target sensor_msgs_generate_messages_cpp"
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_cpp: husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_cpp
+
+# clean rule for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean:
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
+
+# clean rule for target.
+clean: husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/clean
+>>>>>>> gps
 
 .PHONY : clean
 
 #=============================================================================
+<<<<<<< HEAD
 # Target rules for target husky/husky_base/CMakeFiles/roslint.dir
 
 # All Build rule for target.
@@ -4510,6 +4848,36 @@ husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/clean:
 
 # clean rule for target.
 clean: husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/clean
+=======
+# Target rules for target husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir
+
+# All Build rule for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num= "Built target sensor_msgs_generate_messages_eus"
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/all
+
+# Build rule for subdir invocation for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles 0
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_eus: husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_eus
+
+# clean rule for target.
+husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/clean
+.PHONY : husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/clean
+
+# clean rule for target.
+clean: husky/husky_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/clean
+>>>>>>> gps
 
 .PHONY : clean
 
@@ -4520,7 +4888,11 @@ clean: husky/husky_base/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/clea
 husky/husky_base/CMakeFiles/horizon_legacy.dir/all:
 	$(MAKE) -f husky/husky_base/CMakeFiles/horizon_legacy.dir/build.make husky/husky_base/CMakeFiles/horizon_legacy.dir/depend
 	$(MAKE) -f husky/husky_base/CMakeFiles/horizon_legacy.dir/build.make husky/husky_base/CMakeFiles/horizon_legacy.dir/build
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=19,20,21,22,23,24,25,26,27,28 "Built target horizon_legacy"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/trashbot/trashbot/husky_melodic_ws/build/CMakeFiles --progress-num=12,13,14,15,16,17,18,19,20,21 "Built target horizon_legacy"
+>>>>>>> gps
 .PHONY : husky/husky_base/CMakeFiles/horizon_legacy.dir/all
 
 # Include target in all.

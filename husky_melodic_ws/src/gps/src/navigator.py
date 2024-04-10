@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2.7
 
 import rospy
 from sensor_msgs.msg import NavSatFix
@@ -20,13 +20,13 @@ class Navigator:
         self.current_position = None
         self.calibrate = True
         self.reference_point = None
-        self.starting_index = None
+        self.starting_index = 0
         self.points_traveled = 0
         self.current_heading = 0
         self.x_pose = 0
         self.y_pose = 0
         rospy.init_node('navigator', anonymous=True)
-        rospy.Subscriber('gps_coordinates', NavSatFix,
+        rospy.Subscriber('/gps_coordinates', NavSatFix,
                          self.update_position)  # subscriber
         rospy.Subscriber('imu/heading', Float64, self.update_heading)
 
@@ -35,7 +35,6 @@ class Navigator:
 
     def update_position(self, msg):
         self.current_position = GpsCoordinate(msg.latitude, msg.longitude)
-
         if self.calibrate:
             self.starting_index, self.reference_point = self.find_closest_point(
                 self.current_position)
@@ -46,12 +45,12 @@ class Navigator:
         angle = heading.data % 360
         # Map angles from 0 to 180 to the range from 0 to -pi
         if angle == 0:
-            self.pth = 0
+            self.current_heading = 0
         elif angle <= 180:
-            self.pth = -radians(angle)
+            self.current_heading = -radians(angle)
         # Map angles from 180 to 360 to the range from 0 to pi
         else:
-            self.pth = radians(360 - angle)
+            self.current_heading = radians(360 - angle)
 
     def calculate_navigation(self, req):
         self.points_traveled += 1
@@ -72,18 +71,19 @@ class Navigator:
         delta_theta = phi - self.current_heading
 
         pose = PoseStamped()
-        self.x_pose += cp * cos(delta_theta) # cos and sin use radians
-        self.y_pose += cp * sin(delta_theta)
+        negated_phi = -phi
+        #self.x_pose += cp * cos(delta_theta) # cos and sin use radians
+        #self.y_pose += cp * sin(delta_theta)
         orientation = Quaternion()
-        q = tf.transformations.quaternion_from_euler(0, 0, phi) # phi is in radians
+        q = tf.transformations.quaternion_from_euler(0, 0, negated_phi) # phi is in radians
 
         orientation.x = q[0]
         orientation.y = q[1]
         orientation.z = q[2]
         orientation.w = q[3]
 
-        pose.pose.position.x = self.x_pose
-        pose.pose.position.y = self.y_pose
+        pose.pose.position.x = cp
+        pose.pose.position.y = 0.0
         pose.pose.position.z = 0.0
         pose.pose.orientation = orientation
 
@@ -100,7 +100,7 @@ class Navigator:
 
     def find_closest_point(self, ref_coordinate):
         closest_point = None
-        closest_distance = float('inf')
+        closest_distance = 9e1000  # big number!
         closest_index = None
         for idx, coordinate in enumerate(self.map):
             dist = haversine(ref_coordinate, coordinate)
@@ -108,6 +108,8 @@ class Navigator:
                 closest_point = coordinate
                 closest_index = idx
                 closest_distance = dist
+
+        print(closest_point)
 
         return closest_index, closest_point
 
@@ -122,7 +124,11 @@ class Navigator:
 
         return gps_map
 
+    def run(self):
+        rospy.spin()
 
 if __name__ == '__main__':
     map_file = 'quad.txt'
     quad_map = Navigator.generate_map(map_file)
+    navigator = Navigator(quad_map)
+    navigator.run()

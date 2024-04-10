@@ -21,11 +21,13 @@ def start_gps():
     try:
         while True:
             # Read a line from the GPS module
-            gps_data = ser.readline().decode('ascii').strip() # convert byte string to ascii
+            try:
+                gps_data = ser.readline().decode("ascii", errors='ignore').strip() # convert byte string to ascii
+            except UnicodeError:
+                continue
             # Check if the line is not empty
             if gps_data.startswith("$"):
                 try:
-                    print(gps_data)
                     msg = pynmea2.parse(gps_data) # parse the line from gps module
                     if isinstance(msg, pynmea2.types.talker.RMC):
                         

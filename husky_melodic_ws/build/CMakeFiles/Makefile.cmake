@@ -35,6 +35,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "husky/husky_robot/catkin_generated/package.cmake"
   "husky/husky_simulator/catkin_generated/package.cmake"
   "husky/husky_viz/catkin_generated/package.cmake"
+<<<<<<< HEAD
   "imu/bno055/catkin_generated/bno055-msg-extras.cmake.develspace.in"
   "imu/bno055/catkin_generated/bno055-msg-extras.cmake.installspace.in"
   "imu/bno055/catkin_generated/ordered_paths.cmake"
@@ -42,6 +43,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "imu/bno055/cmake/bno055-genmsg.cmake"
   "motion/catkin_generated/ordered_paths.cmake"
   "motion/catkin_generated/package.cmake"
+=======
+  "kinematics/motion/catkin_generated/ordered_paths.cmake"
+  "kinematics/motion/catkin_generated/package.cmake"
+>>>>>>> gps
   "service_test/catkin_generated/ordered_paths.cmake"
   "service_test/catkin_generated/package.cmake"
   "service_test/catkin_generated/service_test-msg-extras.cmake.develspace.in"
@@ -82,10 +87,15 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_simulator/package.xml"
   "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_viz/CMakeLists.txt"
   "/home/trashbot/trashbot/husky_melodic_ws/src/husky/husky_viz/package.xml"
+<<<<<<< HEAD
   "/home/trashbot/trashbot/husky_melodic_ws/src/imu/bno055/CMakeLists.txt"
   "/home/trashbot/trashbot/husky_melodic_ws/src/imu/bno055/package.xml"
   "/home/trashbot/trashbot/husky_melodic_ws/src/motion/CMakeLists.txt"
   "/home/trashbot/trashbot/husky_melodic_ws/src/motion/package.xml"
+=======
+  "/home/trashbot/trashbot/husky_melodic_ws/src/kinematics/motion/CMakeLists.txt"
+  "/home/trashbot/trashbot/husky_melodic_ws/src/kinematics/motion/package.xml"
+>>>>>>> gps
   "/home/trashbot/trashbot/husky_melodic_ws/src/service_test/CMakeLists.txt"
   "/home/trashbot/trashbot/husky_melodic_ws/src/service_test/package.xml"
   "/opt/ros/melodic/share/catkin/cmake/../package.xml"
@@ -227,7 +237,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/ros/melodic/share/rostime/cmake/rostimeConfig-version.cmake"
   "/opt/ros/melodic/share/rostime/cmake/rostimeConfig.cmake"
   "/opt/ros/melodic/share/sensor_msgs/cmake/sensor_msgs-msg-extras.cmake"
-  "/opt/ros/melodic/share/sensor_msgs/cmake/sensor_msgs-msg-paths.cmake"
   "/opt/ros/melodic/share/sensor_msgs/cmake/sensor_msgsConfig-version.cmake"
   "/opt/ros/melodic/share/sensor_msgs/cmake/sensor_msgsConfig.cmake"
   "/opt/ros/melodic/share/std_msgs/cmake/std_msgs-msg-extras.cmake"

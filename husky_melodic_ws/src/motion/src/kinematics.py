@@ -2,7 +2,7 @@
 
 import rospy
 from nav_msgs.msg import Odometry
-from nav_msgs.srv import GetPlan
+from nav_msgs.srv import GetPlan, GetPlanRequest
 from geometry_msgs.msg import PoseStamped
 from geometry_msgs.msg import Twist
 from tf.transformations import euler_from_quaternion 
@@ -166,16 +166,21 @@ class Kinematics:
         ROTATE_SPEED = 0.3
         DRIVE_SPEED = 0.3
 
-        angle, distance = self.angle_dist_to_point(msg.pose.position.x, msg.pose.position.y)
+        #angle, distance = self.angle_dist_to_point(msg.pose.position.x, msg.pose.position.y)
 
+        distance = msg.pose.position.x
+        quat_orig = msg.pose.orientation
         # moves
-        self.rotate(angle, ROTATE_SPEED)
+        (_, _, yaw) = euler_from_quaternion([quat_orig.x, quat_orig.y, quat_orig.z, quat_orig.w])
+        
+        print("yaw angle is: ",yaw)
+        self.rotate(yaw, ROTATE_SPEED)
+
+        #self.rotate(angle, ROTATE_SPEED)
         rospy.sleep(1)
         self.drive(distance, DRIVE_SPEED)
         rospy.sleep(1)
-        (_, _, yaw) = euler_from_quaternion([quat_orig.x, quat_orig.y, quat_orig.z, quat_orig.w])
-        self.rotate(yaw, ROTATE_SPEED)
-
+       
 
     def update_odometry(self, msg):
         """
@@ -213,23 +218,25 @@ class Kinematics:
     def navigate(self):
         # make a call to the navigator. keep driving until the navigator returns an empty pose list
         rospy.wait_for_service('navigate')
-        try:
-            plan = self.navigation_proxy()
+        #try:
+        request = GetPlanRequest()
+        request.goal = PoseStamped()
+        print("making request")
+        path = self.navigation_proxy(request)
+        #print(path.plan.poses)
+        poses = path.plan.poses
+
+        while len(poses) > 0:
+            print("moving")
+            self.go_to(poses[0])
+            rospy.sleep(1)
+            plan = self.navigation_proxy(request)
             poses = plan.poses
-
-            while len(poses) > 0:
-                self.go_to(poses[0])
-                rospy.sleep(1)
-                plan = self.navigation_proxy()
-                poses = plan.poses
                 
-        except:
-            print('could not get path')
-
 
     def run(self):
-	self.rotate(0, 0.25)
-        #self.navigate()
+	#self.rotate(0, 0.25)
+        self.navigate()
         rospy.spin()
 
 

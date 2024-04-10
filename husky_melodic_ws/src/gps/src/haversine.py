@@ -86,12 +86,12 @@ def simulate_angular_motion(starting_coordinate):
 
 
 # simulate_angular_motion()
-starting_gps_lat, starting_gps_lon = (42.27375392087034, -71.80908967954097)
+#starting_gps_lat, starting_gps_lon = (42.27375392087034, -71.80908967954097)
 
-starting_coordinate = GpsCoordinate(starting_gps_lat, starting_gps_lon)
+#starting_coordinate = GpsCoordinate(starting_gps_lat, starting_gps_lon)
 # map_file = 'quad.txt'
 # quad_map = generate_map(map_file)  # list of GpsCoordinate object
 # idx, coordinate = find_closest_point(quad_map, starting_coordinate)
 # print(idx, ":", coordinate.latitude, ",", coordinate.longitude)
 
-simulate_angular_motion(starting_coordinate)
+#simulate_angular_motion(starting_coordinate)
