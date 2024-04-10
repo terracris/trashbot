@@ -38,6 +38,7 @@ class Navigator:
         if self.calibrate:
             self.starting_index, self.reference_point = self.find_closest_point(
                 self.current_position)
+            print(self.reference_point)
             self.calibrate = False
 
     def update_heading(self, heading):
@@ -71,11 +72,11 @@ class Navigator:
         delta_theta = phi - self.current_heading
 
         pose = PoseStamped()
-        negated_phi = -phi
+        #negated_phi = -phi
         #self.x_pose += cp * cos(delta_theta) # cos and sin use radians
         #self.y_pose += cp * sin(delta_theta)
         orientation = Quaternion()
-        q = tf.transformations.quaternion_from_euler(0, 0, negated_phi) # phi is in radians
+        q = tf.transformations.quaternion_from_euler(0, 0, phi) # phi is in radians
 
         orientation.x = q[0]
         orientation.y = q[1]
@@ -83,6 +84,7 @@ class Navigator:
         orientation.w = q[3]
 
         pose.pose.position.x = cp
+        print(pose.pose.position.x)
         pose.pose.position.y = 0.0
         pose.pose.position.z = 0.0
         pose.pose.orientation = orientation

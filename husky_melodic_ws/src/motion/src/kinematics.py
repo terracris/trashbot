@@ -172,14 +172,14 @@ class Kinematics:
         quat_orig = msg.pose.orientation
         # moves
         (_, _, yaw) = euler_from_quaternion([quat_orig.x, quat_orig.y, quat_orig.z, quat_orig.w])
-        
+        print("distance", distance) 
         print("yaw angle is: ",yaw)
         self.rotate(yaw, ROTATE_SPEED)
 
         #self.rotate(angle, ROTATE_SPEED)
-        rospy.sleep(1)
+        rospy.sleep(0.5)
         self.drive(distance, DRIVE_SPEED)
-        rospy.sleep(1)
+        rospy.sleep(0.5)
        
 
     def update_odometry(self, msg):
@@ -223,19 +223,22 @@ class Kinematics:
         request.goal = PoseStamped()
         print("making request")
         path = self.navigation_proxy(request)
-        #print(path.plan.poses)
+        print(path.plan.poses)
         poses = path.plan.poses
 
         while len(poses) > 0:
             print("moving")
-            self.go_to(poses[0])
+            pose = poses[0]
+            print(pose)
+            self.go_to(pose)
             rospy.sleep(1)
-            plan = self.navigation_proxy(request)
-            poses = plan.poses
+            path = self.navigation_proxy(request)
+            poses = path.plan.poses
                 
 
     def run(self):
-	#self.rotate(0, 0.25)
+	#self.rotate(pi/4, 0.25)
+        #self.drive(1, 0.30)
         self.navigate()
         rospy.spin()
 
