@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>bno055</name>
+  <name>imu</name>
   <version>0.0.0</version>
   <description>The bno055 package</description>
 

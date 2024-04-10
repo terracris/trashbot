@@ -1,25 +1,25 @@
 # Hashes of file build rules.
 3bfece8043608a0385e34c6ff93ce9f0 /home/trashbot/trashbot/husky_melodic_ws/devel/include/bno055/bno055_info.h
 26e20a14542449ee09e45906737fefe6 /home/trashbot/trashbot/husky_melodic_ws/devel/include/husky_msgs/HuskyStatus.h
-<<<<<<< HEAD
+f29050e17a6088d44c45db6e77e71c52 /home/trashbot/trashbot/husky_melodic_ws/devel/include/imu/bno055_info.h
 f21a2eb1da88dace34dab7a17cb7bf30 /home/trashbot/trashbot/husky_melodic_ws/devel/lib/python2.7/dist-packages/bno055/msg/__init__.py
 1bff8c2c780ef965634f62cc18efbf40 /home/trashbot/trashbot/husky_melodic_ws/devel/lib/python2.7/dist-packages/bno055/msg/_bno055_info.py
 932662f5aa95004e6e30353d13390fea /home/trashbot/trashbot/husky_melodic_ws/devel/lib/python2.7/dist-packages/husky_msgs/msg/_HuskyStatus.py
 d6a9711f76a27c4d12c30535cd055685 /home/trashbot/trashbot/husky_melodic_ws/devel/lib/python2.7/dist-packages/husky_msgs/msg/__init__.py
+7a4ca871a39cbf8b0044db20e415d16c /home/trashbot/trashbot/husky_melodic_ws/devel/lib/python2.7/dist-packages/imu/msg/__init__.py
+647a4d5e89c0474f11a5e91c38a82e12 /home/trashbot/trashbot/husky_melodic_ws/devel/lib/python2.7/dist-packages/imu/msg/_bno055_info.py
 688d55628ddb27c8d0946d899d002ab4 /home/trashbot/trashbot/husky_melodic_ws/devel/share/common-lisp/ros/bno055/msg/bno055_info.lisp
 322472ae35c9cb5ae5fc73f6d43c2344 /home/trashbot/trashbot/husky_melodic_ws/devel/share/common-lisp/ros/husky_msgs/msg/HuskyStatus.lisp
+c140bac846cb765cbdca1e9da4d528f8 /home/trashbot/trashbot/husky_melodic_ws/devel/share/common-lisp/ros/imu/msg/bno055_info.lisp
 f6fd0322dcd4e9729517857b1b963181 /home/trashbot/trashbot/husky_melodic_ws/devel/share/gennodejs/ros/bno055/msg/bno055_info.js
 b4a533991a437ce9dd140bfaf3c92d80 /home/trashbot/trashbot/husky_melodic_ws/devel/share/gennodejs/ros/husky_msgs/msg/HuskyStatus.js
+45bb490ddb700e8e0c481a94f5892002 /home/trashbot/trashbot/husky_melodic_ws/devel/share/gennodejs/ros/imu/msg/bno055_info.js
 5031d127f1386bcb7f32b5acba060973 /home/trashbot/trashbot/husky_melodic_ws/devel/share/roseus/ros/bno055/manifest.l
 7314d3d1e495c055e43af3f225207f79 /home/trashbot/trashbot/husky_melodic_ws/devel/share/roseus/ros/bno055/msg/bno055_info.l
-=======
-932662f5aa95004e6e30353d13390fea /home/trashbot/trashbot/husky_melodic_ws/devel/lib/python2.7/dist-packages/husky_msgs/msg/_HuskyStatus.py
-d6a9711f76a27c4d12c30535cd055685 /home/trashbot/trashbot/husky_melodic_ws/devel/lib/python2.7/dist-packages/husky_msgs/msg/__init__.py
-322472ae35c9cb5ae5fc73f6d43c2344 /home/trashbot/trashbot/husky_melodic_ws/devel/share/common-lisp/ros/husky_msgs/msg/HuskyStatus.lisp
-b4a533991a437ce9dd140bfaf3c92d80 /home/trashbot/trashbot/husky_melodic_ws/devel/share/gennodejs/ros/husky_msgs/msg/HuskyStatus.js
->>>>>>> gps
 267895e6e33f040ac33c70c7c296e59e /home/trashbot/trashbot/husky_melodic_ws/devel/share/roseus/ros/husky_msgs/manifest.l
 55de619c851ac4c3dd80ac1535546115 /home/trashbot/trashbot/husky_melodic_ws/devel/share/roseus/ros/husky_msgs/msg/HuskyStatus.l
+9ba150601b6dafc71c46653101b6e22d /home/trashbot/trashbot/husky_melodic_ws/devel/share/roseus/ros/imu/manifest.l
+18e50527c508469004a3e0fd39609a7e /home/trashbot/trashbot/husky_melodic_ws/devel/share/roseus/ros/imu/msg/bno055_info.l
 34e74bd8eba478d65efd78af617dcf22 CMakeFiles/clean_test_results
 c5ffed5b66eff9427fc9fd1f902ed949 husky/husky_base/CMakeFiles/_run_tests_husky_base_roslaunch-check_launch
 926c56a196f78a7b37a42572cedd329b husky/husky_base/CMakeFiles/clean_test_results_husky_base
@@ -48,13 +48,10 @@ fd8318b9d2765229f44e4c17f9c27a94 husky/husky_navigation/CMakeFiles/run_tests_hus
 a361faf83f4a26e7ceebaa1c20b306e6 husky/husky_viz/CMakeFiles/_run_tests_husky_viz_roslaunch-check_launch
 d8bbfff3928b48e106294445b8a9be08 husky/husky_viz/CMakeFiles/clean_test_results_husky_viz
 a361faf83f4a26e7ceebaa1c20b306e6 husky/husky_viz/CMakeFiles/run_tests_husky_viz_roslaunch-check_launch
-<<<<<<< HEAD
-d2bbac8227681294edb3d2a7333e3734 imu/bno055/CMakeFiles/_bno055_generate_messages_check_deps_bno055_info
-5bf718589d6badf4096cac02d0cb23a9 imu/bno055/CMakeFiles/bno055_generate_messages_cpp
-5bf718589d6badf4096cac02d0cb23a9 imu/bno055/CMakeFiles/bno055_generate_messages_eus
-5bf718589d6badf4096cac02d0cb23a9 imu/bno055/CMakeFiles/bno055_generate_messages_lisp
-5bf718589d6badf4096cac02d0cb23a9 imu/bno055/CMakeFiles/bno055_generate_messages_nodejs
-5bf718589d6badf4096cac02d0cb23a9 imu/bno055/CMakeFiles/bno055_generate_messages_py
-=======
->>>>>>> gps
+f63aa8176a9ce26860b9bc80464666f5 imu/CMakeFiles/_imu_generate_messages_check_deps_bno055_info
+a68f4bb8e394c25a086ec0c17f0bcd3d imu/CMakeFiles/imu_generate_messages_cpp
+a68f4bb8e394c25a086ec0c17f0bcd3d imu/CMakeFiles/imu_generate_messages_eus
+a68f4bb8e394c25a086ec0c17f0bcd3d imu/CMakeFiles/imu_generate_messages_lisp
+a68f4bb8e394c25a086ec0c17f0bcd3d imu/CMakeFiles/imu_generate_messages_nodejs
+a68f4bb8e394c25a086ec0c17f0bcd3d imu/CMakeFiles/imu_generate_messages_py
 e4ae9d9cd4103c756e0789c0844a8a34 service_test/CMakeFiles/_service_test_generate_messages_check_deps_MyService
