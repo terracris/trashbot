@@ -17,10 +17,11 @@ class Stepper:
     MILLISECONDS_IN_SECOND = 1000    # number of milliseconds in one second
 
     """
-    All motors use CCW as positive direction for rotation.
+    All motors use CCW as positive direction for rotationi as default but you can change it.
     max_speed comes in as pulses per second.
     """
-    def __init__(self, pulse_pin, dir_pin, enable_pin, homing_pin, steps_per_rev, gear_ratio, max_speed, max_joint_ccw, max_joint_cw, home_count, homing_direction ,inverted=False, kp=0.005, kd=0.003, has_homed = False, debug=False):
+    def __init__(self, pulse_pin, dir_pin, enable_pin, homing_pin, steps_per_rev, gear_ratio, max_speed, max_joint_positive_angle, max_joint_negative_angle, home_count, homing_direction ,inverted=False, kp=0.005, kd=0.003, has_homed = False, debug=False,stepper_id=0):
+        self.id = stepper_id
         self.pulse_pin = pulse_pin
         self.dir_pin = dir_pin
         self.enable_pin = enable_pin
@@ -49,8 +50,8 @@ class Stepper:
         self.gear_ratio = gear_ratio
         self.steps_per_rev = steps_per_rev
         self.step_angle = 360 / steps_per_rev
-        self.max_joint_limit_ccw = max_joint_ccw
-        self.max_joint_limit_cw = max_joint_cw
+        self.max_joint_limit_positive = max_joint_positive_angle
+        self.max_joint_limit_negative = max_joint_negative_angle
         self.set_output_pins() # set up pins --> direction, pulse, enable
         self.has_homed = has_homed
         self.home_count = home_count
@@ -65,7 +66,7 @@ class Stepper:
         # if it is, calculate the angles number of steps to get there
         
         if not self.in_limits(angle):
-            print("angle out of limit")
+            print(self.id, " angle out of limit: ", angle)
             return
         
         
@@ -74,7 +75,7 @@ class Stepper:
 
         if self.debug: 
             print("the desired joint angle is ", angle)
-            print("steps to travel to ", absolute_steps)
+            # print("steps to travel to ", absolute_steps)
         
         if absolute_steps > 0:
             self.direction = self.positive_direction # again positive steps are CCW
@@ -91,7 +92,8 @@ class Stepper:
 
     
     def in_limits(self, angle):
-        return angle >= self.max_joint_limit_cw and angle <= self.max_joint_limit_ccw
+        # returns True if angle is in limit.
+        return angle >= self.max_joint_limit_negative and angle <= self.max_joint_limit_positive
     
     """
     converts pulse position to angle in degrees.
@@ -140,13 +142,14 @@ class Stepper:
 
             v_t = abs(Kp * error + Kd * error_der)  # constrain maximum velocity
             v_t =  min(self.max_speed, v_t)
+            v_t = max(v_t, 0.1) 
             
             self.step_interval = 1/ v_t  # [ ms period between each pulse ]
 
             if Stepper.get_time() - start_time >= self.step_interval:
                 if self.debug:
                     pass
-                    # print(self.current_pos, self.direction)
+                    print(self.current_pos, self.direction)
                 
                 self.step()
                 start_time = Stepper.get_time()
@@ -178,10 +181,14 @@ class Stepper:
     
     def set_direction_pins(self):
         if self.direction == Stepper.CCW:
-            print("ccw")
+            if self.debug:
+                pass
+                #print("ccw")
             GPIO.output(self.dir_pin, GPIO.HIGH) # When direction pin is HIGH, the motor will spin CCW
         else:
-            print("cw")
+            if self.debug:
+                pass
+                #print("cw")
             GPIO.output(self.dir_pin, GPIO.LOW) # when direction pin is LOW, the motor will spin CW
 
         Stepper.usleep(2*self.min_dir_width)
@@ -196,10 +203,14 @@ class Stepper:
         
         GPIO.setup(self.pulse_pin, GPIO.OUT)   # output pin 
         GPIO.setup(self.dir_pin, GPIO.OUT)     # output pin
-        GPIO.setup(self.enable_pin, GPIO.OUT)  # output pin
-        GPIO.setup(self.homing_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # input pin 
         
-        GPIO.output(self.enable_pin, GPIO.LOW) # turn motors on
+        if self.homing_pin != None:
+            GPIO.setup(self.homing_pin, GPIO.IN) # input pin 
+        
+        if self.enable_pin != None: 
+            GPIO.setup(self.enable_pin, GPIO.OUT)  # output pin
+            GPIO.output(self.enable_pin, GPIO.LOW) # turn motors on
+        
         if self.homing_direction == Stepper.CCW:
             GPIO.output(self.dir_pin, GPIO.HIGH)    # HIGH is ccw --> default direction
         else:
@@ -223,7 +234,8 @@ class Stepper:
                 break
 
             if self.debug:
-                print("homing direction is: ", self.direction)
+                pass
+                #print("homing direction is: ", self.direction)
             self.step()
             time.sleep(0.01) # sleep 10 ms between pulses --> gives pretty good speed
 
@@ -245,7 +257,8 @@ class Stepper:
             self.step()
             time.sleep(0.01)
             if self.debug:
-                print("current direction is: ", self.direction)
+                pass
+                #print("current direction is: ", self.direction)
             cur_pos += 1
         
         
@@ -270,7 +283,7 @@ class Stepper:
         self.move_absolute_pid(steps)
     
     def move_clockwise_simple(self):
-        self.direction = Stepper.CW
+        self.direction = Stepper.CCW
         while True:
             self.step()
             time.sleep(0.05)
@@ -310,20 +323,9 @@ if __name__ == '__main__':
     homing_direction_j2 = Stepper.CCW
     try:
         j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2, max_ccw_j2, max_cw_j2, home_count_j2,homing_direction_j2 ,inverted=True, debug=True)
-        count = 0
-
         print("about to home")
 
         j2.home()
         j2.write(90)
-        
-        # j2.move_clockwise_simple()
-        while True:
-            pass
-        #while count < 3:
-            #j2.home()
-            #count += 1
-
-        GPIO.cleanup()
-    except KeyboardInterrupt:
-        GPIO.cleanup()
+        except KeyboardInterrupt:
+            GPIO.cleanup()

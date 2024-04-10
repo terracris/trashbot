@@ -55,7 +55,7 @@ class Arm:
 
         # self.home()
         self.is_active = False
-
+        self.j2_increase = False
 
     def home(self):
         # joint is the actual stepper motor class
@@ -190,7 +190,7 @@ class Arm:
         # TODO make write in stepper library return the actual angle of the joint
         # because of our step angle resolution there is error --> this will help account for the error in pose
         angle_deg = degrees(joint_angle)
-        print("angle for joint: ", joint.id, " ", angle_deg)
+        #print("angle for joint: ", joint.id, " ", angle_deg)
         
         updated_angle = joint.write(angle_deg)
         
@@ -253,10 +253,13 @@ class Arm:
         #j3 = atan2(s3, c3) + (pi/2)
 
         j1, j2, j3 = ik_geo(trans_x, trans_y, trans_z)
+        print("j2 origin:",j2)
+        j2 = j2*1.10
+        print("j2 now:",j2)
         joint_angles = [j1, j2, j3]
         
         print()
-        [print("joint ", joint,": ", degrees(angle), "degrees") for joint, angle in enumerate(joint_angles) ]
+        [print("joint ", (joint+1),": ", degrees(angle), "degrees") for joint, angle in enumerate(joint_angles) ]
 
         traj = self.trajectory_planning(joint_angles)
 
@@ -343,11 +346,12 @@ if __name__ == '__main__':
     max_positive_angle_j4 = 90 # TODO calculate joint limits
     max_negative_angle_j4 = -40 # TODO calcylate joint limit
     homing_direction_j4 = Stepper.CW
+	   	
  
     try:
         print("setting up the arm")
         j1 = Stepper(pulse_pin_j1, dir_pin_j1, enable_pin, homing_pin_j1, pulses_per_rev, gear_ratio_j1, max_speed_j1,max_positive_angle_j1,max_negative_angle_j1, home_count_j1,homing_direction_j1, stepper_id =1, debug=False) 
-        j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2,max_positive_angle_j2, max_negative_angle_j2,home_count_j2,homing_direction_j2 ,inverted=True, stepper_id=2, debug=False)
+        j2 = Stepper(pulse_pin_j2, dir_pin_j2, enable_pin, homing_pin_j2, pulses_per_rev, gear_ratio_j2, max_speed_j2,max_positive_angle_j2, max_negative_angle_j2,home_count_j2,homing_direction_j2 ,inverted=True, stepper_id=2, debug=True)
         j3 = Stepper(pulse_pin_j3, dir_pin_j3, enable_pin, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3,max_positive_angle_j3, max_negative_angle_j3,home_count_j3,homing_direction_j3,kp=0.10,kd=0.003, stepper_id = 3)
         j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4,max_positive_angle_j4, max_negative_angle_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003, stepper_id= 4)
        
