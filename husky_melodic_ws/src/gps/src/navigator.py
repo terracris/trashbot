@@ -7,7 +7,7 @@ from nav_msgs.msg import Path
 from geometry_msgs.msg import PoseStamped, Quaternion
 from haversine import haversine, law_cosine_angle
 from coordinate import GpsCoordinate
-from std_msgs.msg import Float64
+from std_msgs.msg import Float64, String
 from math import cos, sin, radians
 import tf
 
@@ -18,8 +18,11 @@ class Navigator:
 
         self.map = list_map
         self.current_position = None
-        self.calibrate = True
+        self.calibrate_fixed_position = True
         self.reference_point = None
+        self.z_reference_point = None
+        self.z_calibrate_z_position = True
+        self.starting_point = None
         self.starting_index = 0
         self.points_traveled = 0
         self.current_heading = 0
@@ -32,28 +35,76 @@ class Navigator:
 
         self.navigation_service = rospy.Service(
             'navigate', GetPlan, self.calculate_navigation)  # service declaration
+        
+        rospy.Subscriber('calibrate_navigator', String, self.calibrate)
 
     def update_position(self, msg):
         self.current_position = GpsCoordinate(msg.latitude, msg.longitude)
-        if self.calibrate:
-            self.starting_index, self.reference_point = self.find_closest_point(
-                self.current_position)
-            print(self.reference_point)
-            self.calibrate = False
+    
+    def calibrate(self, msg):
+        
+        if self.calibrate_fixed_position:
+            self.reference_point = self.current_position
+            self.calibrate_fixed_position = False
+            return
 
-    def update_heading(self, heading):
-        # Ensure angle is in the range [0, 360)
-        angle = heading.data % 360
-        # Map angles from 0 to 180 to the range from 0 to -pi
-        if angle == 0:
-            self.current_heading = 0
-        elif angle <= 180:
-            self.current_heading = -radians(angle)
-        # Map angles from 180 to 360 to the range from 0 to pi
-        else:
-            self.current_heading = radians(360 - angle)
+        if self.calibrate_z_position:
+            self.z_reference_point = self.current_position
+            self.calibrate_z_position = False
+
+        self.starting_index, self.starting_point = self.find_closest_point(self.z_reference_point)
+        print(self.starting_index)
+
+    
+    def calculate_first_point(self):
+        next_point = self.map[self.starting_index]
+        
+        """
+        a: oc --> fixed reference point to current position (z reference)
+        b: cp --> current position (z reference) to desired point (starting point)
+        c: op --> fixed reference point to desired point
+        """
+        
+        # i want to remove this z point. can just current position
+        oc = haversine(self.reference_point, self.z_reference_point)
+        cp = haversine(self.z_reference_point, next_point)
+        op = haversine(self.reference_point, next_point)
+        
+        C = law_cosine_angle(oc, cp, op) # radians
+        turning_angle = pi - C
+        pose = PoseStamped()
+        orientation = Quaternion()
+        q = tf.transformations.quaternion_from_euler(0, 0, turning_angle) # turning_angle is in radians
+
+        orientation.x = q[0]
+        orientation.y = q[1]
+        orientation.z = q[2]
+        orientation.w = q[3]
+
+        pose.pose.position.x = cp
+        print(pose.pose.position.x)
+        pose.pose.position.y = 0.0
+        pose.pose.position.z = 0.0
+        pose.pose.orientation = orientation
+
+        pose_list = []
+        pose_list.append(pose)
+
+        path = Path()
+        path.poses = pose_list
+
+        response = GetPlanResponse()
+        response.plan = path
+
+        return response
+
 
     def calculate_navigation(self, req):
+        
+        if self.points_traveled:
+            return self.calculate_first_point()
+
+        
         self.points_traveled += 1
 
         # if we have traveled the full map, we should stop
@@ -72,9 +123,6 @@ class Navigator:
         delta_theta = phi - self.current_heading
 
         pose = PoseStamped()
-        #negated_phi = -phi
-        #self.x_pose += cp * cos(delta_theta) # cos and sin use radians
-        #self.y_pose += cp * sin(delta_theta)
         orientation = Quaternion()
         q = tf.transformations.quaternion_from_euler(0, 0, phi) # phi is in radians
 
