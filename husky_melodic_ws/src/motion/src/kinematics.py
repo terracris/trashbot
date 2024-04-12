@@ -6,6 +6,7 @@ from nav_msgs.srv import GetPlan, GetPlanRequest
 from geometry_msgs.msg import PoseStamped
 from geometry_msgs.msg import Twist
 from tf.transformations import euler_from_quaternion 
+from std_msgs.msg import String
 
 from math import sqrt, atan2, pi
 class Kinematics:
@@ -34,6 +35,7 @@ class Kinematics:
         # when message is received, call self.go_to
         rospy.Subscriber('/move_base_simple/goal', PoseStamped, self.go_to)
         self.navigation_proxy = rospy.ServiceProxy('navigate', GetPlan)
+        self.nav_calibration_pub = rospy.Publisher('/calibrate_navigator', String, queue_size=10)
 
     def send_speed(self, linear_speed, angular_speed):
         """
@@ -176,7 +178,6 @@ class Kinematics:
         print("yaw angle is: ",yaw)
         self.rotate(yaw, ROTATE_SPEED)
 
-        #self.rotate(angle, ROTATE_SPEED)
         rospy.sleep(0.5)
         self.drive(distance, DRIVE_SPEED)
         rospy.sleep(0.5)
@@ -219,6 +220,11 @@ class Kinematics:
         # make a call to the navigator. keep driving until the navigator returns an empty pose list
         rospy.wait_for_service('navigate')
         #try:
+        
+        # make call to calibrate
+        #self.drive(1, 0.30)
+        rospy.sleep(2)
+        
         request = GetPlanRequest()
         request.goal = PoseStamped()
         print("making request")

@@ -1,7 +1,7 @@
 from math import radians, sin, cos, sqrt, atan2, acos, degrees
 from coordinate import GpsCoordinate
 
-# unit: meters
+# unit: meters (only positive distance)
 def haversine(reference_coordinate, next_coordinate):
     # Convert latitude and longitude from degrees to radians
     lat1 = reference_coordinate.latitude
@@ -17,14 +17,15 @@ def haversine(reference_coordinate, next_coordinate):
     dlon = lon2 - lon1
     a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
     c = 2 * atan2(sqrt(a), sqrt(1 - a))
-    distance = 6371 * c  # Radius of Earth in kilometers
-    return distance * 1000
+    distance = abs(6371 * c)  # Radius of Earth in kilometers
+    return distance * 1000    # distance in meters
 
 # unit: radians
 def law_cosine_angle(a, b, c):
     term_1 = (c**2 - b**2 - a**2)
     term_2 = -2.0 * a * b
-    return acos(term_1/(term_2))
+    return 1
+    #return acos(term_1/(term_2))
 
 
 def find_closest_point(list_map, ref_coordinate):
