@@ -157,6 +157,50 @@ class Kinematics:
 
             rospy.sleep(SLEEP_DURATION)
 
+    def rotate_relative(self, angle, aspeed):
+        """
+        Rotates the robot relative to its current heading by the given angle.
+        :param angle  [float] [rad]   The angle to rotate by.
+        :param aspeed [float] [rad/s] The angular speed.
+        """
+
+        # SLEEP DURATION
+        SLEEP_DURATION = 0.005
+
+        # Half a degree tolerance.
+        TOLERANCE = 0.02
+
+        # Calculate the target heading
+        target_heading = self.pth + angle
+
+        # Normalize the target heading to be within [-pi, pi)
+        target_heading = ((target_heading + pi) % (2*pi)) - pi
+
+        # The angle difference to be turned
+        angle_diff = (target_heading - self.pth)
+
+        # Ensure they're the same sign
+        if ((aspeed < 0) != (angle_diff < 0)):
+            aspeed *= -1
+
+        # If we're going the long way around, just go the other way instead
+        if (abs(angle_diff) > pi):
+            aspeed *= -1
+
+        # Rotates
+        while True:
+            rospy.loginfo(self.pth)
+
+            # Checks if done
+            if (self.pth > target_heading - TOLERANCE and self.pth < target_heading + TOLERANCE):
+                self.send_speed(0, 0)  # Stops
+                break
+
+            self.send_speed(0, aspeed)
+
+            rospy.sleep(SLEEP_DURATION)
+
+
     def go_to(self, msg):
         """
         Calls rotate(), drive(), and rotate() to attain a given pose.
@@ -176,7 +220,7 @@ class Kinematics:
         (_, _, yaw) = euler_from_quaternion([quat_orig.x, quat_orig.y, quat_orig.z, quat_orig.w])
         print("distance", distance) 
         print("yaw angle is: ",yaw)
-        self.rotate(yaw, ROTATE_SPEED)
+        self.rotate_relative(yaw, ROTATE_SPEED)
 
         rospy.sleep(0.5)
         self.drive(distance, DRIVE_SPEED)
