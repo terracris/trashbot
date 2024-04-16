@@ -24,8 +24,7 @@ def haversine(reference_coordinate, next_coordinate):
 def law_cosine_angle(a, b, c):
     term_1 = (c**2 - b**2 - a**2)
     term_2 = -2.0 * a * b
-    return 1
-    #return acos(term_1/(term_2))
+    return acos(term_1/(term_2))
 
 
 def find_closest_point(list_map, ref_coordinate):

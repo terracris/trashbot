@@ -39,7 +39,7 @@ def start_gps():
                         curr_location.longitude = longitude
                         curr_location.altitude = 0 # we have no way to tell this yet. right?
                        
-                        print(f'Latitude: {latitude}, Longitude: {longitude}')
+                        #print(f'Latitude: {latitude}, Longitude: {longitude}')
                         pub.publish(curr_location)  # publish the current gps location -> need path planner
                         time.sleep(0.5)  # only delay when you have to publish the data
                     
