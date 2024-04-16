@@ -33,10 +33,12 @@ class Kinematics:
         # this method subscribes to PoseStamped messages on the '/move_base_simple/goal'
         # when message is received, call self.go_to
         rospy.Subscriber('/move_base_simple/goal', PoseStamped, self.go_to)
+        rospy.Subscriber('/3d_coordinate', PoseStamped, self.updateTrash)
+
         self.navigation_proxy = rospy.ServiceProxy('navigate', GetPlan)
 
-
-        self.movements_proxy = rospy.ServiceProxy('movements', GetPlan)
+        self.angleToTurn = 0
+        self.distToGo = 0
 
     def send_speed(self, linear_speed, angular_speed):
         """
@@ -218,28 +220,22 @@ class Kinematics:
 
         return angle, distance
     
-    def navigate(self):
-        # make a call to the navigator. keep driving until the navigator returns an empty pose list
-        rospy.wait_for_service('navigate')
-        #try:
-        request = GetPlanRequest()
-        request.goal = PoseStamped()
-        print("making request")
-        path = self.navigation_proxy(request)
-        #print(path.plan.poses)
-        poses = path.plan.poses
-
-        while len(poses) > 0:
-            print("moving")
-            self.go_to(poses[0])
-            rospy.sleep(1)
-            plan = self.navigation_proxy(request)
-            poses = plan.poses
-                
+    def updateTrash(self, msg):
+        trashX = -msg.pose.point.x
+        trashZ = msg.pose.point.z
+        self.angleToTurn = atan2(trashZ, trashX)
+        self.distToGo = sqrt(trashX**2 + trashZ**2) - 0.6 #so that it will stop 60cm in front of the trash
 
     def run(self):
-	#self.rotate(0, 0.25)
-        self.navigate()
+        # if CCW turn for husky is positive, it's the same
+        # but if CW turn for husky is positive, add minus sign before all turning angle
+        self.drive(1,0.3) #drive straight for 1 meters
+        self.turn(pi/4,0.3) # roatate 45 deg
+        self.drive(5,0.3) #drive straight for 5 meters
+        self.turn(pi/4,0.3) # roatate 45 deg
+        rospy.sleep(3) # wait 3 sec
+        self.turn(self.angleToTurn, 0.3)
+        self.drive(self.distToGo, 0.3)
         rospy.spin()
 
 
