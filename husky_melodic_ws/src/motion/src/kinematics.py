@@ -6,6 +6,7 @@ from nav_msgs.srv import GetPlan, GetPlanRequest
 from geometry_msgs.msg import PoseStamped
 from geometry_msgs.msg import Twist
 from tf.transformations import euler_from_quaternion 
+from std_msgs.msg import String
 
 from math import sqrt, atan2, pi
 class Kinematics:
@@ -34,6 +35,7 @@ class Kinematics:
         # when message is received, call self.go_to
         rospy.Subscriber('/move_base_simple/goal', PoseStamped, self.go_to)
         self.navigation_proxy = rospy.ServiceProxy('navigate', GetPlan)
+        self.nav_calibration_pub = rospy.Publisher('/calibrate_navigator', String, queue_size=10)
 
 
         self.movements_proxy = rospy.ServiceProxy('movements', GetPlan)
@@ -158,6 +160,50 @@ class Kinematics:
 
             rospy.sleep(SLEEP_DURATION)
 
+    def rotate_relative(self, angle, aspeed):
+        """
+        Rotates the robot relative to its current heading by the given angle.
+        :param angle  [float] [rad]   The angle to rotate by.
+        :param aspeed [float] [rad/s] The angular speed.
+        """
+
+        # SLEEP DURATION
+        SLEEP_DURATION = 0.005
+
+        # Half a degree tolerance.
+        TOLERANCE = 0.02
+
+        # Calculate the target heading
+        target_heading = self.pth + angle
+
+        # Normalize the target heading to be within [-pi, pi)
+        target_heading = ((target_heading + pi) % (2*pi)) - pi
+
+        # The angle difference to be turned
+        angle_diff = (target_heading - self.pth)
+
+        # Ensure they're the same sign
+        if ((aspeed < 0) != (angle_diff < 0)):
+            aspeed *= -1
+
+        # If we're going the long way around, just go the other way instead
+        if (abs(angle_diff) > pi):
+            aspeed *= -1
+
+        # Rotates
+        while True:
+            rospy.loginfo(self.pth)
+
+            # Checks if done
+            if (self.pth > target_heading - TOLERANCE and self.pth < target_heading + TOLERANCE):
+                self.send_speed(0, 0)  # Stops
+                break
+
+            self.send_speed(0, aspeed)
+
+            rospy.sleep(SLEEP_DURATION)
+
+
     def go_to(self, msg):
         """
         Calls rotate(), drive(), and rotate() to attain a given pose.
@@ -175,14 +221,13 @@ class Kinematics:
         quat_orig = msg.pose.orientation
         # moves
         (_, _, yaw) = euler_from_quaternion([quat_orig.x, quat_orig.y, quat_orig.z, quat_orig.w])
-        
+        print("distance", distance) 
         print("yaw angle is: ",yaw)
-        self.rotate(yaw, ROTATE_SPEED)
+        self.rotate_relative(yaw, ROTATE_SPEED)
 
-        #self.rotate(angle, ROTATE_SPEED)
-        rospy.sleep(1)
+        rospy.sleep(0.5)
         self.drive(distance, DRIVE_SPEED)
-        rospy.sleep(1)
+        rospy.sleep(0.5)
        
 
     def update_odometry(self, msg):
@@ -222,23 +267,31 @@ class Kinematics:
         # make a call to the navigator. keep driving until the navigator returns an empty pose list
         rospy.wait_for_service('navigate')
         #try:
+        
+        # make call to calibrate
+        #self.drive(1, 0.30)
+        rospy.sleep(2)
+        
         request = GetPlanRequest()
         request.goal = PoseStamped()
         print("making request")
         path = self.navigation_proxy(request)
-        #print(path.plan.poses)
+        print(path.plan.poses)
         poses = path.plan.poses
 
         while len(poses) > 0:
             print("moving")
-            self.go_to(poses[0])
+            pose = poses[0]
+            print(pose)
+            self.go_to(pose)
             rospy.sleep(1)
-            plan = self.navigation_proxy(request)
-            poses = plan.poses
+            path = self.navigation_proxy(request)
+            poses = path.plan.poses
                 
 
     def run(self):
-	#self.rotate(0, 0.25)
+	#self.rotate(pi/4, 0.25)
+        #self.drive(1, 0.30)
         self.navigate()
         rospy.spin()
 
