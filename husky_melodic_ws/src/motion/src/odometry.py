@@ -57,12 +57,12 @@ class HuskyOdometry:
     def joint_states_callback(self, joint_states):
         current_timestamp = joint_states.header.stamp
 
-        print("joint state timestamp: ", current_timestamp)
+        #print("joint state timestamp: ", current_timestamp)
 
         # Calculate time interval
         delta_t = (current_timestamp - self.last_timestamp).to_sec()
 
-        print("delta t: ", delta_t)
+        #print("delta t: ", delta_t)
 
         # Extract angular positions and velocities
         left_motor_angular_velocity = joint_states.velocity[0]
@@ -72,8 +72,8 @@ class HuskyOdometry:
         left_wheel_linear_velocity = left_motor_angular_velocity * self.wheel_radius # resulting calculation should be of decimal object
         right_wheel_linear_velocity = right_motor_angular_velocity * self.wheel_radius # resulting calculation should be of decimal object
         
-        print("left wheel velocity: " + str(left_wheel_linear_velocity))
-        print("right wheel velocity: " + str(right_wheel_linear_velocity))
+        #print("left wheel velocity: " + str(left_wheel_linear_velocity))
+        #print("right wheel velocity: " + str(right_wheel_linear_velocity))
         
         # Update odometry
         self.update_odometry(left_wheel_linear_velocity, right_wheel_linear_velocity, delta_t)
@@ -101,7 +101,7 @@ class HuskyOdometry:
         updated_x = self.px + delta_x
         updated_y = self.py + delta_y
 
-        print("Self.pth: ", self.pth)
+        #print("Self.pth: ", self.pth)
 
         new_pose_orientation = self.calculate_orientation(self.pth) # quaternion
 
@@ -135,8 +135,8 @@ class HuskyOdometry:
         
         husky_linear_velocity = (left_wheel_velocity + right_wheel_velocity) / 2.0
         husky_angular_velocity = (right_wheel_velocity - left_wheel_velocity) / self.wheel_seperation
-        print("husky linear velocity: " + str(husky_linear_velocity))
-        print("husky angular velocity: " + str(husky_angular_velocity))
+        #print("husky linear velocity: " + str(husky_linear_velocity))
+        #print("husky angular velocity: " + str(husky_angular_velocity))
 
         # define return variables
         delta_x = 0
@@ -155,12 +155,12 @@ class HuskyOdometry:
     def have_same_sign(self, left_wheel, right_wheel):
         # if two numbers have the same sign, their multiplication will result in a positive number
         # include zero in case both wheel velocities are zero and are accelerating
-        print("have same sign?: " + str(left_wheel * right_wheel >= 0))
+        #print("have same sign?: " + str(left_wheel * right_wheel >= 0))
         return (left_wheel * right_wheel) >= 0
 
     def in_tolerance(self, left_wheel, right_wheel):
 	    # determines if two wheels are within a given tolerance of each other
-            print("in tolerance?: " + str(abs(abs(left_wheel) - abs(right_wheel)) <= HuskyOdometry.VELOCITY_THRESHOLD))
+            #print("in tolerance?: " + str(abs(abs(left_wheel) - abs(right_wheel)) <= HuskyOdometry.VELOCITY_THRESHOLD))
             return abs(abs(left_wheel) - abs(right_wheel)) <= HuskyOdometry.VELOCITY_THRESHOLD
 
     def run(self):

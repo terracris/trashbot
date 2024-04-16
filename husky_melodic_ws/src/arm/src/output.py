@@ -3,8 +3,8 @@ import Jetson.GPIO as GPIO
 # set the GPIO mode to BCM
 GPIO.setmode(GPIO.BOARD)
 
-pin_1 = 13
-pin_2 = 21
+pin_1 = 18
+pin_2 = 12
 state = GPIO.HIGH
 
 # set up GPIO pin 8, 10 as output

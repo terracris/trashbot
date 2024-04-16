@@ -566,6 +566,12 @@ nav_msgs_DIR:PATH=/opt/ros/melodic/share/nav_msgs/cmake
 //The directory containing a CMake configuration file for pluginlib.
 pluginlib_DIR:PATH=/opt/ros/melodic/share/pluginlib/cmake
 
+//Value Computed by CMake
+pwm_pca9685_BINARY_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/build/pwm_pca9685
+
+//Value Computed by CMake
+pwm_pca9685_SOURCE_DIR:STATIC=/home/trashbot/trashbot/husky_melodic_ws/src/pwm_pca9685
+
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/melodic/share/rosconsole/cmake
 
@@ -779,7 +785,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=21
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=22
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

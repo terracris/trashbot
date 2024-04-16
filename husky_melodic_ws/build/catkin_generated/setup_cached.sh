@@ -8,3 +8,4 @@
 
 # modified environment variables
 export PWD='/home/trashbot/trashbot/husky_melodic_ws/build'
+export PYTHONPATH='/home/trashbot/trashbot/husky_melodic_ws/devel/lib/python2.7/dist-packages:/opt/ros/melodic/lib/python2.7/dist-packages:/home/trashbot/ros_cv_bridge/install/lib/python3.6/site-packages'

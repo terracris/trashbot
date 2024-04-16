@@ -219,7 +219,7 @@ class Kinematics:
         # moves
         (_, _, yaw) = euler_from_quaternion([quat_orig.x, quat_orig.y, quat_orig.z, quat_orig.w])
         print("distance", distance) 
-        print("yaw angle is: ",yaw)
+        #print("yaw angle is: ",yaw)
         self.rotate_relative(yaw, ROTATE_SPEED)
 
         rospy.sleep(0.5)
@@ -266,7 +266,7 @@ class Kinematics:
         #try:
         
         # make call to calibrate
-        #self.drive(1, 0.30)
+        self.drive(1, 0.30)
         rospy.sleep(2)
         
         request = GetPlanRequest()

@@ -30,13 +30,13 @@ class Gripper(Stepper):
 
     def close(self):
         self.direction = Stepper.CCW
-        close_position = 100 # pulse position 100 is closed
+        close_position = 1000 # pulse position 100 is closed
         self.move_absolute_pid(close_position)  # moves stepper to position 100
 
 
 if __name__ == '__main__':
-    grippy_pulse_pin = 18 # check this is actually the correct pin
-    grippy_dir_pin = 12
+    grippy_pulse_pin = 12 # check this is actually the correct pin
+    grippy_dir_pin = 18
     grippy_enable_pin = None
     grippy = Gripper(grippy_pulse_pin, grippy_dir_pin, grippy_enable_pin)
 
@@ -48,6 +48,8 @@ if __name__ == '__main__':
                 grippy.open()
             elif test_case == "close":
                 grippy.close()
+            else:
+                grippy.move_clockwise_simple()
             test_case = input("Enter 'open' or 'close': ")
     except KeyboardInterrupt:
     # Clean up GPIO on keyboard interrupt
