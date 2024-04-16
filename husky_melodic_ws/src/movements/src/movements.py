@@ -5,7 +5,8 @@ from nav_msgs.msg import Odometry
 from nav_msgs.srv import GetPlan, GetPlanRequest
 from geometry_msgs.msg import PoseStamped
 from geometry_msgs.msg import Twist
-from tf.transformations import euler_from_quaternion 
+from tf.transformations import euler_from_quaternion
+
 
 from math import sqrt, atan2, pi
 class Kinematics:
@@ -19,6 +20,9 @@ class Kinematics:
         self.px = 0
         self.py = 0
         self.pth = 0
+
+        # service client for requesting trajectory planning
+        self.arm_service = rospy.ServiceProxy('manipulate', GetPlan)
 
         # Initialize node --> Name is "kinematics"
         rospy.init_node("kinematics", anonymous=True)
@@ -36,6 +40,9 @@ class Kinematics:
         rospy.Subscriber('/3d_coordinate', PoseStamped, self.updateTrash)
 
         self.navigation_proxy = rospy.ServiceProxy('navigate', GetPlan)
+        self.end_goal = None
+        self.occupied = False
+        self.trash_point = None
 
         self.angleToTurn = 0
         self.distToGo = 0
@@ -221,21 +228,41 @@ class Kinematics:
         return angle, distance
     
     def updateTrash(self, msg):
-        trashX = -msg.pose.point.x
-        trashZ = msg.pose.point.z
+        trashX = -msg.pose.position.x
+        trashZ = msg.pose.position.z
         self.angleToTurn = atan2(trashZ, trashX)
         self.distToGo = sqrt(trashX**2 + trashZ**2) - 0.6 #so that it will stop 60cm in front of the trash
+        
+        # we will only update the point if we are not already going to pick something up
+        if not self.occupied:
+            self.trash_point = msg.pose.position   # store x, y, z of the trash point
 
     def run(self):
         # if CCW turn for husky is positive, it's the same
         # but if CW turn for husky is positive, add minus sign before all turning angle
         self.drive(1,0.3) #drive straight for 1 meters
-        self.turn(pi/4,0.3) # roatate 45 deg
+        self.rotate(pi/4,0.3) # rotate 45 deg
         self.drive(5,0.3) #drive straight for 5 meters
-        self.turn(pi/4,0.3) # roatate 45 deg
+        self.rotate(pi/4,0.3) # rotate 45 deg
         rospy.sleep(3) # wait 3 sec
-        self.turn(self.angleToTurn, 0.3)
-        self.drive(self.distToGo, 0.3)
+        self.rotate(self.angleToTurn, 0.3) # angle to of trash detected
+        self.drive(self.distToGo, 0.3)     # distance to trash detected
+        
+        # to control the arm, we can make it a ros publisher to send a message to the arm to pick something up giving it the position
+        # therefore we do not need to run the proxy.
+        rospy.wait_for_service('manipulate')
+        self.occupied = False
+        if not self.occupied:
+            self.end_goal = self.trash_point
+            self.occupied = True
+
+        request = GetPlanRequest()
+        print("making request")
+        request.start = PoseStamped()  # None, we will make the arm home first
+        request.goal = self.end_goal  # poseStamped object
+
+        path = self.arm_service(request)
+        print(path)
         rospy.spin()
 
 

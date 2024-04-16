@@ -12,10 +12,11 @@ from nav_msgs.srv import GetPlan
 from nav_msgs.msg import Path
 from geometry_msgs.msg import PoseStamped
 from ik import ik_geo
+from gripper import Gripper
 
 class Arm:
     # I am going to make the arm take in 4 different motors on startup
-    def __init__(self, j1, j2, j3):
+    def __init__(self, j1, j2, j3, gripper):
         
         rospy.init_node("arm", anonymous=True)
         
@@ -25,6 +26,7 @@ class Arm:
 
         self.joints = [j1, j2, j3]
         self.joint_angles = [0, 0, 0]
+        self.gripper = gripper
 
         # all lengths are [ m ]
         # all angles are [ rad ] 
@@ -268,6 +270,9 @@ class Arm:
         
         self.home()
         self.follow_trajectory(traj)
+        self.gripper.close()
+        # TODO: find joint angles of where receptacle would be
+        self.home() # after we have picked the item up, we home again
 
         poses = []
 
@@ -356,7 +361,9 @@ if __name__ == '__main__':
         j3 = Stepper(pulse_pin_j3, dir_pin_j3, enable_pin, homing_pin_j3, pulses_per_rev, gear_ratio_j3, max_speed_j3,max_positive_angle_j3, max_negative_angle_j3,home_count_j3,homing_direction_j3,kp=0.10,kd=0.003, stepper_id = 3)
         j4 = Stepper(pulse_pin_j4, dir_pin_j4, enable_pin, homing_pin_j4, pulses_per_rev, gear_ratio_j4, max_speed_j4,max_positive_angle_j4, max_negative_angle_j4, home_count_j4,homing_direction_j4,kp=1,kd=0.003, stepper_id= 4)
        
-        arm = Arm(j1, j2, j3)
+        gripper = Gripper()
+        arm = Arm(j1, j2, j3, gripper)
+
         # arm.home()
 
         
