@@ -1,5 +1,0 @@
-# File: service_test/srv/MyService.srv
-geometry_msgs/Point point
----
-bool success
-

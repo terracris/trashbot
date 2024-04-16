@@ -28,7 +28,7 @@ class HuskyOdometry:
         HUSKY_A200_WHEEL_RADIUS = 0.1651
         HUSKY_A100_WHEEL_TRACK = 0.505 # 50 cm wheel track
         HUSKY_A200_WHEEL_TRACK = 0.555 # 55.5 cm wheel track
-        SIM = True
+        SIM = False
 
         # Husky A100 parameters [m]
         self.wheel_seperation = HUSKY_A200_WHEEL_TRACK if SIM else HUSKY_A100_WHEEL_TRACK # number retrieved from manual on the A100

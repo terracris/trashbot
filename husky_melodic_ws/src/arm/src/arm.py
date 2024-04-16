@@ -253,9 +253,10 @@ class Arm:
         #j3 = atan2(s3, c3) + (pi/2)
 
         j1, j2, j3 = ik_geo(trans_x, trans_y, trans_z)
-        print("j2 origin:",j2)
-        j2 = j2*1.10
-        print("j2 now:",j2)
+        if j1 < 0:
+            j1 = j1*1.3
+        j2 = j2*1
+        j3 = j3*1.10
         joint_angles = [j1, j2, j3]
         
         print()
