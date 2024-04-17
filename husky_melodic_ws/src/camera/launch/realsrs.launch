@@ -1,0 +1,4 @@
+<launch>
+    <!-- Launching RealSense camera node -->
+    <include file="$(find realsense2_camera)/launch/rs_rgbd.launch"/>
+</launch>
