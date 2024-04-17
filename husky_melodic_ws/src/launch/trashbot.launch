@@ -1,0 +1,25 @@
+<launch>
+    <!-- Launch file for running all nodes -->
+    
+    <!-- Launch the Husky base -->
+    <include file="$(find husky_base)/launch/base.launch" />
+
+    <!-- Start the GPS node -->
+    <node pkg="gps" type="gps.py" name="gps_node" output="screen" />
+
+    <!-- Start the IMU node -->
+    <node pkg="imu" type="bno055_ros.py" name="imu_node" output="screen" />
+
+    <!-- Start the odometry node -->
+    <node pkg="motion" type="odometry.py" name="odometry_node" output="screen" />
+
+    <!-- Start the kinematics node -->
+    <node pkg="motion" type="kinematics.py" name="kinematics_node" output="screen" />
+
+    <!-- Start the navigator node -->
+    <node pkg="gps" type="navigator.py" name="navigator_node" output="screen" />
+
+    <!-- Start the arm node -->
+    <node pkg="arm" type="arm.py" name="arm_node" output="screen" />
+</launch>
+
